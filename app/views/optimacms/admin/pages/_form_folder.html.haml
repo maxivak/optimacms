@@ -1,0 +1,14 @@
+- url = @item.persisted? ? updatefolder_page_path : createfolder_pages_path
+
+=horizontal_simple_form_for @item, url: url do |f|
+  = render 'optimacms/admin/shared/form_errors', :object=>@item
+
+  = f.input :parent_id, as: :hidden
+  = f.input :is_folder, as: :hidden
+
+  = f.input :title, label: "Title"
+
+  - if @item.parent_id>0
+    = f.input :parent_title, disabled: true, label: 'Parent folder'
+
+  = f.button :submit_cancel, 'Save', :cancel=>@url_back

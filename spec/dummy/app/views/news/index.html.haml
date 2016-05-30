@@ -1,0 +1,13 @@
+%h1 News
+
+page = #{@pg}
+- @items.each do |item|
+  %h3= item.title
+  = item.description
+
+
+%h3 urls
+
+%ul
+  %li=link_to 'News index', site_page_path('news')
+  %li=link_to 'News #1', site_page_path('news_item', id: 1)

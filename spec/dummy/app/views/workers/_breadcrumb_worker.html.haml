@@ -1,0 +1,11 @@
+%ol.breadcrumb
+  -#%li=link_to 'BuildWinner', root_path
+  %li
+    Мастера:
+  - if @item.country
+    %li=link_to 'Украина', make_workers_path(@item.country, nil)
+  - if @item.city
+    %li=link_to @item.city.name, make_workers_path(@item.country, @item.city)
+
+  %li=link_to @item.title, worker_path(name: @item.slug)
+

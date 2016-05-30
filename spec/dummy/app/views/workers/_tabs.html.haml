@@ -1,0 +1,12 @@
+%ul#profile_tabs.nav.nav-tabs.nav-tabs-bordered
+  %li{role: "presentation", class: (active=='show' ? 'active' : nil)}
+    =link_to 'Описание', worker_path(:name=>@item.slug)
+  %li{role: "presentation", class: (active=='services' ? 'active' : nil)}
+    =link_to 'Услуги', worker_services_path(:name=>@item.slug)
+  %li{role: "presentation", class: (active=='portfolio' ? 'active' : nil)}
+    =link_to 'Примеры работ', worker_portfolio_path(:name=>@item.slug)
+  %li{role: "contacts", class: (active=='contacts' ? 'active' : nil)}
+    =link_to 'Контакты', worker_contacts_path(:name=>@item.slug)
+
+  -#%li{role: "presentation"}
+    =link_to 'Отзывы', '#'

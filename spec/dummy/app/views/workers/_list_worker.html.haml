@@ -1,0 +1,46 @@
+.row.worker
+  .col-md-18.nopadding
+    .pull-left.cont-avatar
+      =link_to worker_path(:name=>item.slug), class: 't' do
+        = image_tag item.avatar.url(:medium), :class=>'avatar avatar-lg'
+    .pull-left.cont-main
+      .pull-left
+        =link_to item.title, worker_path(:name=>item.slug), class: 't'
+      .pull-left.icons
+        &nbsp;
+        - if item.is_verified?
+          %i.fa.fa-check-square.color2{title: 'Проверенный исполнитель'}
+
+      .clearfix
+      .location
+        - if item.city
+          =item.city.name
+        - elsif item.region
+          =item.region.name
+        - else
+          Город: не указано
+
+      .desc.desc-w
+        =truncate item.description, length: 200
+
+    .clearfix
+
+    -#.status-links
+      =link_to '#' do
+        Рейтинг: 150
+
+      =link_to '#' do
+        Отзывы (0)
+
+      Последний визит:
+      = date_default(item.user.last_sign_in_at)
+
+  .col-md-6
+    =link_to 'Заказать ремонт', new_project_path(:to=>item.public_name), class: 'btn btn-primary btn-sm'
+    %br
+    %br
+    =link_to 'Отправить сообщение', show_dialog_path(:username=>item.user.username), :class=>'link-light link-sm'
+    %br
+    -#=link_to 'Перезвоните мне', '#', :class=>'link-light link-sm'
+
+.clearfix

@@ -1,0 +1,15 @@
+.page-header
+  .row
+    .col-md-6
+      %h1
+        Create page folder
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          enter title
+    .col-md-4
+      =link_to 'Back to pages', @url_back
+
+
+.row
+  .col-md-12
+    = render 'form_folder'

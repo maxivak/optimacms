@@ -1,0 +1,20 @@
+%ul#list-photos-big.list-inline.list-photos
+  - @works.each do |r|
+    %li
+      - path = worker_work_path(:id=>r.id)
+      =link_to path do
+        - if r.main_photo.nil?
+          = noimage({:style=>'big'}, {:class=>'img-thumbnail'})
+        - else
+          = image_tag r.main_photo.photo.url(:big), :class=>'img-thumbnail'
+
+      .cont.cont-center
+        =link_to r.title, path, :class=>'t'
+
+.clearfix
+= paginate @works
+
+
+
+
+

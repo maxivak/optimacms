@@ -1,0 +1,20 @@
+- content_for :main do
+  #wrapper
+    = render 'optimacms/admin/shared/top'
+
+    .main-container
+      #sidebar.sidebar
+        = render 'optimacms/admin/shared/leftmenu'
+
+      .main-content
+        .main-content-inner
+          = render 'optimacms/admin/shared/breadcrumbs'
+          = render 'optimacms/admin/shared/flash'
+
+          .page-content
+            = yield
+
+
+  = render 'optimacms/admin/shared/footer'
+
+= render :template => 'optimacms/admin/layouts/application'

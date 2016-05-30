@@ -1,0 +1,22 @@
+.row
+  .col-md-12
+    =horizontal_simple_form_for @item do |f|
+      = f.input :title, label: "Title"
+      = f.input :content, as: :textarea_tinymce, label: "Content", input_html: {:rows => 16, :cols => 120}
+
+      = f.button :submit_cancel, 'Save', :cancel=>@url_back
+
+      -#=f.submit 'Сохранить', :class=>'btn btn-sm btn-primary'
+      -#=link_to 'Отмена', '#', :class=>'btn btn-sm btn-default', :id=>'link_form_cancel'
+
+
+
+
+
+:coffeescript
+  $(document).ready(function() {
+    $("#link_form_cancel").click(function(e){
+      e.preventDefault();
+      window.location = "#{@url_back}";
+    });
+  });

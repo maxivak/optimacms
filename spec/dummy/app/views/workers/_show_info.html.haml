@@ -1,0 +1,53 @@
+
+.block-basic.profile-top-info
+  .row
+    .pull-left
+      = image_tag @item.avatar.url(:medium), :class=>'avatar avatar-lg'
+      %br
+    .col-md-9.profile-info-cont
+      %h1=@item.title
+      %span.location
+        - if @item.city
+          =@item.city.name
+        - elsif @item.region
+          =@item.region.name
+      %span
+        - if @item.is_verified?
+          %i.fa.fa-check-square.color2
+          %b Проверенный исполнитель
+        -#=link_to '[?]', '#'
+          %br
+      .tinfo
+        На сайте #{time_ago_in_words(@item.created_at)} (заходил #{time_ago_in_words(@item.user.last_sign_in_at)} назад)
+
+
+    .col-md-6
+      %ul.profile-cmd
+        %li
+          =link_to 'Заказать ремонт', new_project_path(:to=>@item.public_name), :class=>'btn btn-primary'
+        %li
+          =link_to 'Отправить сообщение', show_dialog_path(:username=>@item.user.username)
+      -#.contacts
+        %b Контакты
+        %br
+
+        %br
+        %br
+        - if @item.is_our?
+          = render 'show_info_contacts_our'
+          %br
+        - else
+          - @contacts_main.each do |contact|
+            = contact_type_icon(contact.contact_type)
+            = contact.title
+            -#= contact_notes(contact)
+            %br
+
+        =link_to '&raquo; Все контакты'.html_safe, worker_contacts_path(:name=>@item.slug)
+
+
+    .col-md-5
+      = render 'share_worker', item: @item
+      -#=image_tag 'temp/rate_by.png'
+
+  .clearfix

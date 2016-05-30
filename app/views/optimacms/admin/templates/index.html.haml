@@ -1,0 +1,49 @@
+.page-header
+  .row
+    .col-md-6
+      %h1
+        Templates
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          edit page templates
+    .col-md-4
+      =link_to 'New template', new_template_path(:parent_id=>@parent_id), :class=>'btn btn-sm btn-primary'
+      =link_to 'Attach template', newattach_templates_path(:parent_id=>@parent_id), :class=>'btn btn-sm btn-primary'
+      =link_to 'New folder', newfolder_templates_path(:parent_id=>@parent_id, :is_folder=>1), :class=>'btn btn-sm btn-default'
+
+
+.filter
+  = inline_filter_form_for(@filter)
+
+
+- if @parent
+  =link_to 'HOME', templates_path(:parent_id=>0)
+  #{"/"}
+  - @parent.ancestors.each do |r|
+    =link_to r.title, templates_path(:parent_id=>r.id)
+    #{"/"}
+  =link_to @parent.title, templates_path(:parent_id=>@parent.id)
+
+
+%table.table.table-striped.table-bordered
+  %tr
+    %th= link_to_sortable_column :title, 'Title'
+    %th= link_to_sortable_column :basepath, 'Path'
+    %th Commands
+
+  - @items.each do |item|
+    %tr
+      %td
+        - if item.is_folder
+          =link_to templates_path(:parent_id=>item.id) do
+            <i class="fa fa-folder-o"></i>
+            =item.title
+        - else
+          =link_to item.title, edit_template_path(item)
+      %td
+        =item.basepath
+      %td
+        =link_to 'Edit', (!item.is_folder ? edit_template_path(item) : editfolder_template_path(item))
+        =link_to 'Delete', template_path(item), :method => :delete, data: { confirm: 'Are you sure?' }
+
+=paginate @items

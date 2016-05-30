@@ -1,0 +1,78 @@
+
+.row
+  .col-md-12
+    =horizontal_simple_form_for @item do |f|
+      = render 'optimacms/admin/shared/form_errors', :object=>@item
+
+      = f.input :parent_id, as: :hidden
+
+      = f.input :title, label: "Title"
+      = f.input :url, as: :string, label: "URL", :hint=> "parsed: #{@item.parsed_url}"
+
+      = f.input :name, as: :string, label: "Name", :hint=>'Unique name of page. only latin letters, no spaces'
+      - if @item && @item.parent_id>0
+        = f.input :parent_title, disabled: true, label: 'Folder'
+
+      = f.input :controller_action, as: :string, label: "Controller", :hint=>'controller#action. ex.: news#index'
+
+      = f.association :layout, label: "Layout", collection: @layouts, label_method: :title
+
+      .form-group.page_template
+        %label(for="inputTemplate" class="col-sm-2 col-md-1 control-label")
+          Template
+
+        .col-sm-4.col-md-4.control
+          -#= f.input_field :client, :as => :autocomplete, :source_query => autocomplete_client_name_orders_path, :minLength => 1, :items => 10, :class=>'form-control', :afterSelect=>'client_autocomplete_after_select'
+          =f.input_field :template, :as => :autocomplete, :source_query => autocomplete_templates_url, :class=>'form-control'
+
+        .col-sm-2.col-md-2
+          =link_to '#', :class=>"btn btn-sm btn-default", :id=>'linkAddTemplate' do
+            %i.fa.fa-plus
+
+          =link_to '#', :class=>"btn btn-sm btn-default" do
+            %i.fa.fa-search
+
+          =link_to '#', :class=>"btn btn-sm btn-default" do
+            %i.fa.fa-refresh
+
+      -#= f.input :view_path, label: "Template"
+      -#= f.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120}
+
+      = f.input :is_translated, label: "Translate?"
+
+      = render 'meta', f: f, item: @item
+
+      = f.button :submit_cancel, 'Save', :cancel=>@url_back
+
+
+
+= render 'optimacms/admin/templates/js_form_modal'
+
+
+#div_template_info(style="visibilty:none;")
+  - if @item.template
+    =link_to 'Edit template "'+@item.template.to_s+'"', edit_template_path(@item.template)
+
+
+= render 'optimacms/admin/common/js_tinymce'
+
+:javascript
+  var page_template_id = 0;
+  var page_template_title = '';
+
+  function autocomplete_set_item(input_id, id, title){
+      var obj_input = $('#'+input_id);
+      var obj_id = $('#'+obj_input.attr("data-field-id"));
+      if (obj_id)
+        obj_id.val(id);
+
+      obj_input.val(title);
+
+  }
+
+
+:javascript
+  $(document).ready(function() {
+    $('.form-group.page_template div.control').append($("#div_template_info"));
+    $("#div_template_info").show();
+  });

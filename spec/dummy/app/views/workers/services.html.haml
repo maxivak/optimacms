@@ -1,0 +1,12 @@
+- n = @categories.count
+- unless @categories.empty?
+  - @categories.each_with_index do |r, ind|
+    =link_to r.fulltitle, make_workers_path(@item.country, @item.city, r)
+    - unless ind+1 == n
+      ,
+  %br
+
+%br
+%br
+%br
+%br

@@ -1,0 +1,20 @@
+%h2 Контакты
+
+- if @item.is_our?
+  = render 'contacts_our'
+
+- else
+  - unless @contacts.empty?
+    %ul.normal
+      - @contacts.each do |item|
+        %li
+          = contact_type_icon(item.contact_type)
+          = item.title
+          = contact_notes(item)
+
+%br
+%br
+%br
+%br
+%br
+%br

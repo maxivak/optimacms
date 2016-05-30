@@ -1,0 +1,61 @@
+- editor = @item.has_code? ? 'ace' : 'tinymce'
+
+.row#mainform
+  .col-md-12
+    = horizontal_simple_form_for @item, {:html => { :class => "form-horizontal", :role => "form" }}.merge((@modal==1 ? {remote: true}: {}))  do |f|
+      = render 'optimacms/admin/shared/form_errors', :object=>@item
+
+      = f.input :parent_id, as: :hidden
+
+      = f.input :title, label: "Title"
+
+      -# if @item && @item.parent_id>0
+        = f.input :parent_title, disabled: true, label: 'Folder'
+
+      -#= f.input :basename, disabled: true, label: 'Name'
+      -#= f.input :basedirpath, label: "Folder", :disabled=> true
+      = f.input :path, disabled: true, label: 'File'
+      -#=link_to 'Rename', '#'
+
+
+      -#= f.input :is_translated, label: "Translate?"
+
+      - if @item.has_code?
+        .form-group.template_content
+          %label(for="inputContent" class="col-sm-2 col-md-1 control-label")
+            Content
+
+          .col-sm-8.col-md-8.control
+            = f.input_field :content, as: :text, label: "Content", html: {:rows => 16, :cols => 120, :class=>'' }
+
+            #content(style="width:100%; height: 600px; border: 2px #333333 solid;")
+
+      - else
+        = f.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
+
+      = f.button :submit_cancel, 'Save', :cancel=>@url_back
+
+
+- if editor=='tinymce'
+  = render 'optimacms/admin/common/js_tinymce'
+
+- elsif editor=='ace'
+  = render 'optimacms/admin/common/js_ace'
+
+  :javascript
+    var editor = ace.edit("content");
+    editor.setTheme("ace/theme/chrome");
+    editor.getSession().setMode("ace/mode/haml");
+    editor.getSession().setNewLineMode("windows");
+    editor.getSession().setTabSize(2);
+
+    $(document).ready(function() {
+      var textarea = $('#template_content');
+      textarea.hide();
+
+      editor.getSession().setValue(textarea.val());
+
+      $('#mainform form').submit(function(){
+        $('#template_content').val(editor.getSession().getValue());
+      });
+    });

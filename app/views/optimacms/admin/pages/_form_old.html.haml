@@ -1,0 +1,108 @@
+.row
+  .col-md-12
+    =horizontal_simple_form_for @item do |f|
+      = f.input :title, label: "Title"
+      = f.input :url, as: :string, label: "URL"
+      = f.association :layout, label: "Layout", collection: @layouts
+      = f.input :content, as: :textarea_tinymce, label: "Content", input_html: {:rows => 16, :cols => 120}
+
+      = f.button :submit_cancel, 'Save', :cancel=>@url_back
+
+      -#=f.submit 'Сохранить', :class=>'btn btn-sm btn-primary'
+      -#=link_to 'Отмена', '#', :class=>'btn btn-sm btn-default', :id=>'link_form_cancel'
+
+
+
+
+-#<script type="text/javascript" src="/js/tinymce4/tinymce.min.js"></script>
+-#<script type="text/javascript" src="/js/tiny_mce/tiny_mce.js"></script>
+
+
+-#= javascript_include_tag "tinymce-jquery"
+-#= tinymce_assets
+
+-#= tinymce :uploadimage_form_url => tinymce_uploadimage_url, :relative_urls => false, remove_script_host: true, image_advtab: true
+-#= tinymce_javascript_tag "tinymce_assets"
+
+
+
+
+-#:javascript
+  // tinymce 4
+  tinymce.init({
+      selector: "textarea",
+      theme: "modern",
+      plugins: [
+          "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+          "searchreplace wordcount visualblocks visualchars code fullscreen",
+          "insertdatetime media nonbreaking save table contextmenu directionality",
+          "emoticons template paste textcolor colorpicker textpattern"
+      ],
+      toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+      toolbar2: "print preview media | forecolor backcolor emoticons",
+      image_advtab: true,
+
+      //file_browser_callback : 'myFileBrowser',
+      //image_list: "/mylist.php",
+      /*
+      image_list: [
+        {title: 'MemorialDay2013.jpg', value: '../data/emailpics/MemorialDay2013.jpg'},
+        {title: 'MAPMAY.jpg', value: '../data/emailpics/MAPMAY.jpg'}
+      ],
+      */
+      templates: [
+          {title: 'Test template 1', content: 'Test 1'},
+          {title: 'Test template 2', content: 'Test 2'}
+      ]
+  });
+
+
+  function myFileBrowser(field_name, url, type, win) {
+    console.log('1');
+
+    /* Here goes the URL to your server-side script which manages all file browser things. */
+    // alert("Field_Name: " + field_name + "nURL: " + url + "nType: " + type + "nWin: " + win); // debug/testing
+
+
+    var cmsURL       = '/assetManager/getAllImages';     // your URL could look like "/scripts/my_file_browser.php"
+    var searchString = window.location.search; // possible parameters
+    if (searchString.length < 1) {
+      // add "?" to the URL to include parameters (in other words: create a search string because there wasn't one before)
+      searchString = "?";
+    }
+
+
+    tinyMCE.activeEditor.windowManager.open({
+      file            : cmsURL,
+      title           : 'My File Browser',
+      width           : 420,  // Your dimensions may differ - toy around with them!
+      height          : 400,
+      resizable       : "yes",
+      inline          : "yes",  // This parameter only has an effect if you use the inlinepopups plugin!
+      close_previous          : "no"
+      },
+      {
+      window  : win,
+      input   : field_name
+      }
+    );
+
+
+    var win     = tinyMCEPopup.getWindowArg("window");
+    var input   = tinyMCEPopup.getWindowArg("input");
+    var res     = tinyMCEPopup.getWindowArg("resizable");
+    var inline  = tinyMCEPopup.getWindowArg("inline");
+
+    //win.document.forms[0].elements[field_name].value = input;
+
+
+    return false;
+  }
+
+
+
+:coffeescript
+  $ ->
+    $("#link_form_cancel").click (e) ->
+      e.preventDefault()
+      window.location = "#{@url_back}";

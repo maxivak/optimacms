@@ -1,0 +1,54 @@
+.desc
+  =@item.description
+
+%br
+.headline
+  %h2 Специализация
+  .pull-right
+    =link_to '&rarr; Все услуги'.html_safe, worker_services_path(:name=>@item.slug)
+
+- n = @categories.count
+- unless @categories.empty?
+  - @categories.each_with_index do |r, ind|
+    =link_to r.fulltitle, make_workers_path(@item.country, @item.city, r)
+    - unless ind+1 == n
+      ,
+  %br
+
+%br
+%div
+  .headline
+    %h2
+      =link_to "Фотографии работ", worker_portfolio_path(:name=>@item.slug)
+    .pull-right
+      =link_to '&rarr; Все работы'.html_safe, worker_portfolio_path(:name=>@item.slug)
+
+  %ul.list-inline.list-photos
+    - @works.each do |r|
+      %li.col-sm-8.col-md-6
+        - path = worker_work_path(:id=>r.id)
+        =link_to path do
+          - if r.main_photo.nil?
+            = noimage({:style=>'medium'}, {:class=>'img-thumbnail'})
+          - else
+            = image_tag r.main_photo.photo.url(:medium), :class=>'img-thumbnail'
+
+        .cont.cont-center
+          =link_to r.title, path, :class=>'t'
+
+
+    -#
+      - 1.upto 4 do |r|
+        .col-sm-8.col-md-5
+          =link_to (image_tag 'temp/work'+r.to_s+'.jpg', :width=>240, :class=>'img-thumbnail')
+          .cont
+            =link_to 'плитка на кухне', '#', :class=>'t'
+            -#
+              %p
+                =link_to 'Отделочные работы', '#', :class=>'cat'
+                \/
+                =link_to 'Обшивка', '#', :class=>'subcat'
+  .clearfix
+
+%br
+%br

@@ -1,0 +1,43 @@
+Примеры работ #{@item.title}
+%h2
+  = @work.title
+%p
+  =@work.description
+%br
+
+- unless @photos.empty?
+  %ul#list-photos-big.list-inline.list-photos
+    - @photos.each do |photo|
+      %li{'data-id'=>photo.id}
+        =link_to photo.photo.url(:large), :'data-toggle'=>"lightbox", :'data-gallery'=>"workphotos", :'data-parent'=>".list-photos", :'data-title'=>photo.title do
+          =image_tag photo.photo.url(:big), :class=>'img-thumbnail'
+          .cont.cont-center
+            %span.t=photo.title
+
+- else
+  %br
+
+.clearfix
+%br
+
+= stylesheet_link_tag    "ekko-lightbox.min", media: "all"
+= javascript_include_tag :'ekko-lightbox.min'
+
+
+:javascript
+  $(function() {
+    // delegate calls to data-toggle="lightbox"
+    $(document).delegate('*[data-toggle="lightbox"]:not([data-gallery="navigateTo"])', 'click', function(event) {
+        event.preventDefault();
+        return $(this).ekkoLightbox({
+            onShown: function() {
+            },
+            onNavigate: function(direction, itemIndex) {
+            }
+        });
+    });
+
+  });
+
+
+

@@ -1,0 +1,17 @@
+!!! Strict
+%html
+  %head
+    %title= h(yield(:title) || "Admin Area" )
+    = yield(:head)
+
+    = csrf_meta_tag
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+    = stylesheet_link_tag    "optimacms/admin", media: "all"
+    = stylesheet_link_tag    "optimacms/admin_tpl", media: "all"
+
+    = javascript_include_tag "optimacms/application"
+    = javascript_include_tag "optimacms/admin"
+
+  %body.no-skin
+    = yield :main

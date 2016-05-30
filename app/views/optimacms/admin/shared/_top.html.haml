@@ -1,0 +1,33 @@
+#topbar.navbar.navbar-default
+  .navbar-container
+    %button.navbar-toggle.pull-left( data-target="#sidebar" type="button")
+      %span.sr-only Toggle sidebar
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    .navbar-header.pull-left
+      <a class="navbar-brand" href="#"><small><i class="fa fa-cube"></i> Admin</small></a>
+    .navbar-buttons.pull-right(role="navigation")
+      %ul.nav
+        -#%li
+          =link_to 'Login', new_user_session_path
+        %li
+          %a.dropdown-toggle(href="#" data-toggle="dropdown" aria-expanded="true")
+            %span.user-info Admin
+            %i.fa.fa-caret-down
+          %ul.dropdown-menu-right.dropdown-menu
+            %li
+              %a{:href => '#'}
+                = fa_icon "user"
+                #{current_cms_admin_user.email}
+            %li
+              <a href="#"><i class="fa fa-cog"></i> Settings</a>
+            %li
+              <a href="profile.html"><i class="fa fa-user"></i> Profile</a>
+            %li.divider
+            %li
+              =link_to destroy_cms_admin_user_session_path, :method => :delete do
+                = fa_icon "fa-power-off"
+                Logout
+
+

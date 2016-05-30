@@ -1,0 +1,9 @@
+%ol.breadcrumb
+  %li
+    Мастера:
+  %li=link_to @country.name, make_workers_path(@country, nil)
+  - unless @city.nil?
+    %li=link_to ''+@city.name, make_workers_path(@country, @city)
+  - unless @category.nil?
+    %li=link_to ''+@category.title, make_workers_path(@country, @city, @category)
+

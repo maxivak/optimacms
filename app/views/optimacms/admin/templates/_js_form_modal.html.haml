@@ -1,0 +1,44 @@
+= render 'optimacms/admin/common/modal_div', name: "Template", title: "Template"
+
+
+:javascript
+
+  $( document ).ready(function() {
+    $('#linkAddTemplate').click(function (event) {
+      $('#modalTemplateForm').modal('show');
+
+      $.get("#{new_template_path}", {modal: "1"},
+          function(data) {
+            $('#modalTemplateForm .modalContent').html(data);
+            //callbackform_after_load();
+
+            $('#modalTemplateForm .modalContent .page-header').hide();
+
+            attachTemplateFormEvents();
+
+          }
+      );
+
+      event.preventDefault();
+    });
+
+  });
+
+  function attachTemplateFormEvents(){
+    var f = $("#new_template");
+
+    f.on("ajax:success", function(e, data, status, xhr){
+      //f.append xhr.responseText
+      console.log('added');
+
+      //$('#modalTemplateForm .modalContent').html("");
+
+      autocomplete_set_item('page_template', page_template_id, page_template_title);
+
+      $('#modalTemplateForm').modal('hide');
+
+    }).on("ajax:error", function(e, xhr, status, error){
+      f.append("<p>ERROR</p>");
+    });
+
+  }

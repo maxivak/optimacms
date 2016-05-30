@@ -1,0 +1,22 @@
+= render 'shared/js_share'
+
+:javascript
+  $( document ).ready(function() {
+    var url_this = "#{make_company_url(item)}";
+    var title = "#{@share_title}";
+    var img_url = "#{@share_img}";
+    var desc = "#{@share_desc}";
+
+    $('.profile-socials a.facebook').click(function(e){
+      e.preventDefault();
+
+      Share.facebook(url_this,title,img_url,desc);
+
+    });
+
+    $('.profile-socials a.vk').click(function(e){
+      e.preventDefault();
+      Share.vkontakte(url_this,title,img_url,desc);
+    });
+
+  });

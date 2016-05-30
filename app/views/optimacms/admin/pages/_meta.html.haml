@@ -1,0 +1,48 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-body
+        .pad20
+          %b Meta
+          #meta_translation
+            %ul.nav.nav-tabs
+              - @languages.each do |lang|
+                - t = lang.blank? ? 'Default' : lang
+                %li(role="presentation")
+                  =link_to t, '#', :class=>'link_meta_tab', :data=>{:lang=>lang}
+
+            = f.simple_fields_for :translations do |fmeta|
+              - tran = fmeta.object
+              - lang = tran.lang
+
+
+              %div{:class=>['cont', "meta_cont_"+lang]}
+                =fmeta.input :lang, :readonly=>true
+                =fmeta.input :meta_title, label: 'Title'
+                =fmeta.input :meta_keywords, label: 'Keywords'
+                =fmeta.input :meta_description, as: :text, label: 'Description'
+
+  -# @languages.all.each do |r|
+    - lang = r.lang
+    - name = "meta_keywords_#{lang}"
+    .form-group
+      %label(for="#{name}") Keywords
+      =f.input_field :"meta_keywords[#{lang}]", :class=>"form-control", :placeholder=>"Keywords"
+
+
+:javascript
+  $(document).ready(function() {
+    meta_show_cont('');
+
+    $('#meta_translation .link_meta_tab').click(function(e){
+      e.preventDefault();
+      meta_show_cont($(this).data('lang'));
+    });
+
+
+  });
+
+  function meta_show_cont(lang){
+    $('#meta_translation .cont').hide();
+    $('#meta_translation .cont.meta_cont_'+lang).show();
+  }

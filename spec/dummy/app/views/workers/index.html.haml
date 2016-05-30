@@ -1,0 +1,49 @@
+= render 'breadcrumb_workers'
+
+%h1 Ремонтные бригады <span class="dotted" id="location">#{in_location(@country, @city)}</span>
+
+%p
+  Ремонтные бригады, мастера по ремонту #{in_location(@country, @city)}. Выберите специализацию:
+
+=render 'locations/popup_city', from: 'workers'
+
+%form.form-inline#form_category
+  .form-group
+    %label(for="category")
+      Специализация:
+    = select_tag "category", options_from_collection_for_select(@categories_top, "slug", "title", (@category_parent ? @category_parent.slug : nil)), class: 'form-control input-sm', :prompt=>'-- Все специализации --'
+
+
+- if @subcategories
+  #filter-subcats.block-light
+    .col-md-24
+      %ul.cats
+        %li{class: (@category_parent.id==@category.id ? 'cat-sm active' : 'cat-sm')}
+          =link_to 'Все', make_workers_path(@country, @city, @category_parent)
+
+        - @subcategories.each do |cat|
+          %li{class: (cat.id==@category.id ? 'cat-sm active' : 'cat-sm')}
+            =link_to cat.title, make_workers_path(@country, @city, cat)
+
+    .clearfix
+
+- if @items.count==0
+  %br
+  .well
+    По вашему запросу ничего не найдено. Измените условия поиска
+
+- else
+  = render 'list_workers', items: @items
+  .clearfix
+
+  = paginate @items
+
+.clearfix
+
+%p
+  %br
+  Поиск ремонтных бригад в вашем городе.
+
+
+%p
+  Еще текст

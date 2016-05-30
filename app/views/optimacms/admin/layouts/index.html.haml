@@ -1,0 +1,25 @@
+.page-header
+  .row
+    .col-md-8
+      %h1
+        Layouts
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          edit layouts content
+    .col-md-2
+      =link_to 'New layout', new_layout_path, :class=>'btn btn-sm btn-primary'
+
+
+
+
+
+%table.table.table-striped.table-bordered
+  %tr
+    %th Title
+    %th Commands
+  - @items.each do |item|
+    %tr
+      %td
+        =link_to item.title, edit_layout_path(item)
+      %td
+        =link_to 'Edit', edit_layout_path(item)
