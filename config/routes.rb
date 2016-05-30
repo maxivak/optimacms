@@ -8,6 +8,12 @@ Optimacms::Engine.routes.draw do
 
     get '/res' => 'common#res', as: :res_common
 
+    resources :languages do
+      collection do
+        post 'search'
+      end
+    end
+
     resources :pages do
       collection do
         post 'search'

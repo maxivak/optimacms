@@ -1,0 +1,36 @@
+.page-header
+  .row
+    .col-md-6
+      %h1
+        Languages
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          edit languages
+    .col-md-4
+      =link_to 'New', new_language_path(), :class=>'btn btn-sm btn-primary'
+
+
+.filter
+  = inline_filter_form_for(@filter)
+
+
+%table.table.table-striped.table-bordered
+  %tr
+    %th= link_to_sortable_column :title, 'Title'
+    %th= link_to_sortable_column :lang, 'Name'
+    %th= link_to_sortable_column :pos, 'Pos'
+    %th Commands
+
+  - @items.each do |item|
+    %tr
+      %td
+        =link_to item.title, edit_language_path(item)
+      %td
+        =item.lang
+      %td
+        =item.pos
+      %td
+        =link_to 'Edit', edit_language_path(item)
+        =link_to 'Delete', language_path(item), :method => :delete, data: { confirm: 'Are you sure?' }
+
+=paginate @items

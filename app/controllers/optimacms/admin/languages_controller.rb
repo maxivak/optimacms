@@ -2,56 +2,35 @@ module Optimacms
   class Admin::LanguagesController < Admin::AdminBaseController
 
     before_action :set_item, only: [:show, :edit, :update, :destroy]
-    before_action :init_data_form, only: [:new, :edit, :newfolder, :editfolder, :newattach]
+    before_action :init_data_form, only: [:new, :edit]
+
+
+    # search
+    search_filter :index, {save_session: true, search_method: :post_and_redirect, url: :languages_url, search_url: :search_languages_url, search_action: :search} do
+      default_order "pos", 'asc'
+
+      # fields
+      #field :title, :string, :text, {label: 'Title', default_value: '', condition: :like_full, input_html: {style: "width: 240px"}}
+
+
+
+    end
 
 
     def index
-      #@filter.clear_data
-
-      #
-      @parent_id = @filter.v('parent_id').to_i
-      @parent = Template.find(@parent_id) rescue nil
-
-      if @parent.nil? && @parent_id>0
-        redirect_to templates_path(:parent_id=>0) and return
-      end
-
-      #
+      #@filter.set_order('pos','asc')
       @items = model.by_filter(@filter)
-      #@items = model.where(@filter.where).order(@filter.order_string).page(@filter.page)
-
 
     end
 
-    #include SimpleFilter::Controller
-    search_filter :index, {save_session: true, search_method: :post_and_redirect, url: :templates_url, search_url: :search_templates_url, search_action: :search} do
-      # define filter
-      default_order "title", 'asc'
-
-      # fields
-      field :title, :string, :text, {label: '', default_value: '', condition: :like_full}
-    end
 
 
-
-    def autocomplete
-      q = params[:q]
-      type_id = (params[:t] || TemplateType::TYPE_PAGE).to_i
-
-      rows = Template.where("type_id=#{type_id} AND (basepath LIKE ? OR title like ?)", "%#{q}%", "%#{q}%").order('basepath asc').limit(20)
-
-      data = rows.map{|r| [r.id, "#{r.title} (#{r.basepath})"]}
-      render :json => data
-    end
 
     def show
     end
 
     def new
-      @item = model.new({:tpl_format=>Optimacms::Template::EXTENSION_DEFAULT, :type_id=>TemplateType::TYPE_PAGE})
-      item_init_parent
-      @item.set_basedirpath_from_parent
-
+      @item = model.new
       @url_back = url_list
     end
 
@@ -62,7 +41,7 @@ module Optimacms
 
       respond_to do |format|
         if @res
-          format.html {  redirect_to edit_template_path(@item), success: 'Successfully created' }
+          format.html {  redirect_to edit_language_path(@item), success: 'Saved' }
           #format.json {  render json: @item, status: :created, location: user_clients_url(:action => 'index')        }
           format.js {}
         else
@@ -79,15 +58,10 @@ module Optimacms
 
 
     def update
-
-      # fix line breaks
-      content = item_params[:content]
-      content.gsub! /\r\n/, "\n"
-
       @res = @item.update(item_params)
 
       if @res
-        redirect_to url_list, success: 'Successfully updated'
+        redirect_to url_list, success: 'Saved'
       else
         render :edit
       end
@@ -106,80 +80,6 @@ module Optimacms
 
 
 
-    def newattach
-      @item = model.new({:tpl_format=>Optimacms::Template::EXTENSION_DEFAULT})
-      item_init_parent
-      @item.set_basedirpath_from_parent
-
-      @url_back = url_list
-    end
-
-    def attach
-      item_params = params.require(model_name).permit!
-      #(:title, :basepath, :parent_id, :tpl_format)
-      item_params[:type_id] = TemplateType::TYPE_PAGE
-      @item = model.new(item_params)
-      @res = @item.attach
-
-      respond_to do |format|
-        if @res
-          format.html {  redirect_to edit_template_path(@item), success: 'Successfully attached' }
-          #format.json {  render json: @item, status: :created, location: user_clients_url(:action => 'index')        }
-          format.js {}
-        else
-          format.html {  render :newattach }
-          #format.json { render json: @item.errors, status: :unprocessable_entity }
-          format.js {}
-        end
-      end
-    end
-
-
-    #### folders
-
-
-    def newfolder
-      @item = model.new(:is_folder=>true)
-      item_init_parent
-      @item.basedirpath = @item.parent.basepath+'/' unless @item.parent_id.nil?
-
-    end
-
-    def createfolder
-      item_params = params.require(model_name).permit(:title, :basename, :parent_id, :is_folder)
-
-      @item = model.new(item_params)
-      @res = @item.save
-
-      if @res
-        redirect_to url_list, success: 'Successfully created'
-      else
-        render :newfolder
-      end
-    end
-
-
-    def editfolder
-      @item = Template.folders.find(params[:id])
-
-      return url_list if @item.nil?
-
-    end
-
-    def updatefolder
-      @item = Template.folders.find(params[:id])
-      item_params = params.require(model_name).permit(:title, :basename, :parent_id, :is_folder)
-      @res = @item.update_attributes(item_params)
-
-      if @res
-        redirect_to url_list, success: 'Successfully updated'
-      else
-        render :editfolder
-      end
-    end
-
-
-
     private
 
     def init_data_form
@@ -189,14 +89,14 @@ module Optimacms
 
 
     def model
-      Template
+      Language
     end
     def model_name
-      :template
+      :language
     end
 
     def url_list
-      templates_url
+      languages_url
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -206,87 +106,12 @@ module Optimacms
       @url_back = url_list
     end
 
-    def item_init_parent
-      parent_id = params[:parent_id]
-      parent_id = parent_id.to_i unless parent_id.nil?
-      parent_id = nil if parent_id==0
-
-      @item.parent_id = parent_id
-    end
 
     def item_params
       #params.require(model_name).permit(:title)
       params.require(model_name).permit!
     end
 
-
-    # filter
-
-    def filter_prefix
-      'admin_templates_index_'
-    end
-
-    def init_tabledata
-      init_filter
-    end
-
-    def init_filter
-      # input
-      @pg = params[:pg].to_i || 1
-
-      #
-      @filter = Filters::FormFilter.new(session, filter_prefix)
-
-      # set filter fields
-      @filter.add_fields_from_array(
-          [
-              {name: 'title', type: 'text', dbtype: Filters::FormFilter::DBTYPE_STRING, title: 'Title', def: '', opt: {width: 120}},
-              {name: 'parent_id', type: 'int', dbtype: Filters::FormFilter::FIELD_TYPE_HIDDEN, title: '', def: 0},
-          ]
-      )
-
-      #
-      if params.has_key? :parent_id
-        @filter.set 'parent_id', params[:parent_id]
-      end
-      #@filter.set 'owner_id', current_user.owner_id
-
-      #
-      @cmd = params[:cmd] || ''
-
-
-      # post
-      if request.post? && params[:filter]
-        if params[:cmd]=='clear'
-          @filter.clear_data
-
-          redirect_to url_list and return
-        else
-          @filter.set_data_from_form(params[:filter] || [])
-          redirect_to url_list and return
-        end
-
-      end
-
-      # order
-      @filter.set_order_default('created_at' ,'desc')
-      #@filter.set_order('created_at' ,'desc')
-
-      if @cmd=='order'
-        @filter.set_order params[:orderby], params[:orderdir]
-        redirect_to url_list and return
-      end
-
-
-    end
-
-
-    def table_columns
-      @table_columns = [
-          {name: "id", title: "##"},
-          {name: "title", title: "title"},
-      ]
-    end
 
   end
 end
