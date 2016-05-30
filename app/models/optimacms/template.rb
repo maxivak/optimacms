@@ -8,6 +8,11 @@ module Optimacms
 
     belongs_to :type, :foreign_key => 'type_id', :class_name => 'TemplateType'
 
+    has_many :translations, :foreign_key => 'item_id', :class_name => 'TemplateTranslation', :dependent => :destroy
+    accepts_nested_attributes_for :translations
+
+
+    ### callbacks
     before_validation :_before_validation
     before_create :_before_create
     before_update :_before_update
@@ -30,13 +35,10 @@ module Optimacms
     scope :folders, -> { where(is_folder: true) }
     scope :layouts, -> { where(is_folder: false, type_id: TemplateType::TYPE_LAYOUT) }
 
-
-    # search
     scope :of_parent, lambda {  |parent_id| where_parent(parent_id) }
 
+    # search
     searchable_by_simple_filter
-
-
 
 
 
@@ -83,6 +85,19 @@ module Optimacms
       return self.type_id==TemplateType::TYPE_PARTIAL
     end
 
+
+
+    ### translations
+
+    def build_translations
+      langs = Language.list_with_default
+      langs_missing = langs - self.translations.all.map{|r| r.lang}
+
+      langs_missing.each do |lang|
+        self.translations.new(:lang=>lang)
+      end
+
+    end
 
 
     ##### search

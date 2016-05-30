@@ -49,7 +49,7 @@ module Optimacms
     ### content
 
     def content(lang='')
-      filename =  content_filename_full(lang)
+      filename = content_filename_full(lang)
       return nil if filename.nil?
       return '' if !File.exists? filename
       File.read(filename)
@@ -151,10 +151,9 @@ module Optimacms
 
     end
 
+
+
     ##### meta
-
-
-
 
     private
 

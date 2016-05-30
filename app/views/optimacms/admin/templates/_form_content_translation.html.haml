@@ -1,0 +1,88 @@
+- editor = @item.has_code? ? 'ace' : 'tinymce'
+
+%div
+  / Nav tabs
+  %ul#tabs-translation.nav.nav-tabs{:role => "tablist"}
+    - @languages.each do |lang|
+      - t = lang.blank? ? 'Default' : lang
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "tab-content-#{lang}", "data-toggle" => "tab", :href => "#tab-content-#{lang}", :role => "tab"}
+          =t
+
+  / Tabs content
+  .tab-content
+    = f.simple_fields_for :translations do |ftran|
+      - tran = ftran.object
+      - lang = tran.lang
+
+
+      %div{id: "tab-content-#{lang}", class: ["tab-pane", ("active" if lang=='')], role: "tabpanel"}
+        =ftran.input :lang, :readonly=>true
+        -#=ftran.input :content, label: 'Content'
+        - if @item.has_code?
+          .form-group.template_content
+            .col-sm-12.col-md-12.control
+              = ftran.input_field :content, as: :text, label: "Content", html: {:rows => 16, :cols => 120, :class=>'form_input_content' }
+
+              %div{id: "content-#{lang}", class: 'template_content', data: {lang: lang}}(style="width:100%; height: 600px; border: 2px #333333 solid;")
+
+        - else
+          = ftran.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
+
+
+    -# @languages.each do |lang|
+      %div{id: "content-#{lang}", class: "tab-pane", role: "tabpanel"}
+
+        - if @item.has_code?
+          .form-group.template_content
+            .col-sm-12.col-md-12.control
+              = f.input_field :content, as: :text, label: "Content", html: {:rows => 16, :cols => 120, :class=>'' }
+
+              #content(style="width:100%; height: 600px; border: 2px #333333 solid;")
+
+        - else
+          = f.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
+
+
+
+/////////
+
+-#- if @item.has_code?
+  .form-group.template_content
+    %label(for="inputContent" class="col-sm-2 col-md-1 control-label")
+      Content
+
+    .col-sm-8.col-md-8.control
+      = f.input_field :content, as: :text, label: "Content", html: {:rows => 16, :cols => 120, :class=>'' }
+
+      #content(style="width:100%; height: 600px; border: 2px #333333 solid;")
+
+-# else
+  = f.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
+
+
+
+
+- if editor=='tinymce'
+  = render 'optimacms/admin/common/js_tinymce'
+
+- elsif editor=='ace'
+  = render 'optimacms/admin/common/js_ace'
+
+  :javascript
+    var editor = ace.edit("content");
+    editor.setTheme("ace/theme/chrome");
+    editor.getSession().setMode("ace/mode/haml");
+    editor.getSession().setNewLineMode("windows");
+    editor.getSession().setTabSize(2);
+
+    $(document).ready(function() {
+      var textarea = $('#template_content');
+      textarea.hide();
+
+      editor.getSession().setValue(textarea.val());
+
+      $('#mainform form').submit(function(){
+        $('#template_content').val(editor.getSession().getValue());
+      });
+    });

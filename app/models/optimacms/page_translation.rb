@@ -3,7 +3,7 @@ module Optimacms
     self.table_name = 'cms_pages_translation'
 
     belongs_to :page, :foreign_key => 'item_id', :class_name => 'Page'
-    belongs_to :page
+    #belongs_to :page
 
 
   end

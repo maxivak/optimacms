@@ -98,6 +98,9 @@ module Optimacms
 
 
     def edit
+      @item.build_translations
+
+      x=0
     end
 
 
@@ -208,6 +211,7 @@ module Optimacms
     def init_data_form
       @url_back = url_list
 
+      @languages = Language.list_with_default
     end
 
 

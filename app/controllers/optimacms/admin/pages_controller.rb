@@ -1,5 +1,3 @@
-#require_dependency "../../../../lib/optimacms/filters/form_filter.rb"
-
 module Optimacms
   class Admin::PagesController < Admin::AdminBaseController
 

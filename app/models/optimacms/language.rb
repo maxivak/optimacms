@@ -14,5 +14,13 @@ module Optimacms
 
     end
 
+
+    def self.get_id_by_name(name)
+      self.where(lang: name).first.id
+
+    rescue
+      nil
+    end
+
   end
 end
