@@ -14,17 +14,19 @@
     = f.simple_fields_for :translations do |ftran|
       - tran = ftran.object
       - lang = tran.lang
+      - name = lang=='' ? 'def' : lang
 
 
       %div{id: "tab-content-#{lang}", class: ["tab-pane", ("active" if lang=='')], role: "tabpanel"}
+        =ftran.input :item_id, :readonly=>true
         =ftran.input :lang, :readonly=>true
         -#=ftran.input :content, label: 'Content'
         - if @item.has_code?
-          .form-group.template_content
+          .form-group
             .col-sm-12.col-md-12.control
-              = ftran.input_field :content, as: :text, label: "Content", html: {:rows => 16, :cols => 120, :class=>'form_input_content' }
+              = ftran.input_field :content, as: :text, label: "Content", :rows => 16, :cols => 120, :class=>'form_input_content', :data=>{lang: name}
 
-              %div{id: "content-#{lang}", class: 'template_content', data: {lang: lang}}(style="width:100%; height: 600px; border: 2px #333333 solid;")
+              %div{id: "content-#{name}", class: '', data: {lang: name}}(style="width:100%; height: 600px; border: 2px #333333 solid;")
 
         - else
           = ftran.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
@@ -70,19 +72,48 @@
   = render 'optimacms/admin/common/js_ace'
 
   :javascript
-    var editor = ace.edit("content");
-    editor.setTheme("ace/theme/chrome");
-    editor.getSession().setMode("ace/mode/haml");
-    editor.getSession().setNewLineMode("windows");
-    editor.getSession().setTabSize(2);
+    function init_editor(id){
+      //var editor = ace.edit("content");
+      var editor = ace.edit(id);
+      editor.setTheme("ace/theme/chrome");
+      editor.getSession().setMode("ace/mode/haml");
+      editor.getSession().setNewLineMode("windows");
+      editor.getSession().setTabSize(2);
+
+         return editor;
+    }
+
+    // init editors
+    var editors = [];
+
+    #{
+      @languages.map do |lang|
+        name = lang=='' ? 'def' : lang
+        "editors[\"#{name}\"] = init_editor(\"content-#{name}\");"
+      end.join(' ')
+    }
+
 
     $(document).ready(function() {
-      var textarea = $('#template_content');
-      textarea.hide();
 
-      editor.getSession().setValue(textarea.val());
+      // set content from input to editor
+      $( "textarea.form_input_content" ).each(function( index ) {
+        console.log("go text");
+        var textarea = $(this);
+        var lang=textarea.data('lang');
+        textarea.hide();
+        editors[lang].getSession().setValue(textarea.val());
+      });
 
+
+      // set content from editor back to input
       $('#mainform form').submit(function(){
-        $('#template_content').val(editor.getSession().getValue());
+        $( "textarea.form_input_content" ).each(function( index ) {
+          var textarea = $(this);
+          var lang=textarea.data('lang');
+          textarea.val(editors[lang].getSession().getValue());
+        });
+
+
       });
     });

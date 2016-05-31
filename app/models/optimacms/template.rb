@@ -8,7 +8,7 @@ module Optimacms
 
     belongs_to :type, :foreign_key => 'type_id', :class_name => 'TemplateType'
 
-    has_many :translations, :foreign_key => 'item_id', :class_name => 'TemplateTranslation', :dependent => :destroy
+    has_many :translations, foreign_key: 'item_id', class_name: 'TemplateTranslation', dependent: :destroy
     accepts_nested_attributes_for :translations
 
 

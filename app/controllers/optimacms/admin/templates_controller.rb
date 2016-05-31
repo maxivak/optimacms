@@ -83,6 +83,8 @@ module Optimacms
       @item = model.new(item_params)
       @res = @item.save
 
+
+
       respond_to do |format|
         if @res
           format.html {  redirect_to edit_template_path(@item), success: 'Successfully created' }
@@ -99,18 +101,32 @@ module Optimacms
 
     def edit
       @item.build_translations
+      @item.save
+      @item.reload
 
-      x=0
     end
 
 
     def update
 
-      # fix line breaks
-      content = item_params[:content]
-      content.gsub! /\r\n/, "\n"
+      data = item_params
 
-      @res = @item.update(item_params)
+      # fix line breaks
+      #content = data[:content]
+      #content.gsub! /\r\n/, "\n"
+
+      @item.build_translations
+
+      params2 = { template: {
+          translations_attributes: [{ lang: 'en', content: 'dddd' }]
+      }}
+
+
+      @item.attributes = data
+      @res = @item.save
+      #@res = @item.update(item_params)
+
+      #raise 'error'
 
       if @res
         redirect_to url_list, success: 'Successfully updated'
