@@ -215,6 +215,7 @@ module Optimacms
 
 
     def self.filename_lang_postfix(lang)
+      lang = lang.to_s
       return '' if lang==''
       return '.'+lang
     end
