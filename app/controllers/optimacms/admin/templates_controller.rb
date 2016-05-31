@@ -3,7 +3,7 @@ module Optimacms
 
     before_action :set_item, only: [:show, :edit, :update, :destroy]
     before_action :init_common
-    before_action :init_data_form, only: [:new, :edit, :newfolder, :editfolder, :newattach]
+    before_action :init_data_form, only: [:new, :edit, :update, :create, :newfolder, :editfolder, :newattach]
     #before_action :set_layout_modal
 
 
@@ -108,25 +108,15 @@ module Optimacms
 
 
     def update
-
-      data = item_params
-
       # fix line breaks
       #content = data[:content]
       #content.gsub! /\r\n/, "\n"
 
-      @item.build_translations
-
-      params2 = { template: {
-          translations_attributes: [{ lang: 'en', content: 'dddd' }]
-      }}
-
-
-      @item.attributes = data
+      @item.attributes = item_params
       @res = @item.save
       #@res = @item.update(item_params)
 
-      #raise 'error'
+      #@res = false
 
       if @res
         redirect_to url_list, success: 'Successfully updated'

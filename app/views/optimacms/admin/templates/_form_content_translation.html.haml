@@ -18,7 +18,7 @@
 
 
       %div{id: "tab-content-#{lang}", class: ["tab-pane", ("active" if lang=='')], role: "tabpanel"}
-        =ftran.input :item_id, :readonly=>true
+        =ftran.input :item_id, as: :hidden, :readonly=>true
         =ftran.input :lang, :readonly=>true
         -#=ftran.input :content, label: 'Content'
         - if @item.has_code?
@@ -29,8 +29,11 @@
               %div{id: "content-#{name}", class: '', data: {lang: name}}(style="width:100%; height: 600px; border: 2px #333333 solid;")
 
         - else
-          = ftran.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
-
+          .form-group
+            .col-sm-12.col-md-12.control
+              -#= ftran.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
+              = ftran.input_field :content, as: :text, label: "Content", rows: 16, cols: 120, class: 'editor', style: "min-height: 600px;"
+      .clearfix
 
     -# @languages.each do |lang|
       %div{id: "content-#{lang}", class: "tab-pane", role: "tabpanel"}
