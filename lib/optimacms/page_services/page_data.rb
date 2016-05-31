@@ -44,8 +44,7 @@ module Optimacms
       end
 
       def template_path
-
-        if page.is_translated && template.is_translated
+        if template.is_translated
           tpl_lang = self.lang
         else
           tpl_lang=''
