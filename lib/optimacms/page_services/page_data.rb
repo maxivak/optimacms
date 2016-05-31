@@ -43,6 +43,10 @@ module Optimacms
         page.template
       end
 
+      def template_path
+        page.template.path(self.lang)
+      end
+
       def meta
         page_lang = page.is_translated ? lang : ''
         row = page.translations.where(:lang=>page_lang).first
