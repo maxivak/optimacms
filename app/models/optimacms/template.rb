@@ -90,7 +90,14 @@ module Optimacms
     ### translations
 
     def build_translations
-      langs = Language.list_with_default
+      #
+      if is_translated
+        langs = Language.list_with_default
+      else
+        langs = ['']
+      end
+
+      #
       langs_missing = langs - self.translations.all.map{|r| r.lang}
 
       langs_missing.each do |lang|

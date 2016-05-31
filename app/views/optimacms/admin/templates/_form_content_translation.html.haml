@@ -1,5 +1,7 @@
 - editor = @item.has_code? ? 'ace' : 'tinymce'
 
+- @languages = [''] if !@item.is_translated
+
 %div
   / Nav tabs
   %ul#tabs-translation.nav.nav-tabs{:role => "tablist"}
