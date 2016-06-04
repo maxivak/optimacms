@@ -4,6 +4,7 @@ module Optimacms
 
     belongs_to :template, :foreign_key => 'item_id', :class_name => 'Template'
 
+    delegate :basename, :basedirpath, :tpl_format, :is_type_partial?, to: :template
 
     ### content
 
@@ -31,20 +32,6 @@ module Optimacms
       basename
     end
 
-    def is_type_partial?
-      self.template.is_type_partial?
-    end
-    def basename
-      self.template.basename
-    end
-
-    def basedirpath
-      self.template.basedirpath
-    end
-
-    def tpl_format
-      self.template.tpl_format
-    end
 
     def path
       return nil if basename.nil?

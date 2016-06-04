@@ -8,7 +8,7 @@ module Optimacms
 
     belongs_to :type, :foreign_key => 'type_id', :class_name => 'TemplateType'
 
-    has_many :translations, :foreign_key => 'item_id', :class_name => 'TemplateTranslation', :dependent => :destroy
+    has_many :translations, foreign_key: 'item_id', class_name: 'TemplateTranslation', dependent: :destroy
     accepts_nested_attributes_for :translations
 
 
@@ -90,7 +90,14 @@ module Optimacms
     ### translations
 
     def build_translations
-      langs = Language.list_with_default
+      #
+      if is_translated
+        langs = Language.list_with_default
+      else
+        langs = ['']
+      end
+
+      #
       langs_missing = langs - self.translations.all.map{|r| r.lang}
 
       langs_missing.each do |lang|
@@ -208,6 +215,7 @@ module Optimacms
 
 
     def self.filename_lang_postfix(lang)
+      lang = lang.to_s
       return '' if lang==''
       return '.'+lang
     end

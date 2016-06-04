@@ -80,7 +80,7 @@ module Optimacms
         #@content = @page.content
 
         optimacms_set_pagedata @pagedata
-        my_set_render_template @pagedata.template.path, @pagedata.layout.basename
+        my_set_render_template @pagedata.template_path, @pagedata.layout.basename
         my_set_meta @pagedata.meta
 
         render @optimacms_tpl, :layout=>@optimacms_layout
@@ -95,7 +95,7 @@ module Optimacms
 
         #
         #c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.compiled_view_path, @pagedata.layout.basename)
-        c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.template.path, @pagedata.layout.basename)
+        c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.template_path, @pagedata.layout.basename)
 
         render text: c
 
