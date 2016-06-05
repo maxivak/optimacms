@@ -1,3 +1,5 @@
+File: #{@item.path}
+%br
 .row#mainform
   .col-md-12
     = horizontal_simple_form_for @item, {:html => { :class => "form-horizontal", :role => "form" }}.merge((@modal==1 ? {remote: true}: {}))  do |f|
@@ -12,8 +14,10 @@
 
       -#= f.input :basename, disabled: true, label: 'Name'
       -#= f.input :basedirpath, label: "Folder", :disabled=> true
-      = f.input :path, disabled: true, label: 'File'
+      -#= f.input :path, disabled: true, label: 'File'
       -#=link_to 'Rename', '#'
+
+      = f.input :is_translated, label: "Translate?"
 
 
       = render 'form_content_translation', f: f, item: @item

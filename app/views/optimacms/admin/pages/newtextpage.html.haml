@@ -1,0 +1,31 @@
+%h1 New Text Page
+- if @item && @item.parent_id>0 && @item.folder.present?
+  Folder: #{@item.parent_title}
+  %br
+
+.row
+  .col-md-12
+    =horizontal_simple_form_for @item, url: createtextpage_pages_path, method: :post do |f|
+      = render 'optimacms/admin/shared/form_errors', :object=>@item
+
+      = f.input :parent_id, as: :hidden
+
+      = f.input :name, as: :string, label: "Name", :hint=>'Unique name. Only latin letters, no spaces'
+      = f.input :title, label: "Title", hint: "Your title. Ex. About us"
+      = f.input :url, as: :string, label: "URL", hint: 'page UR:. Ex. about.html, company/history'
+
+
+      = f.simple_fields_for :template do |ft|
+        = ft.input :basedirpath, readonly: false, label: 'Template folder', hint: "ex: news/"
+        = ft.input :tpl_format, label: "Template format", :collection=>Optimacms::Template::EXTENSIONS.keys
+
+      = f.association :layout, label: "Layout", collection: @layouts, label_method: :title
+
+      = f.input :is_translated, label: "Translate?"
+
+      = f.button :submit_cancel, 'Save', :cancel=>@url_back
+
+
+
+
+

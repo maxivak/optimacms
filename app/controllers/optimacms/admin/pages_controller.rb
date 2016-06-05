@@ -2,7 +2,7 @@ module Optimacms
   class Admin::PagesController < Admin::AdminBaseController
 
     before_action :set_item, only: [:show, :edit, :update, :destroy, :editfolder, :updatefolder]
-    before_action :init_data_form, only: [:edit, :new]
+    before_action :init_data_form, only: [:edit, :new, :create, :update, :newtextpage, :createtextpage]
 
 
     def index
@@ -182,9 +182,41 @@ module Optimacms
     end
 
 
+    ### text page
+
+    def newtextpage
+      @item = model.new
+      @item.parent_id = params.fetch(:parent_id, nil)
+
+      @item.build_template
+
+      #
+      @url_back = url_list
+    end
+
+    def createtextpage
+      textpage_params = params.require(model_name).permit(:title, :name, :layout_id, :is_translated, :parent_id, :url,
+                                                          template_attributes: [:basedirpath, :name, :title, :type_id, :tpl_format])
+      @item = model.new(textpage_params)
+
+      # predefined data
+      @item.template.title = @item.title
+      @item.template.basename = @item.name
+      @item.template.type_id = TemplateType::TYPE_PAGE
+      @item.template.is_translated = @item.is_translated
+
+      @res = @item.save
+
+      if @res
+        redirect_to url_list, success: 'Successfully created'
+      else
+        render :newtextpage
+      end
+    end
 
 
 
+    ####
 
     def table_columns
 

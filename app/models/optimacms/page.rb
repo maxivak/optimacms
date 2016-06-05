@@ -8,6 +8,8 @@ module Optimacms
     has_many :translations, :foreign_key => 'item_id', :class_name => 'PageTranslation', :dependent => :destroy
     accepts_nested_attributes_for :translations
 
+    accepts_nested_attributes_for :template
+
     #has_many :page_translations
     #accepts_nested_attributes_for :page_translations
 

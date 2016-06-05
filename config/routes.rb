@@ -20,6 +20,9 @@ Optimacms::Engine.routes.draw do
 
         get 'newfolder'
         post 'createfolder'
+
+        get :newtextpage
+        post :createtextpage
       end
 
       member do

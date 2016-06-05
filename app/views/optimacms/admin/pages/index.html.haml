@@ -8,6 +8,11 @@
           manage pages
     .col-md-5
       =link_to 'New page', new_page_path(:parent_id=>@parent_id), :class=>'btn btn-sm btn-primary'
+      .btn-group
+        %button(type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+          New... <span class="caret"></span>
+        %ul.dropdown-menu
+          %li=link_to 'text page', newtextpage_pages_path(:parent_id=>@parent_id)
       =link_to 'New folder', newfolder_pages_path(:parent_id=>@parent_id, :is_folder=>1), :class=>'btn btn-sm btn-default'
 
 
