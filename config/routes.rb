@@ -46,6 +46,9 @@ Optimacms::Engine.routes.draw do
 
         get :newlayout
         post :createlayout
+
+        get :newblock
+        post :createblock
       end
 
       member do
