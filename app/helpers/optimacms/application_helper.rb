@@ -63,7 +63,7 @@
       #content_tag(:meta, nil, content: desc, name: 'description')
     end
 
-    def block(name)
+    def block(name, opts={})
       x = Dir.pwd
       #y = File.expand_path File.dirname(__FILE__)
       d = File.dirname(@optimacms_tpl)
@@ -96,6 +96,11 @@
       # try 2
       names.each do |p|
         extensions.each do |ext|
+          # with lang
+          f = File.join(Dir.pwd, 'app', 'views', p[0], p[1]+'.'+@pagedata.lang.to_s+ext)
+          (return render file: f)      if File.exists? f
+
+          # without lang
           f = File.join(Dir.pwd, 'app', 'views', p[0], p[1]+ext)
           (return render file: f)      if File.exists? f
         end
