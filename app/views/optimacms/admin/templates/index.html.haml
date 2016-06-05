@@ -8,8 +8,15 @@
           edit page templates
     .col-md-4
       =link_to 'New template', new_template_path(:parent_id=>@parent_id), :class=>'btn btn-sm btn-primary'
-      =link_to 'Attach template', newattach_templates_path(:parent_id=>@parent_id), :class=>'btn btn-sm btn-primary'
       =link_to 'New folder', newfolder_templates_path(:parent_id=>@parent_id, :is_folder=>1), :class=>'btn btn-sm btn-default'
+
+      .btn-group
+        %button(type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+          New... <span class="caret"></span>
+        %ul.dropdown-menu
+          %li=link_to 'Attach template', newattach_templates_path(:parent_id=>@parent_id)
+          %li=link_to 'New layout', newlayout_templates_path(:parent_id=>@parent_id)
+
 
 
 .filter

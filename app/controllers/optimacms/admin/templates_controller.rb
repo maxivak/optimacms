@@ -137,6 +137,37 @@ module Optimacms
     end
 
 
+    ### layout
+
+
+    def newlayout
+      @item = model.new({:tpl_format=>Optimacms::Template::EXTENSION_DEFAULT, :type_id=>TemplateType::TYPE_LAYOUT})
+      item_init_parent
+      @item.set_basedirpath_from_parent
+
+      @url_back = url_list
+    end
+
+
+    def createlayout
+      @item = model.new(item_params)
+      @res = @item.save
+
+      respond_to do |format|
+        if @res
+          format.html {  redirect_to edit_template_path(@item), success: 'Successfully created' }
+          #format.json {  render json: @item, status: :created, location: user_clients_url(:action => 'index')        }
+          format.js {}
+        else
+          format.html {  render :new }
+          #format.json { render json: @item.errors, status: :unprocessable_entity }
+          format.js {}
+        end
+      end
+    end
+
+
+    ### attach
 
     def newattach
       @item = model.new({:tpl_format=>Optimacms::Template::EXTENSION_DEFAULT})

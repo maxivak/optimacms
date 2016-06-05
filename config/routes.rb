@@ -42,6 +42,10 @@ Optimacms::Engine.routes.draw do
 
         get 'newfolder'
         post 'createfolder'
+
+
+        get :newlayout
+        post :createlayout
       end
 
       member do

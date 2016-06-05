@@ -1,0 +1,33 @@
+.page-header
+  .row
+    .col-md-6
+      %h1
+        New layout
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          select path and create file
+    .col-md-4
+      =link_to 'Back to templates', templates_path
+
+
+.row
+  .col-md-12
+    = horizontal_simple_form_for @item, {url: createlayout_templates_path, :html => { :class => "form-horizontal", :role => "form" }}.merge((@modal==1 ? {remote: true}: {}))  do |f|
+
+      = render 'optimacms/admin/shared/form_errors', :object=>@item
+
+      = hidden_field_tag :modal, @modal
+
+      = f.input :basename, label: "Name", :hint=>'ex: index, show'
+      = f.input :title, label: "Title"
+
+      = f.input :basedirpath, readonly: true, label: 'Folder', hint: "ex: news/"
+
+      = f.input :type_id, as: :hidden, html: {value: Optimacms::TemplateType::TYPE_LAYOUT}
+      = f.input :tpl_format, label: "Format", :collection=>Optimacms::Template::EXTENSIONS.keys
+
+      = f.input :is_translated, label: "Translate?"
+
+      = f.button :submit_cancel, 'Save', :cancel=>@url_back
+
+
