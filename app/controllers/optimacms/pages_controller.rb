@@ -83,6 +83,11 @@ module Optimacms
         my_set_render_template @pagedata.template_path, @pagedata.layout.basename
         my_set_meta @pagedata.meta
 
+        # callbacks from main app
+        if respond_to?(:before_page_render)
+          send(:before_page_render)
+        end
+
         render @optimacms_tpl, :layout=>@optimacms_layout
         #render :text => @content, :layout => @page.layout.name
         return

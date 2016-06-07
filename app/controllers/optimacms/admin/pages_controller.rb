@@ -27,6 +27,7 @@ module Optimacms
     end
 
 
+
     search_filter :index, {save_session: true, search_method: :post_and_redirect, url: :pages_url, search_url: :search_pages_url} do
       default_order "created_at", 'desc'
 
@@ -235,9 +236,6 @@ module Optimacms
         :page
       end
 
-      def url_list
-        pages_url
-      end
 
       # Use callbacks to share common setup or constraints between actions.
       def set_item
