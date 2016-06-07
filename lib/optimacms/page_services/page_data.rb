@@ -24,6 +24,8 @@ module Optimacms
       end
 
       def lang
+        return @lang unless @lang.nil?
+
         # TODO: calc lang
 
         # from url
