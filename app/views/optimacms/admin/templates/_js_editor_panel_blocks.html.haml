@@ -1,7 +1,7 @@
 :javascript
-  function get_panel(){
-    return get_current_tab().find('div.panel-blocks').first();
-    //$('.tab-content .tab-pane.active');
+  function get_panel_blocks(){
+    //var x = get_current_tab().find('#panel-blocks').first();
+    return $('#panel-blocks').first();
   }
 
   function init_panel_blocks(){
@@ -11,12 +11,12 @@
     var r = Math.random();
 
     $.get("#{panel_blocks_templates_path}?r="+r, function(data, status){
-      get_panel().html(data);
+      get_panel_blocks().html(data);
     });
   }
 
   $(document).ready(function() {
-    $( ".tab-content" ).on( "click", "a.link_block_insert", function( e ) {
+    $( ".tab-content" ).on( "click", "#panel-blocks a.link_block_insert", function( e ) {
       e.preventDefault();
 
       var lang = get_current_tab_lang();

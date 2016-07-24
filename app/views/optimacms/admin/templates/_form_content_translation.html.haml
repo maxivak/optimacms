@@ -2,58 +2,76 @@
 
 - @languages = [''] if !@item.is_translated
 
-%div
-  / Nav tabs
-  %ul#tabs-translation.nav.nav-tabs{:role => "tablist"}
-    - @languages.each do |lang|
-      - t = lang.blank? ? 'Default' : lang
-      %li{role: "presentation", class: [('active' if lang=='')]}
-        %a{"aria-controls" => "tab-content-#{lang}", "data-toggle" => "tab", :href => "#tab-content-#{lang}", :role => "tab"}
-          =t
+.row
+  .col-md-8.col-sm-8
+    / Nav tabs
+    %ul#tabs-translation.nav.nav-tabs{:role => "tablist"}
+      - @languages.each do |lang|
+        - t = lang.blank? ? 'Default' : lang
+        %li{role: "presentation", class: [('active' if lang=='')]}
+          %a{"aria-controls" => "tab-content-#{lang}", "data-toggle" => "tab", :href => "#tab-content-#{lang}", :role => "tab"}
+            =t
 
-  / Tabs content
-  .tab-content
-    = f.simple_fields_for :translations do |ftran|
-      - tran = ftran.object
-      - lang = tran.lang
-      - name = lang=='' ? 'def' : lang
+    / Tabs content
+    #tabs-translation-content.tab-content
+
+      = f.simple_fields_for :translations do |ftran|
+        - tran = ftran.object
+        - lang = tran.lang
+        - name = lang=='' ? 'def' : lang
 
 
-      %div{id: "tab-content-#{lang}", class: ["tab-pane", ("active" if lang=='')], role: "tabpanel", data: {lang: lang}}
-        =ftran.input :item_id, as: :hidden, :readonly=>true
-        =ftran.input :lang, :readonly=>true
-        -#=ftran.input :content, label: 'Content'
-        - if @item.has_code?
-          .form-group
-            .col-sm-8.col-md-8.control
-              = ftran.input_field :content, as: :text, label: "Content", :rows => 16, :cols => 120, :class=>'form_input_content', :data=>{lang: name}
+        %div{id: "tab-content-#{lang}", class: ["tab-pane", ("active" if lang=='')], role: "tabpanel", data: {lang: lang}}
+          =ftran.input :item_id, as: :hidden, :readonly=>true
+          =ftran.input :lang, :readonly=>true
+          -#=ftran.input :content, label: 'Content'
+          - if @item.has_code?
+            .form-group
+              = ftran.input_field :content, as: :text, label: "Content", :rows => 16, :cols => 80, :class=>'form_input_content', :data=>{lang: name}
 
               %div{id: "content-#{name}", class: '', data: {lang: name}}(style="width:100%; height: 600px; border: 2px #333333 solid;")
 
-            .col-sm-4.col-md-4.panel-blocks
-              blocks...
+          - else
+            .form-group
+              .col-sm-12.col-md-12.control
+                -#= ftran.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
+                = ftran.input_field :content, as: :text, label: "Content", rows: 16, cols: 120, class: 'editor', style: "min-height: 600px;"
 
-        - else
-          .form-group
-            .col-sm-12.col-md-12.control
-              -#= ftran.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
-              = ftran.input_field :content, as: :text, label: "Content", rows: 16, cols: 120, class: 'editor', style: "min-height: 600px;"
-      .clearfix
+        .clearfix
 
-    -# @languages.each do |lang|
-      %div{id: "content-#{lang}", class: "tab-pane", role: "tabpanel"}
+      -# @languages.each do |lang|
+        %div{id: "content-#{lang}", class: "tab-pane", role: "tabpanel"}
 
-        - if @item.has_code?
-          .form-group.template_content
-            .col-sm-12.col-md-12.control
-              = f.input_field :content, as: :text, label: "Content", html: {:rows => 16, :cols => 120, :class=>'' }
+          - if @item.has_code?
+            .form-group.template_content
+              .col-sm-12.col-md-12.control
+                = f.input_field :content, as: :text, label: "Content", html: {:rows => 16, :cols => 120, :class=>'' }
 
-              #content(style="width:100%; height: 600px; border: 2px #333333 solid;")
+                #content(style="width:100%; height: 600px; border: 2px #333333 solid;")
 
-        - else
-          = f.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
+          - else
+            = f.input :content, as: :text, label: "Content", input_html: {:rows => 16, :cols => 120, :class=>'editor'}
+
+  .col-md-4.col-sm-4(style="padding-top:40px;")
+    / panel - tabs
+    %ul#editor-panels-tabs.nav.nav-tabs{:role => "tablist"}
+      %li{role: "presentation", class: "active"}
+        %a{"aria-controls" => "panel-blocks", "data-toggle" => "tab", :href => "#panel-blocks", :role => "tab"}
+          Blocks
+      %li{role: "presentation"}
+        %a{"aria-controls" => "panel-images", "data-toggle" => "tab", :href => "#panel-images", :role => "tab"}
+          Images
+
+    / Panels. Tabs content
+    #editor-panels-content.tab-content
+      %div{id: "panel-blocks", class: "tab-pane active", role: "tabpanel"}
+        blocks...
+
+      %div{id: "panel-images", class: "tab-pane", role: "tabpanel"}
+        images...
 
 
+.clearfix
 
 /////////
 
@@ -74,7 +92,7 @@
 
 :javascript
   function get_current_tab(){
-    return $('.tab-content .tab-pane.active');
+    return $('#tabs-translation-content .tab-pane.active');
   }
   function get_current_tab_lang(){
     var lang = get_current_tab().data('lang');
@@ -96,7 +114,7 @@
       init_panel_blocks();
 
       $('#tabs-translation a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-        init_panel_blocks();
+        //init_panel_blocks();
         //e.target // newly activated tab
         //e.relatedTarget // previous active tab
       })
