@@ -1,6 +1,7 @@
-%span.help
-  select block and click to insert into editor
 
+%input(type="text" name="panel-blocks-input-path" id="panel-blocks-input-path" value="#{@path}")
+%br
+%br
 %ul.list.list-blocks
   - @items.each do |item|
     %li
@@ -10,3 +11,9 @@
       =link_to edit_template_path(item), class: "link_block_edit", data: {path: item.basepath}, target: '_blank' do
         edit
       ]
+
+
+
+%p
+  %span.help
+    select block and click to insert into editor

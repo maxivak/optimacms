@@ -275,8 +275,11 @@ module Optimacms
     ### blocks
 
     def panel_blocks
+      # input
+      @path = params[:path]
 
-      @items = Template.blocks_or_partials.order('title asc').limit(100)
+      #
+      @items = Template.blocks_or_partials.where("basepath LIKE ? ", "#{@path}%",).order('title asc').limit(100)
 
       render :layout=>false
     end

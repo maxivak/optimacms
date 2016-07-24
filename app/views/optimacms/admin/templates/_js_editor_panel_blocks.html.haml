@@ -4,13 +4,18 @@
     return $('#panel-blocks').first();
   }
 
-  function init_panel_blocks(){
+  function init_panel_blocks(path){
+    return load_panel_blocks(path);
+  }
+
+  function load_panel_blocks(path){
     var lang = get_current_tab_lang();
     console.log("lang="+lang);
 
+    //
     var r = Math.random();
 
-    $.get("#{panel_blocks_templates_path}?r="+r, function(data, status){
+    $.get("#{panel_blocks_templates_path}?path="+encodeURIComponent(path)+"&r="+r, function(data, status){
       get_panel_blocks().html(data);
     });
   }
@@ -29,4 +34,15 @@
       var text = "=block '"+$(this).data('path')+"'";
       editors[name].insert(text);
     }); // click
+
+    // filter blocks
+    $( ".tab-content" ).on( "keypress", "#panel-blocks-input-path", function( e ) {
+      var key = e.which;
+      if(key == 13){
+        //$('input[name = butAssignProd]').click();
+        var v = $(this).val();
+        load_panel_blocks(v);
+        return false;
+      }
+    });
   });

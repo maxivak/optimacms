@@ -111,7 +111,7 @@
     $( document ).ready(function() {
 
       // panel blocks
-      init_panel_blocks();
+      init_panel_blocks('#{@item.basedirpath rescue ''}');
 
       $('#tabs-translation a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         //init_panel_blocks();
