@@ -1,0 +1,36 @@
+:javascript
+  function get_panel(){
+    return get_current_tab().find('div.panel-blocks').first();
+    //$('.tab-content .tab-pane.active');
+  }
+
+  function init_panel_blocks(){
+    var lang = get_current_tab_lang();
+    console.log("lang="+lang);
+
+    var r = Math.random();
+
+    $.get("#{panel_blocks_templates_path}?r="+r, function(data, status){
+      get_panel().html(data);
+    });
+  }
+
+  $(document).ready(function() {
+    $( ".tab-content" ).on( "click", "a.link_block_insert", function( e ) {
+      console.log("insert");
+      e.preventDefault();
+
+      var lang = get_current_tab_lang();
+      var name = lang;
+      if (name==""){
+        name = "def";
+      }
+
+
+
+      console.log(editors);
+      //$( "#target" ).click();
+      var text = "=block '"+$(this).data('path')+"'";
+      editors[name].insert(text);
+    }); // click
+  });

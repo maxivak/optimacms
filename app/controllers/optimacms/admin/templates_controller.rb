@@ -272,6 +272,15 @@ module Optimacms
     end
 
 
+    ### blocks
+
+    def panel_blocks
+
+      @items = Template.blocks_or_partials.order('title asc').limit(100)
+
+      render :layout=>false
+    end
+
 
     private
 

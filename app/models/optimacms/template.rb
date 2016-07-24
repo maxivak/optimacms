@@ -34,6 +34,8 @@ module Optimacms
     # scopes
     scope :folders, -> { where(is_folder: true) }
     scope :layouts, -> { where(is_folder: false, type_id: TemplateType::TYPE_LAYOUT) }
+    scope :blocks , -> { where(is_folder: false, type_id: TemplateType::TYPE_BLOCKVIEW) }
+    scope :blocks_or_partials , -> { where(is_folder: false, type_id: [TemplateType::TYPE_BLOCKVIEW, TemplateType::TYPE_PARTIAL]) }
 
     scope :of_parent, lambda {  |parent_id| where_parent(parent_id) }
 

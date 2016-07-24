@@ -49,6 +49,9 @@ Optimacms::Engine.routes.draw do
 
         get :newblock
         post :createblock
+
+        get :panel_blocks
+
       end
 
       member do
