@@ -5,7 +5,7 @@ File: #{@item.path}
     = horizontal_simple_form_for @item, {:html => { :class => "form-horizontal", :role => "form" }}.merge((@modal==1 ? {remote: true}: {}))  do |f|
       = render 'optimacms/admin/shared/form_errors', :object=>@item
 
-      = f.input :continue, as: :fake, input_html: {value: "0"}
+      = f.input :continue, as: :fake_hidden, input_html: {value: "0"}, label: false
 
       = f.input :parent_id, as: :hidden
 
