@@ -5,6 +5,8 @@ File: #{@item.path}
     = horizontal_simple_form_for @item, {:html => { :class => "form-horizontal", :role => "form" }}.merge((@modal==1 ? {remote: true}: {}))  do |f|
       = render 'optimacms/admin/shared/form_errors', :object=>@item
 
+      = f.input :continue, as: :fake, input_html: {value: "0"}
+
       = f.input :parent_id, as: :hidden
 
       = f.input :title, label: "Title"
@@ -24,4 +26,18 @@ File: #{@item.path}
 
 
 
-      = f.button :submit_cancel, 'Save', :cancel=>@url_back
+      -#= f.button :submit_cancel, 'Save', :cancel=>@url_back
+      = f.button :save_continue_cancel, 'Save', :cancel=>@url_back
+
+
+:javascript
+
+  $( document ).ready(function() {
+    $('#mainform a.btn-save-continue').click(function(e){
+      e.preventDefault();
+      console.log("click");
+      var f = $(this).closest("form");
+      f.find("input[name='continue']").val("1");
+      f.submit();
+    });
+  });

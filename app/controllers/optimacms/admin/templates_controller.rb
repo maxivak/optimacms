@@ -119,7 +119,8 @@ module Optimacms
       #@res = false
 
       if @res
-        redirect_to url_list, success: 'Successfully updated'
+        u = params[:continue]=="1" ? edit_template_path(@item) : url_list
+        redirect_to u, success: 'Successfully updated'
       else
         render :edit
       end

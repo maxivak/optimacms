@@ -2,3 +2,4 @@ ru:
   simple_form:
     buttons:
       cancel: "Отмена"
+      save_continue: "Сохранить&Продолжить"

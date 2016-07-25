@@ -2,3 +2,4 @@ en:
   simple_form:
     buttons:
       cancel: "Back"
+      save_continue: "Save&Continue"
