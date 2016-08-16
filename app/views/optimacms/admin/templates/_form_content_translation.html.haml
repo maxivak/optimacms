@@ -20,10 +20,9 @@
         - lang = tran.lang
         - name = lang=='' ? 'def' : lang
 
-        - lang_ok = lang=='' || @languages.include?(lang)
+        - lang_ok = lang=='' || lang=='def' || @languages.include?(lang)
 
         - if lang_ok
-
           %div{id: "tab-content-#{lang}", class: ["tab-pane", ("active" if lang=='')], role: "tabpanel", data: {lang: lang}}
             =ftran.input :item_id, as: :hidden, :readonly=>true
             =ftran.input :lang, :readonly=>true

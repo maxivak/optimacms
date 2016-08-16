@@ -307,6 +307,7 @@ module Optimacms
           self.parent = Template.create_folders_tree(self.basedirpath)
         end
 
+
       end
 
     end
@@ -341,6 +342,12 @@ module Optimacms
         # TODO: rename file
         #self.make_basepath
 
+        # remove translations if needed
+        if !self.is_translated
+          self.translations = self.translations.reject{|r| r.lang!=''}
+          #self.translations.clear
+
+        end
       end
 
     end
