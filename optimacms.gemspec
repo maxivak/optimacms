@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'ancestry'
 
   s.add_dependency 'simple_search_filter', '~>0.0.31'
-  s.add_dependency 'bootstrap3_autocomplete_input', '0.1.7'
+  s.add_dependency 'bootstrap3_autocomplete_input', '~>0.2.0'
 
 
   s.add_development_dependency 'rspec-rails'
