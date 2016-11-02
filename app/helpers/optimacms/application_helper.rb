@@ -112,7 +112,7 @@
 
 
     def msg
-      Resource
+      Optimacms::Resource
     end
 
 
