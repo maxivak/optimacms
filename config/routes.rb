@@ -67,6 +67,17 @@ Optimacms::Engine.routes.draw do
     match '/media_elfinder' => 'mediafiles#elfinder', via: [:get, :post]
 
 
+    resources :resources do
+      collection do
+        post 'search'
+      end
+
+      member do
+        get 'usage'
+      end
+    end
+
+
     resources :app_sys do
       collection do
         get :restart

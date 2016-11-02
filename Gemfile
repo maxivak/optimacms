@@ -34,12 +34,13 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'simple_form'
 gem 'simple_search_filter', '0.0.31'
-gem 'bootstrap3_autocomplete_input', '0.1.7'
+gem 'bootstrap3_autocomplete_input', '0.2.0'
 
 gem 'paperclip'
 gem 'ancestry'
 
-
+gem 'globalize'
+gem 'globalize-accessors'
 
 
 # tinymce

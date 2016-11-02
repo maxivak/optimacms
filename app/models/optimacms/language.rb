@@ -10,8 +10,12 @@ module Optimacms
     ###
 
     def self.list_with_default
-      rows = ['']+Language.admin_enabled.all.map(&:lang)
+      rows = ['']+list_all
 
+    end
+
+    def self.list_all
+      rows = Language.admin_enabled.all.map(&:lang)
     end
 
 

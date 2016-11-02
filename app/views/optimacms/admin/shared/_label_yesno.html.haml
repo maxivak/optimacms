@@ -1,0 +1,8 @@
+-#.item-enabled{data: {v: v}}
+- cls = (item_class rescue 'item-enabled')
+
+=link_to '#', class: cls, data: {v: v} do
+  - if v
+    .label.label-primary yes
+  - else
+    .label.label-danger no

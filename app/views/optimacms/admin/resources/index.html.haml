@@ -1,0 +1,48 @@
+.page-header
+  .row
+    .col-md-7
+      %h1
+        Resources
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          manage resources
+    .col-md-5
+      = link_to "New", new_resource_path, :class => "btn btn-sm btn-primary"
+
+.filter
+  = inline_filter_form_for(@filter)
+
+.center-block
+  = paginate @items
+
+%br
+%table.table.table-striped.table-bordered.table-hover
+  %tr
+    %th= link_to_sortable_column :id, '##'
+    %th enabled
+    %th= link_to_sortable_column :name, 'Name'
+    %th Content
+    %th Commands
+
+  - @items.each do |item|
+    %tr
+      %td= item.id
+      %td= render "optimacms/admin/shared/label_yesno", v: item.enabled
+      %td
+        = link_to item.name, edit_resource_path(item)
+        %br
+        %span.help
+          =item.description
+      %td
+        = item.content
+      %td
+        = link_to "edit", edit_resource_path(item)
+        |
+        = link_to "usage", usage_resource_path(item)
+        |
+        = link_to "delete", resource_path(item), method: :delete, data: {confirm: "Are you sure?"}
+
+
+
+
+= paginate @items

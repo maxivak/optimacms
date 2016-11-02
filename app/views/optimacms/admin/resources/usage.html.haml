@@ -1,0 +1,22 @@
+%h1 Resource
+name: #{@item.name}
+
+
+%h2 Usage
+
+- if @usages.empty?
+  Not found
+
+- @usages.each do |r|
+  %b
+    =r[:shortpath]
+  - if r[:template_id]
+    (#{link_to 'view template', cms.edit_template_path(r[:template_id]), target: '_blank'})
+    %br
+
+  %br
+  -r[:hits].each do |hit|
+    %pre
+      #{'#'}#{hit[:line_ind]}: #{hit[:line]}
+
+  %hr

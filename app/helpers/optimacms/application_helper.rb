@@ -109,8 +109,12 @@
       # default render
       return render name
     end
-    
 
-    
+
+    def msg
+      Resource
+    end
+
+
   end
 end
