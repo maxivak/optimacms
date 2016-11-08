@@ -129,10 +129,12 @@ module Optimacms
       @res = @item.update(item_params)
 
       if @res
-        redirect_to url_list, success: 'Successfully updated'
+        u = params[:continue]=="1" ? edit_page_path(@item) : url_list
+        redirect_to u, success: 'Successfully updated'
       else
         render :edit
       end
+
     end
 
 

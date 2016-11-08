@@ -1,8 +1,10 @@
 
-.row
+.row#mainform
   .col-md-12
     =horizontal_simple_form_for @item do |f|
       = render 'optimacms/admin/shared/form_errors', :object=>@item
+
+      = f.input :continue, as: :fake_hidden, input_html: {value: "0"}, label: false
 
       = f.input :parent_id, as: :hidden
 
@@ -42,7 +44,8 @@
 
       = render 'meta', f: f, item: @item
 
-      = f.button :submit_cancel, 'Save', :cancel=>@url_back
+      -#= f.button :submit_cancel, 'Save', :cancel=>@url_back
+      = f.button :save_continue_cancel, 'Save', :cancel=>@url_back
 
 
 
@@ -75,4 +78,16 @@
   $(document).ready(function() {
     $('.form-group.page_template div.control').append($("#div_template_info"));
     $("#div_template_info").show();
+
+
+    // save-continue
+    $('#mainform a.btn-save-continue').click(function(e){
+      e.preventDefault();
+      var f = $(this).closest("form");
+      f.find("input[name='continue']").val("1");
+      f.submit();
+    });
   });
+
+
+
