@@ -1,0 +1,71 @@
+File: #{@item.path}
+%br
+.row#mainform
+  .col-md-12
+    = horizontal_simple_form_for :css_file, :url=>update_css_file_path(basepath: @item.basepath), :html => { :class => "form-horizontal", :role => "form" }  do |f|
+      -#= render 'optimacms/admin/shared/form_errors', :object=>@item
+
+      = f.input :continue, as: :fake_hidden, input_html: {value: "0"}, label: false
+
+      = f.input :basepath, label: "path", input_html: {value: @item.basepath}, readonly: true
+
+      -#= f.input :content, as: :text, label: "Content", input_html: {value: @item.content}
+
+      .form-group
+        = f.input :content, as: :text, label: "Content", :rows => 16, :cols => 80, :class=>'form_input_content', :data=>{}, input_html: {value: @item.content}
+        %div{id: "content", class: '', data: {}}(style="width:100%; height: 600px; border: 2px #333333 solid;")
+
+
+      = f.button :save_continue_cancel, 'Save', :cancel=>@url_back
+
+
+= render 'optimacms/admin/common/js_ace'
+
+:javascript
+
+  $( document ).ready(function() {
+    $('#mainform a.btn-save-continue').click(function(e){
+      e.preventDefault();
+      var f = $(this).closest("form");
+      f.find("input[name='continue']").val("1");
+      f.submit();
+    });
+  });
+
+  function init_editor(id){
+    //var editor = ace.edit("content");
+    var editor = ace.edit(id);
+    editor.setTheme("ace/theme/chrome");
+    editor.getSession().setMode("ace/mode/haml");
+    editor.getSession().setNewLineMode("windows");
+    editor.getSession().setTabSize(2);
+
+    return editor;
+  }
+
+  // init editors
+  var editors = [];
+
+  editors["def"] = init_editor("content");
+
+  $(document).ready(function() {
+
+    // set content from input to editor
+    var textarea = $( "#css_file_content" );
+    textarea.hide();
+
+    //console.log("set val");
+    //console.log(textarea.val());
+    editors['def'].getSession().setValue(textarea.val());
+
+
+    // set content from editor back to input
+    $('#mainform form').submit(function(){
+      $( "#css_file_content" ).each(function( index ) {
+        var textarea = $(this);
+        textarea.val(editors['def'].getSession().getValue());
+      });
+
+
+    });
+  });

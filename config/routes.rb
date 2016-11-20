@@ -62,6 +62,20 @@ Optimacms::Engine.routes.draw do
 
     resources :layouts
 
+    resources :css_files, only: [:index] do
+
+      collection do
+        post 'search'
+
+        get :autocomplete
+      end
+    end
+
+
+    get 'css_files/edit', to: 'css_files#edit',  as: :edit_css_file
+    post 'css_files/update', to: 'css_files#update',  as: :update_css_file
+
+
     resources :mediafiles, only: [:index]
     #get '/elfinder_manager', to: 'elfinder#index'
     match '/media_elfinder' => 'mediafiles#elfinder', via: [:get, :post]
