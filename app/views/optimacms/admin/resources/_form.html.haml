@@ -1,0 +1,23 @@
+= horizontal_simple_form_for(@item) do |f|
+  = f.error_notification
+
+  = f.input :name, label: 'Name'
+  = f.input :enabled, :as => :select
+
+  = f.input :description, :input_html => { :rows => 7 , :style => 'width: 100%'}
+
+
+  / Nav tabs
+  = render 'optimacms/admin/shared/form_tran_tabs'
+
+
+  / Tabs content
+  .tab-content
+    - @languages.each do |lang|
+      - next if lang.blank?
+      %div{id: "tab-content-#{lang}", role: "tabpanel", class: ['tab-pane', ('active' if lang=='en')]}
+        = f.input :"content_#{lang}", label: "Content"
+
+
+
+  = f.button :submit

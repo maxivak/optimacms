@@ -1,0 +1,46 @@
+.page-header
+  .row
+    .col-md-6
+      %h1
+        CSS files
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          edit stylesheets
+    .col-md-4
+      -#=link_to 'New', new_css_file_path(:parent_id=>@parent_id), :class=>'btn btn-sm btn-primary'
+
+
+-#.filter
+  = inline_filter_form_for(@filter)
+
+
+%table.table.table-striped.table-bordered
+  %tr
+    -#%th= link_to_sortable_column :title, 'Title'
+    -#%th= link_to_sortable_column :basepath, 'Path'
+    %th Path
+    %th Commands
+
+  - @items.each do |item|
+    %tr
+      %td
+        - if item.is_folder
+          =link_to css_files_path(:folder_path=>item.basepath) do
+            <i class="fa fa-folder-o"></i>
+            =item.basepath
+        - else
+          =link_to item.basepath, edit_css_file_path(basepath: item.basepath)
+
+      -#%td
+        - if item.is_folder
+          = item.folder_path
+        - else
+          =item.path rescue 'error'
+
+      %td
+        - if !item.is_folder
+          =link_to 'Edit', edit_css_file_path(basepath: item.basepath)
+        -#=link_to 'Edit', (!item.is_folder ? edit_template_path(item) : editfolder_template_path(item))
+        -#=link_to 'Delete', template_path(item), :method => :delete, data: { confirm: 'Are you sure?' }
+
+-#=paginate @items

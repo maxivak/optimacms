@@ -35,7 +35,6 @@ File: #{@item.path}
   $( document ).ready(function() {
     $('#mainform a.btn-save-continue').click(function(e){
       e.preventDefault();
-      console.log("click");
       var f = $(this).closest("form");
       f.find("input[name='continue']").val("1");
       f.submit();

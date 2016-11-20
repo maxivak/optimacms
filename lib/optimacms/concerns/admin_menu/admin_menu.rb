@@ -11,7 +11,9 @@ module Optimacms::Concerns::AdminMenu::AdminMenu
           {title: 'Content', url: nil, submenu: [
               {title: 'Pages', url: Optimacms::Engine.routes.url_helpers.pages_path},
               {title: 'Templates', url: Optimacms::Engine.routes.url_helpers.templates_path},
+              {title: 'Resources', url: Optimacms::Engine.routes.url_helpers.resources_path},
               {title: 'Languages', url: Optimacms::Engine.routes.url_helpers.languages_path},
+              {title: 'CSS Files', url: Optimacms::Engine.routes.url_helpers.css_files_path},
               {title: 'Media', url: Optimacms::Engine.routes.url_helpers.mediafiles_path}
           ]
           }

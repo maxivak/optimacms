@@ -1,13 +1,15 @@
 PATH
   remote: .
   specs:
-    optimacms (0.2.14)
+    optimacms (0.2.21)
       ancestry
       bootstrap-sass (~> 3.3.4)
-      bootstrap3_autocomplete_input (= 0.1.7)
+      bootstrap3_autocomplete_input (~> 0.2.0)
       coffee-rails (~> 4.1.0)
       devise
       font-awesome-rails (~> 4.3)
+      globalize
+      globalize-accessors
       haml (~> 4.0.6)
       haml-rails (~> 0.9.0)
       jquery-rails (~> 4.0.3)
@@ -68,7 +70,7 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bootstrap3_autocomplete_input (0.1.7)
+    bootstrap3_autocomplete_input (0.2.0)
     builder (3.2.2)
     capybara (2.7.1)
       addressable
@@ -130,6 +132,11 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    globalize (5.0.1)
+      activemodel (>= 4.2.0, < 4.3)
+      activerecord (>= 4.2.0, < 4.3)
+    globalize-accessors (0.2.1)
+      globalize (~> 5.0, >= 5.0.0)
     haml (4.0.6)
       tilt
     haml-rails (0.9.0)
@@ -273,7 +280,7 @@ DEPENDENCIES
   ancestry
   bcrypt-ruby (= 3.1.1.rc1)
   bootstrap-sass
-  bootstrap3_autocomplete_input (= 0.1.7)
+  bootstrap3_autocomplete_input (= 0.2.0)
   capybara
   coffee-rails
   compass-rails
@@ -283,6 +290,8 @@ DEPENDENCIES
   factory_girl_rails
   faker
   font-awesome-rails
+  globalize
+  globalize-accessors
   haml (= 4.0.6)
   haml-rails (= 0.9.0)
   jquery-rails

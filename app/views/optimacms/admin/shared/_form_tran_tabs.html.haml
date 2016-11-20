@@ -1,0 +1,15 @@
+-#%ul.nav.nav-tabs{:role => "tablist"}
+  - @languages.each do |lang|
+    - next if lang.blank?
+    - t = lang.blank? ? 'Default' : lang
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "tab-content-#{lang}", "data-toggle" => "tab", :href => "#tab-content-#{lang}", :role => "tab", :data=>{lang: lang}}
+        =t
+
+%ul#tabs-translation.nav.nav-tabs{:role => "tablist"}
+  - @languages.each do |lang|
+    - next if lang.blank?
+    - t = lang.blank? ? 'Default' : lang
+    %li{:role => "presentation", :class=>[('active' if lang=='en')]}
+      %a{"aria-controls" => "tab-content-#{lang}", "data-toggle" => "tab", :href => "#tab-content-#{lang}", :role => "tab", :data=>{lang: lang}}
+        =t
