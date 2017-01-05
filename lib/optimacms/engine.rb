@@ -45,7 +45,7 @@ module Optimacms
       ActiveSupport.on_load :action_controller do
         include Optimacms::Mycontroller
 
-        helper Optimacms::Engine.helpers
+        ::ActionController::Base.helper Optimacms::Engine.helpers
       end
     end
 
