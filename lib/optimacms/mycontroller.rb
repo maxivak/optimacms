@@ -4,7 +4,9 @@
 
 
     included do
-      helper_method :site_page_path
+      if respond_to?(:helper_method)
+        helper_method :site_page_path
+      end
     end
 
     def my_set_render
