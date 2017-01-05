@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", ">= 4.1"
+  s.add_dependency "rails", "~> 5.0"
 
   s.add_development_dependency "mysql2", '~> 0'
 
@@ -26,16 +26,16 @@ Gem::Specification.new do |s|
   s.add_dependency "haml", "~> 4.0.6"
   s.add_dependency "haml-rails", "~> 0.9.0"
 
-  s.add_dependency "jquery-rails", "~> 4.0.3"
+  s.add_dependency "jquery-rails" #, "~> 4.0.3"
   s.add_dependency "jquery-ui-rails"
-  s.add_dependency "coffee-rails", "~>4.1.0"
+  s.add_dependency "coffee-rails" #, "~>4.1.0"
   s.add_dependency "uglifier"
 
-  s.add_dependency "font-awesome-rails", '~> 4.3'
+  s.add_dependency "font-awesome-rails" #, '~> 4.3'
 
-  s.add_dependency "sass-rails", '>= 5.0.4'
+  s.add_dependency "sass-rails" #, '>= 5.0.4'
 
-  s.add_dependency 'bootstrap-sass', '~> 3.3.4'
+  s.add_dependency 'bootstrap-sass' #, '~> 3.3.4'
 
   s.add_dependency 'simple_form'
   s.add_dependency 'paperclip'
@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
 
 
 
-  s.add_dependency 'simple_search_filter', '~>0.0.31'
+  s.add_dependency 'simple_search_filter' #, '~>0.0.31'
   s.add_dependency 'bootstrap3_autocomplete_input', '~>0.2.0'
 
 

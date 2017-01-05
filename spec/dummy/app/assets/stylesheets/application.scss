@@ -1,13 +1,7 @@
-
-
 /* html */
-
 html,
-
 body {
-
   height: 100%;
-
 }
 
 
@@ -45,53 +39,29 @@ body {
 /* main layout */
 
 #topbar{
-
-  background-color: $col-blue-1;
-
-
+  //background-color: $col-blue-1;
 
   a{
-
     color: #ffffff;
-
   }
-
-
 
   ul.nav{
-
     a{
-
-      color: $gray;
-
+      //color: $gray;
     }
-
   }
-
 }
 
 
 
-
-
 // solution 1
-
-
-
 .main-container:before {
-
     background-color: #ffffff;
-
     bottom: 0;
-
     content: "";
-
     display: block;
-
     max-width: inherit;
-
     position: absolute;
-
     top: 0;
 
     width: 100%;
@@ -256,42 +226,27 @@ body {
 
       font-size:13px;
 
-      color: $gray-light;
+      //color: $gray-light;
 
       text-decoration: underline;
 
 
 
       &:hover{
-
-        color:$gray-lighter;
-
+        //color:$gray-lighter;
       }
 
     }
 
-
-
-
-
     .t{
-
       color: #ffffff;
-
     }
 
-
-
     #footer-socials {
-
       margin-top: 12px;
-
       text-align: left;
 
-
-
       li a {
-
         color: #777777;
 
         font-size: 17px;
@@ -355,29 +310,17 @@ body {
 
 
   h1{
-
     margin: 0 8px 0px 0px;
-
-    color: $col-blue-2;
-
+    //color: $col-blue-2;
     font-size: 24px;
-
     font-weight: lighter;
-
     padding: 0;
 
-
-
     small {
-
-      color: $col-blue-4;
-
+      //color: $col-blue-4;
       font-size: 14px;
-
       font-weight: 400;
-
       margin: 0 6px;
-
     }
 
   }
@@ -393,29 +336,17 @@ body {
 
 
 div.breadcrumbs{
-
-  background-color: $gray-light-light;
-
+  //background-color: $gray-light-light;
   border-bottom: 1px solid #e5e5e5;
-
   line-height: 30px;
-
   min-height: 35px;
-
   padding: 4px 0px 4px 0;
-
   position: relative;
-
   z-index: auto;
-
   font-size: 13px;
 
-
-
   ul.breadcrumb{
-
     margin-bottom:0px;
-
   }
 
 }

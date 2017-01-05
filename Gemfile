@@ -13,13 +13,14 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+gem 'rails', '5.0'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 gem 'devise'
 gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
 
-gem 'haml', '4.0.6'
-gem 'haml-rails', '0.9.0'
+gem 'haml'#, '4.0.6'
+gem 'haml-rails'#, '0.9.0'
 
 
 gem 'sass-rails'
@@ -33,25 +34,29 @@ gem 'compass-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 gem 'simple_form'
-gem 'simple_search_filter', '0.0.31'
+
+#gem 'simple_search_filter', '0.0.31'
+gem 'simple_search_filter', '~>0.0.31', github: 'maxivak/simple_search_filter', branch: 'rails5'
+
 gem 'bootstrap3_autocomplete_input', '0.2.0'
 
 gem 'paperclip'
 gem 'ancestry'
 
-gem 'globalize'
+gem 'globalize', github: 'globalize/globalize'
+gem 'activemodel-serializers-xml'
 gem 'globalize-accessors'
 
 
 # tinymce
-gem 'tinymce-rails', '4.1.6'
+gem 'tinymce-rails' #, '4.1.6'
 
 # editor
-gem 'el_finder', '1.1.12'
+gem 'el_finder' #, '1.1.12'
 
 #
 
-gem 'rspec-rails', '3.1.0'
+gem 'rspec-rails' #, '3.1.0'
 gem 'factory_girl_rails'
 gem 'database_cleaner'
 gem 'faker'
