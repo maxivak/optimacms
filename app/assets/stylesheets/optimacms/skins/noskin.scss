@@ -71,7 +71,7 @@ $navlist-border-col: #e4e4e4;
     }
 
     .submenu {
-      li{
+      > li{
         a{
           background-color: $navlist-col-bg-submenu;
 
@@ -81,7 +81,7 @@ $navlist-border-col: #e4e4e4;
         }
       }
 
-      li.active {
+      > li.active {
         a {
           background-color: $navlist-col-bg-submenu-active;
           font-weight: 700;

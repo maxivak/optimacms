@@ -1,17 +1,17 @@
 
-%ul.nav.nav-list
-  %li
-    =link_to 'Dashboard', Optimacms::Engine.routes.url_helpers.dashboard_path
+%ul.nav.nav-list.flex-column
+  %li.nav-item
+    <a class="nav-link active" href="#">Dashboard</a>
 
   - Optimacms::AdminMenu::AdminMenu.get_menu.each_with_index do |m, ind|
-    %li
-      =link_to "#submenu#{ind}", :"data-toggle"=>"collapse", :"aria-expanded"=>"true", :"aria-controls"=>"submenu#{ind}" do
+    %li.nav-item
+      =link_to "#submenu#{ind}", :"data-toggle"=>"collapse", :"aria-expanded"=>"true", :"aria-controls"=>"submenu#{ind}", :class=> "nav-link" do
         %span
           %b #{m[:title]}
         %b.arrow.fa.fa-angle-down.for-expanded
         %b.arrow.fa.fa-angle-left.for-collapsed
 
-      %ul.submenu.collapse.in{id: "submenu#{ind}"}
+      %ul.submenu.collapse.show{id: "submenu#{ind}"}
         - if m[:submenu]
           - m[:submenu].each do |sm|
             - u = sm[:route] ? send("#{sm[:route]}_path") : sm[:url]
@@ -21,30 +21,3 @@
               =link_to sm[:title], u
 
 
-
-  -#
-    %li.active
-
-      =link_to '#submenu1', :"data-toggle"=>"collapse", :"aria-expanded"=>"true", :"aria-controls"=>"submenu1" do
-        %span Content
-        %b.arrow.fa.fa-angle-down.for-expanded
-        %b.arrow.fa.fa-angle-left.for-collapsed
-
-      %ul#submenu1.submenu.collapse.in
-        %li=link_to 'Pages', pages_path
-        %li=link_to 'Templates', templates_path
-        -#%li=link_to 'Layouts', layouts_path
-        -#%li=link_to 'Data Blocks - NOT WORK', 'datablocks_path'
-        %li=link_to 'Media', mediafiles_path
-
-    -#%li
-    =link_to '#submenu_system', :"data-toggle"=>"collapse", :"aria-expanded"=>"false", :"aria-controls"=>"submenu_system" do
-      %span System
-      %b.arrow.fa.fa-angle-down.for-expanded
-      %b.arrow.fa.fa-angle-left.for-collapsed
-
-    %ul#submenu_system.submenu_system.collapse
-      %li=link_to 'App', app_sys_path
-      %li=link_to 'Maintenance', "#"
-      %li=link_to 'Backups', "#"
-      %li=link_to 'Info', "#"
