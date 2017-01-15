@@ -1,13 +1,27 @@
-#topbar.navbar.navbar-default
-  .navbar-container
-    %button.navbar-toggle.pull-left( data-target="#sidebar" type="button")
+%nav#topbar.navbar.navbar-toggleable-md.navbar-light.bg-faded
+
+  %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarTopmenu", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarTopmenu", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  =link_to 'Admin Area', '/admin', class: "navbar-brand"
+
+  #navbarTopmenu.collapse.navbar-collapse
+    -#%form.form-inline.ml-auto.my-lg-0
+      .input-group
+        %span#basic-addon1.input-group-addon @
+        %input.form-control{"aria-describedby" => "basic-addon1", :placeholder => "Username", :type => "text"}/
+    .ml-auto
+      = render 'optimacms/admin/shared/menu_user'
+
+
+-##topbar.navbar.navbar-default
+    -#%button.navbar-toggle.pull-left( data-target="#sidebar" type="button")
       %span.sr-only Toggle sidebar
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
-    .navbar-header.pull-left
+    -#.navbar-header.pull-left
       <a class="navbar-brand" href="#"><small><i class="fa fa-cube"></i> Admin</small></a>
-    .navbar-buttons.pull-right(role="navigation")
+    -#.navbar-buttons.pull-right(role="navigation")
       %ul.nav
         -#%li
           =link_to 'Login', new_user_session_path

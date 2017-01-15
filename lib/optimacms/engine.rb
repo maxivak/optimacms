@@ -51,7 +51,7 @@ module Optimacms
 
     initializer "optimacms assets precompile" do |app|
 
-      app.config.assets.precompile += %w(admin.css admin.js optimacms/admin.css optimacms/admin.js optimacms/admin_tpl.css)
+      app.config.assets.precompile += %w(admin.css admin.js optimacms/admin_common.css optimacms/admin_tpl.css optimacms/admin.js )
 
 
     end
