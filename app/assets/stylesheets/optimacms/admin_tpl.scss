@@ -183,7 +183,8 @@ code, pre{
 
 /* nav list */
 
-ul#leftmenu{
+ul#leftmenu,
+ul.nav-list{
   list-style-type: none;
   padding-left: 0;
 
@@ -305,7 +306,7 @@ ul#leftmenu{
 
 
 /* breadcrumbs */
-
+/*
 div.breadcrumbs{
   background-color: $gray-light-light;
   border-bottom: 1px solid #e5e5e5;
@@ -320,6 +321,6 @@ div.breadcrumbs{
     margin-bottom:0px;
   }
 }
-
+*/
 
 
