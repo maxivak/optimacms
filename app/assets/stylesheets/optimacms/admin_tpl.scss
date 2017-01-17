@@ -1,4 +1,4 @@
-@import "colors";
+@import "admin_variables";
 @import "skins/noskin";
 
 
@@ -174,15 +174,16 @@ code, pre{
 }
 
 /* forms */
-
+/*
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
   margin-left: -30px;
 }
+*/
 
 
 /* nav list */
 
-ul.nav-list{
+ul#leftmenu{
   list-style-type: none;
   padding-left: 0;
 
