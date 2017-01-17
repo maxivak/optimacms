@@ -4,16 +4,17 @@
       %h1
         Pages
         %small
-          <i class="ace-icon fa fa-angle-double-right"></i>
+          %i.ace-icon.fa.fa-angle-double-right
           manage pages
     .col-md-5
       =link_to 'New page', new_page_path(:parent_id=>@parent_id), :class=>'btn btn-sm btn-primary'
-      =link_to 'New folder', newfolder_pages_path(:parent_id=>@parent_id, :is_folder=>1), :class=>'btn btn-sm btn-default'
-      .btn-group
-        %button(type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+      =link_to 'New folder', newfolder_pages_path(:parent_id=>@parent_id, :is_folder=>1), :class=>'btn btn-sm btn-secondary'
+      .btn-group(role="group")
+        %button(id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
           New... <span class="caret"></span>
-        %ul.dropdown-menu
-          %li=link_to 'text page', newtextpage_pages_path(:parent_id=>@parent_id)
+        .dropdown-menu(aria-labelledby="btnGroupDrop1")
+          =link_to 'text page', newtextpage_pages_path(:parent_id=>@parent_id), class: 'dropdown-item'
+
 
 .filter
   = inline_filter_form_for(@filter)
@@ -25,39 +26,40 @@
   =link_to @parent.title, pages_path(:parent_id=>@parent.id)
 
 %table.table.table-striped.table-bordered
-  %tr
-    %th= link_to_sortable_column :title, 'Title'
-    %th= link_to_sortable_column :name, 'Name'
-    %th URL
-    %th Template
-    %th Commands
-
-  - @items.each do |item|
+  %thead.thead-inverse
     %tr
-      %td
-        - if item.is_folder
-          =link_to pages_path(:parent_id=>item.id) do
-            <i class="fa fa-folder-o"></i>
-            =item.title
-        - else
-          =link_to item.title, edit_page_path(item)
-      %td
-        =item.name
-      %td
-        =item.url
-      %td
-        - if item.template
-          =link_to edit_template_path(item.template) do
-            =item.template.title
-          %br
-          =item.template.basepath
-        - elsif !item.is_folder
-          N/A
-        - else
-          &nbsp;
+      %th= link_to_sortable_column :title, 'Title'
+      %th= link_to_sortable_column :name, 'Name'
+      %th URL
+      %th Template
+      %th Commands
+  %tbody
+    - @items.each do |item|
+      %tr
+        %td
+          - if item.is_folder
+            =link_to pages_path(:parent_id=>item.id) do
+              <i class="fa fa-folder-o"></i>
+              =item.title
+          - else
+            =link_to item.title, edit_page_path(item)
+        %td
+          =item.name
+        %td
+          =item.url
+        %td
+          - if item.template
+            =link_to edit_template_path(item.template) do
+              =item.template.title
+            %br
+            =item.template.basepath
+          - elsif !item.is_folder
+            N/A
+          - else
+            &nbsp;
 
-      %td
-        =link_to 'Edit', (item.is_folder? ? editfolder_page_path(item) : edit_page_path(item))
-        =link_to 'Delete', page_path(item), :method => :delete, data: { confirm: 'Are you sure?' }
+        %td
+          =link_to 'Edit', (item.is_folder? ? editfolder_page_path(item) : edit_page_path(item))
+          =link_to 'Delete', page_path(item), :method => :delete, data: { confirm: 'Are you sure?' }
 
 =paginate @items

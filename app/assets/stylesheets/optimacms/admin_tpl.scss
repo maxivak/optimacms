@@ -26,8 +26,13 @@ body {
 
 /* main layout */
 #topbar{
+  padding: 3px 10px 3px 12px;
   background-color: $col-blue-1;
 
+
+  a.navbar-brand{
+    color: #ffffff;
+  }
 
   ul.nav{
     a{
@@ -285,6 +290,7 @@ ul.nav-list{
 .page-header{
   margin-top: 12px;
   margin-bottom: 12px;
+  padding-bottom: 12px;
 
   border-bottom: 1px solid #e2e2e2;
 
@@ -292,7 +298,7 @@ ul.nav-list{
     margin: 0 8px 0px 0px;
     color: $col-blue-2;
     font-size: 24px;
-    font-weight: lighter;
+    font-weight: 400;
     padding: 0;
 
     small {
