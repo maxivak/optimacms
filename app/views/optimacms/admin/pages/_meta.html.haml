@@ -1,26 +1,21 @@
-.row
-  .col-md-12
-    .panel.panel-default
-      .panel-body
-        .pad20
-          %b Meta
-          #meta_translation
-            %ul.nav.nav-tabs
-              - @languages.each do |lang|
-                - t = lang.blank? ? 'Default' : lang
-                %li(role="presentation")
-                  =link_to t, '#', :class=>'link_meta_tab', :data=>{:lang=>lang}
+#meta_translation
+  %h3 Meta
+  %ul.nav.nav-tabs
+    - @languages.each do |lang|
+      - t = lang.blank? ? 'Default' : lang
+      %li.nav-item.active
+        =link_to t, '#', :class=>'nav-link link_meta_tab', :data=>{:lang=>lang}
 
-            = f.simple_fields_for :translations do |fmeta|
-              - tran = fmeta.object
-              - lang = tran.lang
+  = f.simple_fields_for :translations do |fmeta|
+    - tran = fmeta.object
+    - lang = tran.lang
 
 
-              %div{:class=>['cont', "meta_cont_"+lang]}
-                =fmeta.input :lang, :readonly=>true
-                =fmeta.input :meta_title, label: 'Title'
-                =fmeta.input :meta_keywords, label: 'Keywords'
-                =fmeta.input :meta_description, as: :text, label: 'Description'
+    %div{:class=>['cont', "meta_cont_"+lang]}
+      =fmeta.input :lang, :readonly=>true
+      =fmeta.input :meta_title, label: 'Title'
+      =fmeta.input :meta_keywords, label: 'Keywords'
+      =fmeta.input :meta_description, as: :text, label: 'Description'
 
   -# @languages.all.each do |r|
     - lang = r.lang

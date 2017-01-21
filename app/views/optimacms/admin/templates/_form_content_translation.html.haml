@@ -5,11 +5,11 @@
 .row
   .col-md-8.col-sm-8
     / Nav tabs
-    %ul#tabs-translation.nav.nav-tabs{:role => "tablist"}
+    %ul#tabs-translation.nav.nav-tabs
       - @languages.each do |lang|
         - t = lang.blank? ? 'Default' : lang
-        %li{role: "presentation", class: [('active' if lang=='')]}
-          %a{"aria-controls" => "tab-content-#{lang}", "data-toggle" => "tab", :href => "#tab-content-#{lang}", :role => "tab"}
+        %li.nav-item{class: [('active' if lang=='')]}
+          %a{"aria-controls" => "tab-content-#{lang}", "data-toggle" => "tab", :href => "#tab-content-#{lang}", :class=>'nav-link'}
             =t
 
     / Tabs content
@@ -56,20 +56,20 @@
 
   .col-md-4.col-sm-4(style="padding-top:40px;")
     / panel - tabs
-    %ul#editor-panels-tabs.nav.nav-tabs{:role => "tablist"}
-      %li{role: "presentation", class: "active"}
-        %a{"aria-controls" => "panel-blocks", "data-toggle" => "tab", :href => "#panel-blocks", :role => "tab"}
+    %ul#editor-panels-tabs.nav.nav-tabs
+      %li.nav-item{class: "active"}
+        %a{"aria-controls" => "panel-blocks", "data-toggle" => "tab", :href => "#panel-blocks", :class => "nav-link"}
           Blocks
-      %li{role: "presentation"}
-        %a{"aria-controls" => "panel-images", "data-toggle" => "tab", :href => "#panel-images", :role => "tab"}
+      %li.nav-item
+        %a{"aria-controls" => "panel-images", "data-toggle" => "tab", :href => "#panel-images", :class => "nav-link"}
           Images
 
     / Panels. Tabs content
     #editor-panels-content.tab-content
-      %div{id: "panel-blocks", class: "tab-pane active", role: "tabpanel"}
+      %div{id: "panel-blocks", class: "tab-pane active"}
         blocks...
 
-      %div{id: "panel-images", class: "tab-pane", role: "tabpanel"}
+      %div{id: "panel-images", class: "tab-pane"}
         images...
 
 
