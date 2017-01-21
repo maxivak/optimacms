@@ -65,7 +65,6 @@ gem 'kaminari-bootstrap'
 gem 'simple_form', '~>3.3.1'
 #gem 'simple_search_filter', '0.0.31'
 gem 'simple_search_filter', '~>0.0.31', github: 'maxivak/simple_search_filter', branch: 'bootstrap4'
-
 gem 'bootstrap_autocomplete_input', '~>0.2.0'
 
 
