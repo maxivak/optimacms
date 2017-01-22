@@ -6,10 +6,10 @@
       %a{"aria-controls" => "tab-content-#{lang}", "data-toggle" => "tab", :href => "#tab-content-#{lang}", :role => "tab", :data=>{lang: lang}}
         =t
 
-%ul#tabs-translation.nav.nav-tabs{:role => "tablist"}
+%ul#tabs-translation.nav.nav-tabs
   - @languages.each do |lang|
     - next if lang.blank?
     - t = lang.blank? ? 'Default' : lang
-    %li{:role => "presentation", :class=>[('active' if lang=='en')]}
-      %a{"aria-controls" => "tab-content-#{lang}", "data-toggle" => "tab", :href => "#tab-content-#{lang}", :role => "tab", :data=>{lang: lang}}
+    %li.nav-item{:class=>[('active' if lang=='en')]}
+      %a{"aria-controls" => "tab-content-#{lang}", "data-toggle" => "tab", :href => "#tab-content-#{lang}", :class => "nav-link", :data=>{lang: lang}}
         =t

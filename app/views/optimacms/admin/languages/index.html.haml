@@ -7,7 +7,7 @@
           <i class="ace-icon fa fa-angle-double-right"></i>
           edit languages
     .col-md-4
-      =link_to 'New', new_language_path(), :class=>'btn btn-sm btn-primary'
+      -#=link_to 'New', new_language_path(), :class=>'btn btn-sm btn-primary'
 
 
 .filter
@@ -30,7 +30,7 @@
       %td
         =item.pos
       %td
-        =link_to 'Edit', edit_language_path(item)
+        -#=link_to 'Edit', edit_language_path(item)
         =link_to 'Delete', language_path(item), :method => :delete, data: { confirm: 'Are you sure?' }
 
 =paginate @items
