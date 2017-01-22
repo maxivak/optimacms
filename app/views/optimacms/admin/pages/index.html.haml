@@ -63,4 +63,4 @@
           =link_to 'Edit', (item.is_folder? ? editfolder_page_path(item) : edit_page_path(item))
           =link_to 'Delete', page_path(item), :method => :delete, data: { confirm: 'Are you sure?' }
 
-=paginate @items, theme: 'twitter-bootstrap-4'
+=paginate @items, theme: 'bootstrap4'
