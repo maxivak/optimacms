@@ -32,10 +32,9 @@ module Optimacms::Concerns::AdminMenu::AdminMenu
     def get_menu_system
       [
           {title: 'System', url: nil, submenu: [
-              {title: 'App', url: Optimacms::Engine.routes.url_helpers.app_sys_path},
-              {title: 'Maintenance', url: false},
+              {title: 'Maintenance', url: Optimacms::Engine.routes.url_helpers.maintenance_path},
               {title: 'Backups', url: false},
-              {title: 'Info', url: false}
+              {title: 'Info', url: Optimacms::Engine.routes.url_helpers.maintenance_info_path}
           ]
           }
 

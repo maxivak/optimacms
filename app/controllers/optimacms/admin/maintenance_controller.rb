@@ -1,5 +1,5 @@
 module Optimacms
-  class Admin::AppSysController < Admin::AdminBaseController
+  class Admin::MaintenanceController < Admin::AdminBaseController
 
     def index
 
@@ -13,6 +13,10 @@ module Optimacms
 
 
       redirect_to_res @res
+    end
+
+    def info
+
     end
   end
 end

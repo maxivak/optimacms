@@ -1,4 +1,6 @@
 Optimacms::Engine.routes.draw do
+  # dev
+  get 'dev/:action', to: 'dev#action'
 
   # admin
   scope '/'+Optimacms.admin_namespace, module: "admin" do
@@ -92,18 +94,26 @@ Optimacms::Engine.routes.draw do
     end
 
 
-    resources :app_sys do
+    get '/maintenance', to: 'maintenance#index', as: :maintenance
+
+    scope '/maintenance', module: 'maintenance', as: "maintenance" do
+      get 'restart'
+      get 'info'
+    end
+
+=begin
+    resources :maintenance2 do
       collection do
         get :restart
+        get :info
       end
 
     end
+=end
 
 
   end
 
-  # dev
-  get 'dev/:action', to: 'dev#action'
 
   # tinymce
   #post '/tinymce_assets' => 'tinymce_assets#create', as: :tinymce_uploadimage
