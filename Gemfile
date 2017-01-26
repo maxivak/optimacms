@@ -43,7 +43,6 @@ gem 'net-ssh', '3.1.1', :git => 'https://github.com/maxivak/net-ssh', :branch =>
 
 
 gem 'haml-rails', '~>0.9.0'
-
 gem 'sass-rails', '~>5.0.6'
 gem 'uglifier', '>= 1.3.0'
 #gem 'coffee-rails'
@@ -81,16 +80,13 @@ gem 'tinymce-rails' #, '4.1.6'
 gem 'el_finder' #, '1.1.12'
 
 #
-
-gem 'rspec-rails' #, '3.1.0'
-gem 'factory_girl_rails'
-gem 'database_cleaner'
-gem 'faker'
-gem 'capybara'
+group :development, :test do
+  gem 'rspec-rails' #, '3.1.0'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'capybara'
 #gem "capybara-webkit"
 #gem 'selenium-webdriver'
-
-
-group :development, :test do
 end
 
