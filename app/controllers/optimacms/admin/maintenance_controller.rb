@@ -2,7 +2,7 @@ module Optimacms
   class Admin::MaintenanceController < Admin::AdminBaseController
 
     def url_index
-      '/admin/maintenance'
+      '/'+Optimacms.admin_namespace+'/maintenance'
     end
 
 
