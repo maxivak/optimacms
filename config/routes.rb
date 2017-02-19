@@ -99,6 +99,7 @@ Optimacms::Engine.routes.draw do
     scope '/maintenance', module: 'maintenance', as: "maintenance" do
       get 'restart'
       get 'info'
+      get 'assets_precompile'
     end
 
 =begin
