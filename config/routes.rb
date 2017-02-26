@@ -91,6 +91,13 @@ Optimacms::Engine.routes.draw do
       end
     end
 
+    resources :users do
+      collection do
+        post 'search'
+      end
+
+    end
+
 
     resources :app_sys do
       collection do

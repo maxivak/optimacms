@@ -22,11 +22,22 @@ module Optimacms::Concerns::AdminMenu::AdminMenu
     end
 
     def get_menu
-      get_menu_basic + get_menu_custom + get_menu_system
+      get_menu_basic + get_menu_custom + get_menu_users + get_menu_system
     end
 
     def get_menu_custom
       []
+    end
+
+    def get_menu_users
+      [
+          {title: 'Users', url: nil, submenu: [
+              {title: 'Users', url: Optimacms::Engine.routes.url_helpers.users_path},
+          ]
+          }
+
+      ]
+
     end
 
     def get_menu_system
