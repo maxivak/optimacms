@@ -1,0 +1,20 @@
+%h1 User
+
+.row#mainform
+  .col-md-12
+    = horizontal_simple_form_for @item, {url: user_path(@item), :html => { :class => "form-horizontal", :role => "form" }}.merge((@modal==1 ? {remote: true}: {}))  do |f|
+      = render 'form_fields', f: f, item: @item
+
+
+
+
+:javascript
+
+  $( document ).ready(function() {
+    $('#mainform a.btn-save-continue').click(function(e){
+      e.preventDefault();
+      var f = $(this).closest("form");
+      f.find("input[name='continue']").val("1");
+      f.submit();
+    });
+  });

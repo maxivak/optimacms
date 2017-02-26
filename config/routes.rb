@@ -93,6 +93,13 @@ Optimacms::Engine.routes.draw do
       end
     end
 
+    resources :users do
+      collection do
+        post 'search'
+      end
+
+    end
+
 
     get '/maintenance', to: 'maintenance#index', as: :maintenance
 

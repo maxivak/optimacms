@@ -1,0 +1,38 @@
+.page-header
+  .row
+    .col-md-6
+      %h1
+        Users
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          manage users for CMS admin area
+    .col-md-4
+      =link_to 'New', new_user_path(), :class=>'btn btn-sm btn-primary'
+
+
+.filter
+  = inline_filter_form_for(@filter)
+
+%table.table.table-striped.table-bordered
+  %tr
+    %th= link_to_sortable_column :username, 'username'
+    %th= link_to_sortable_column :email, 'email'
+    %th Role
+    %th Commands
+
+  - @items.each do |item|
+    %tr
+      %td
+        =link_to item.username, edit_user_path(item)
+      %td
+        =link_to item.email, edit_user_path(item)
+      %td
+        - if item.is_superadmin?
+          Superadmin
+        - else
+          admin
+      %td
+        =link_to 'Edit', edit_user_path(item)
+        =link_to 'Delete', user_path(item), :method => :delete, data: { confirm: 'Are you sure?' }
+
+=paginate @items, theme: 'bootstrap4'

@@ -1,0 +1,30 @@
+.page-header
+  .row
+    .col-md-6
+      %h1
+        New user
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          create new user
+    .col-md-4
+      =link_to 'Back', users_path
+
+
+.row#mainform
+  .col-md-12
+    = horizontal_simple_form_for @item, {url: users_path, :html => { :class => "form-horizontal", :role => "form" }}.merge((@modal==1 ? {remote: true}: {}))  do |f|
+      = render 'form_fields', f: f, item: @item
+
+
+
+
+:javascript
+
+  $( document ).ready(function() {
+    $('#mainform a.btn-save-continue').click(function(e){
+      e.preventDefault();
+      var f = $(this).closest("form");
+      f.find("input[name='continue']").val("1");
+      f.submit();
+    });
+  });
