@@ -1,0 +1,16 @@
+
+
+= render 'optimacms/admin/shared/form_errors', :object=>item
+
+= f.input :continue, as: :fake_hidden, input_html: {value: "0"}, label: false
+= hidden_field_tag :modal, @modal
+
+= f.input :username, label: "Username"
+= f.input :email, label: "E-mail"
+
+= f.input :password, label: "password"
+= f.input :password_confirmation, label: "repeat password"
+
+= f.button :save_continue_cancel, 'Save', :cancel=>@url_back
+
+
