@@ -94,9 +94,9 @@ Optimacms::Engine.routes.draw do
     end
 
 
-    get '/maintenance', to: 'maintenance#index', as: :maintenance
+    get '/optimacms/maintenance', to: 'maintenance#index', as: :maintenance
 
-    scope '/maintenance', module: 'maintenance', as: "maintenance" do
+    scope '/optimacms/maintenance', module: 'maintenance', as: "maintenance" do
       get 'restart'
       get 'info'
       get 'assets_precompile'
