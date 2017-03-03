@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "mysql2", '~> 0'
 
-  s.add_dependency "devise"
+  s.add_dependency "devise", '>=4.0'
 
   s.add_dependency "haml-rails", "~> 0.9.0"
 
