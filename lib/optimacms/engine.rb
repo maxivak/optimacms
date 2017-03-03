@@ -29,10 +29,17 @@ module Optimacms
 
     config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/"]
     config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/**/"]
+    config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/common/*.rb"]
     config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/page_services/*.rb"]
+
     #config.autoload_paths += Dir["#{config.root}/lib/**/"]
     #config.autoload_paths += Dir["#{config.root}/lib/"]
     #config.autoload_paths += Dir["#{config.root}/lib/**/*.rb"]
+
+    # for Rails 5
+    config.enable_dependency_loading = false
+    config.eager_load_paths += %W( #{Optimacms::Engine.root}/lib/optimacms.rb #{Optimacms::Engine.root}/lib/version.rb #{Optimacms::Engine.root}/lib/mycontroller.rb)
+    config.eager_load_paths += %W( #{Optimacms::Engine.root}/lib )
 
 
     config.generators do |g|
