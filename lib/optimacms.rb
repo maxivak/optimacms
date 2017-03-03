@@ -9,6 +9,10 @@ module Optimacms
   end
 
 
+  def version
+    Optimacms::VERSION
+  end
+
   #
   mattr_accessor :main_namespace
   def main_namespace
