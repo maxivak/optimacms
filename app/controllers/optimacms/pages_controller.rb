@@ -43,7 +43,7 @@ module Optimacms
 
 
         #c.process_action(action)
-        c.dispatch(action, request)
+        c.dispatch(action, request, c.response)
         #c.process_action(action, tpl_filename)
 
         #app = "NewsController".constantize.action(action)
