@@ -2,3 +2,21 @@
 
 ALTER TABLE `cms_users` ADD `username` VARCHAR( 255 ) NOT NULL AFTER `id`;
 ALTER TABLE `cms_users` ADD `is_superadmin` TINYINT( 1 ) NOT NULL DEFAULT '0' AFTER `email` ;
+
+
+# 2017-04-02, mmx
+
+--
+-- Table structure for table `cms_template_data_relations`
+--
+
+CREATE TABLE IF NOT EXISTS `cms_template_data_relations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `template_id` int(11) NOT NULL,
+  `var_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `data_model_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `props` text COLLATE utf8_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `template_id` (`template_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;

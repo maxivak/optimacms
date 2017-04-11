@@ -9,12 +9,14 @@
 %table.table.table-striped.table-bordered.table-hover
   %tr
     %th= link_to_sortable_column :id, '#'
-    %th Title
     %th= link_to_sortable_column :created_at, 'Date'
+    %th Title
     %th Commands
 
   - @items.each do |item|
     %tr
       %td= item.id
-      %td= item.title
       %td= item.created_at
+      %td= item.title
+      %td
+        =link_to "Edit", edit_admin_news_path(item)

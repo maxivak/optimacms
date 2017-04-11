@@ -11,6 +11,8 @@ module Optimacms
     has_many :translations, foreign_key: 'item_id', class_name: 'TemplateTranslation', dependent: :destroy
     accepts_nested_attributes_for :translations
 
+    has_many :data_relations, foreign_key: 'template_id', class_name: 'TemplateDataRelation', dependent: :destroy
+
 
     ### callbacks
     before_validation :_before_validation

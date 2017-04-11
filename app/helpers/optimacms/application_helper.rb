@@ -63,6 +63,56 @@
       #content_tag(:meta, nil, content: desc, name: 'description')
     end
 
+    def block_with_edit(name, opts={})
+
+      # find template
+      row_tpl = Optimacms::PageServices::TemplateService.get_by_name(name)
+
+      # data relations
+      tpl_data_relations = row_tpl.data_relations.all.index_by { |t| t.var_name }
+
+      # map locals and edit links
+      links_data = []
+
+      opts.each do |_var_name, v|
+        var_name = _var_name.to_s
+
+        next unless tpl_data_relations[var_name]
+        data = tpl_data_relations[var_name]
+
+        #if class exists $modelDecorator
+        #klass = Object.const_get "#{p['model']}CmsDecorator"
+        #objDecorator = klass.new(v)
+        #classify.
+        modelEditDecorator = "#{data.data_model_name}CmsDecorator".safe_constantize.new(v)
+
+        next unless modelEditDecorator
+
+        link_edit = modelEditDecorator.edit_path
+
+        next unless link_edit
+
+        #p = tpl_data_relations[var_name]
+        #id = v.send(:id)
+        #links_edit << {link: send(p["root_edit"]+"_path", id)}
+        link_html = link_to("edit #{data.title}", link_edit, target: "_blank")
+        links_data << {link: link_edit, link_html: link_html}
+      end
+
+
+
+      # render
+      content_tag(:div, class: "debug_box") do
+        #(link_to "edit", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+
+        content_tag(:div, class: "debug_commands") do
+          html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
+
+          ((link_to "edit block", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+"<br>"+html_links).html_safe
+        end+
+        block(name, opts)
+      end
+    end
+
     def block(name, opts={})
       x = Dir.pwd
       #y = File.expand_path File.dirname(__FILE__)
@@ -74,40 +124,60 @@
 
       # try. HTML file in the current folder
       f = File.join(Dir.pwd, 'app', 'views', d, name+'.html')
-      return render file: f if File.exists? f
+      #return render file: f if File.exists? f
 
-      #
-      names = []
+      if !File.exists?(f)
 
-      #
-      parts = name.split /\//
+        #
+        names = []
 
-      parts[-1] = '_'+parts[-1]
-      name2 = parts.join('/')
+        #
+        parts = name.split /\//
 
-      #
-      names << [d, name]
-      names << ["", name]
+        parts[-1] = '_'+parts[-1]
+        name2 = parts.join('/')
 
-      names << [d, name2]
-      names << ["", name2]
+        #
+        names << [d, name]
+        names << ["", name]
+
+        names << [d, name2]
+        names << ["", name2]
 
 
-      # try 2
-      names.each do |p|
-        extensions.each do |ext|
-          # with lang
-          f = File.join(Dir.pwd, 'app', 'views', p[0], p[1]+'.'+@pagedata.lang.to_s+ext)
-          (return render file: f)      if File.exists? f
+        # try 2
+        names.each do |p|
+          extensions.each do |ext|
+            # with lang
+            ff = File.join(Dir.pwd, 'app', 'views', p[0], p[1]+'.'+@pagedata.lang.to_s+ext)
+            #(return render(file: f))      if File.exists? f
+            if File.exists? ff
+              f = ff
+              break
+            end
 
-          # without lang
-          f = File.join(Dir.pwd, 'app', 'views', p[0], p[1]+ext)
-          (return render file: f)      if File.exists? f
+            # without lang
+            ff = File.join(Dir.pwd, 'app', 'views', p[0], p[1]+ext)
+            #(return render(file: f))      if File.exists? f
+            if File.exists? ff
+              f = ff
+            end
+          end
+
+          #
+          break if File.exists? f
         end
       end
 
+      if File.exists? f
+        #opts[:file] = f
+        #return render opts
+        return render file: f, locals: opts
+      end
+
+
       # default render
-      return render name
+      render name, opts
     end
 
 
