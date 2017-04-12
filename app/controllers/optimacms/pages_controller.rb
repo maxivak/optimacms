@@ -9,7 +9,10 @@ module Optimacms
     include Optimacms::Mycontroller
 
     # render
-    alias_method :render_base, :render
+    unless respond_to?(:render_base)
+      alias_method :render_base, :render
+    end
+
 
     include Optimacms::Renderer::AdminPageRenderer
 
@@ -19,12 +22,12 @@ module Optimacms
       options ||= {} # initialise to empty hash if no options specified
 
       if !current_cms_admin_user
-        return super(options, extra_options, &block)
+        return render_base(options, extra_options, &block)
       end
 
       # special cases
       if options.is_a?(Hash) && options[:text]
-        return super(options, extra_options, &block)
+        return render_base(options, extra_options, &block)
       end
 
 
@@ -55,13 +58,11 @@ module Optimacms
 
       # include render into controller class
       if current_cms_admin_user
-        controller.send :alias_method, :render_base, :render
         controller.send 'include', Optimacms::Renderer::AdminPageRenderer
         controller.send 'renderer_admin_edit'
 
-        controller.send :define_method, "render" do |options = nil, extra_options = {}, &block|
-          render_with_edit(options, extra_options, &block)
-        end
+
+
       end
 
 
@@ -69,6 +70,17 @@ module Optimacms
       #
       c = controller.new
       c.params = params
+
+      if current_cms_admin_user
+        #if !controller.respond_to?(:render_base, true)
+        if !c.respond_to?(:render_base, true)
+          controller.send :alias_method, :render_base, :render
+
+          controller.send :define_method, "render" do |options = nil, extra_options = {}, &block|
+            render_with_edit(options, extra_options, &block)
+          end
+        end
+      end
 
 
       #c.process_action(action, request)
