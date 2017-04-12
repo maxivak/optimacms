@@ -1,10 +1,37 @@
 ﻿#require_dependency "../../lib/optimacms/page_services/page_route_service.rb"
 #require_dependency "../../lib/optimacms/page_services/page_process_service.rb"
 
+require_dependency "../../lib/optimacms/renderer/admin_page_renderer.rb"
+
 module Optimacms
 
   class PagesController < Optimacms::ApplicationController
     include Optimacms::Mycontroller
+
+    # render
+    alias_method :render_base, :render
+
+    include Optimacms::Renderer::AdminPageRenderer
+
+    renderer_admin_edit
+
+    def render(options = nil, extra_options = {}, &block)
+      options ||= {} # initialise to empty hash if no options specified
+      #options = options.merge(:dasherize => false) if options[:xml]
+      #super(options, extra_options, &block)
+
+      if !current_cms_admin_user
+        return super(options, extra_options, &block)
+      end
+
+
+      # editor for admin
+      render_with_edit(options, extra_options, &block)
+
+
+    end
+
+
 
 =begin
     def my_set_render_template(tpl_view, tpl_layout)
