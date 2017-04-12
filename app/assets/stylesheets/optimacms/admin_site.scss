@@ -1,20 +1,20 @@
-.debug_box .debug_commands
-{
-  display:none;
-}
-
 .debug_box{
   background-color: transparent;
   border-style: none;
 
-}
-.debug_box:hover{
-  background-color: #fefefe;
-  border: 2px dotted orange;
+  &:hover{
+    background-color: #fefefe;
+    border: 2px dotted orange;
 
+    .debug_commands{
+      display:block;
+    }
+  }
+
+
+  .debug_commands{
+    display:none;
+  }
 }
 
-.debug_box:hover div.debug_commands
-{
-  display:block;
-}​
+

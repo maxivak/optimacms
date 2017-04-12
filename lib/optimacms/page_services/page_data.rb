@@ -10,6 +10,9 @@ module Optimacms
       attr_accessor :layout
       attr_accessor :template
 
+      attr_accessor :render_options
+      attr_accessor :render_extra_options
+
       #
       attr_reader :compiled_view_path
 

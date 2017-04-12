@@ -1,0 +1,15 @@
+Page: #{@__page}
+
+= stylesheet_link_tag "optimacms/admin_site", media: "all"
+
+.debug_box
+  .debug_commands
+    -#html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
+
+    -#=link_to "edit page", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+"<br>"+html_links).html_safe
+    =link_to "edit page", "/admin/templates/#{@pagedata.template.id}/edit", target: "_blank"
+
+  = render template: @pagedata.template.path
+%hr
+
+-#= render 'optimacms/admin_page_edit/d1'

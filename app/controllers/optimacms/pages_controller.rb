@@ -26,6 +26,8 @@ module Optimacms
 
 
       # editor for admin
+      #render_base(options, extra_options, &block)
+
       render_with_edit(options, extra_options, &block)
 
 
