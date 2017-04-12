@@ -24,13 +24,17 @@ module Optimacms
         return super(options, extra_options, &block)
       end
 
+      # special cases
+      if options[:text]
+        return super(options, extra_options, &block)
+      end
+
+
 
       # editor for admin
       #render_base(options, extra_options, &block)
 
       render_with_edit(options, extra_options, &block)
-
-
     end
 
 
@@ -50,40 +54,58 @@ module Optimacms
 =end
 
     def renderActionInOtherController(controller,action,params, tpl_view=nil, tpl_layout=nil)
-        c = controller.new
-        c.params = params
+
+      # include render into controller class
+      if current_cms_admin_user
+        controller.send :alias_method, :render_base, :render
+        controller.send 'include', Optimacms::Renderer::AdminPageRenderer
+        controller.send 'renderer_admin_edit'
+
+        controller.send :define_method, "render" do |options = nil, extra_options = {}, &block|
+          render_with_edit(options, extra_options, &block)
+        end
+      end
 
 
-        #c.process_action(action, request)
-        #c.dispatch(action, request)
-        #c.send 'index_page'
 
-        c.request = request
-        #c.request.path_parameters = params.with_indifferent_access
-        c.request.format = params[:format] || 'html'
-
-        c.action_name = action
-        c.response = ActionDispatch::Response.new
-
-        c.send 'my_set_render'
-        c.send 'optimacms_set_pagedata', @pagedata
-        c.send 'my_set_render_template', tpl_view, tpl_layout
-        c.send 'my_set_meta', @pagedata.meta
+      #
+      c = controller.new
+      c.params = params
 
 
-        #c.process_action(action)
-        c.dispatch(action, request, c.response)
-        #c.process_action(action, tpl_filename)
+      #c.process_action(action, request)
+      #c.dispatch(action, request)
+      #c.send 'index_page'
 
-        #app = "NewsController".constantize.action(action)
-        #app.process params
+      c.request = request
+      #c.request.path_parameters = params.with_indifferent_access
+      c.request.format = params[:format] || 'html'
 
-        # result
-        #c
+      c.action_name = action
+      c.response = ActionDispatch::Response.new
 
-        c.response.body
+      c.send 'my_set_render'
+      c.send 'optimacms_set_pagedata', @pagedata
+      c.send 'my_set_render_template', tpl_view, tpl_layout
+      c.send 'my_set_meta', @pagedata.meta
 
-        #app.response.body
+
+
+      #renderer_admin_edit
+
+      #c.process_action(action)
+      c.dispatch(action, request, c.response)
+      #c.process_action(action, tpl_filename)
+
+      #app = "NewsController".constantize.action(action)
+      #app.process params
+
+      # result
+      #c
+
+      c.response.body
+
+      #app.response.body
     end
 
 
@@ -134,7 +156,7 @@ module Optimacms
         render text: c
 
         return
-
+=begin
         # THE END
 
         s = <<-eos
@@ -193,6 +215,9 @@ render<br>
         #render :text => (render_to_string :template=>'pages/news2.html', :locals=> {pg: 4})
         #render :text => (render_to_string 'pages/news2.html', locals: c.instance_values)
         #render :text => renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params)
+=end
+
+
       end
 
     end
