@@ -17,15 +17,13 @@ module Optimacms
 
     def render(options = nil, extra_options = {}, &block)
       options ||= {} # initialise to empty hash if no options specified
-      #options = options.merge(:dasherize => false) if options[:xml]
-      #super(options, extra_options, &block)
 
       if !current_cms_admin_user
         return super(options, extra_options, &block)
       end
 
       # special cases
-      if options[:text]
+      if options.is_a?(Hash) && options[:text]
         return super(options, extra_options, &block)
       end
 
