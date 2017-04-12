@@ -60,9 +60,6 @@ module Optimacms
       if current_cms_admin_user
         controller.send 'include', Optimacms::Renderer::AdminPageRenderer
         controller.send 'renderer_admin_edit'
-
-
-
       end
 
 
@@ -77,7 +74,12 @@ module Optimacms
           controller.send :alias_method, :render_base, :render
 
           controller.send :define_method, "render" do |options = nil, extra_options = {}, &block|
-            render_with_edit(options, extra_options, &block)
+            if current_cms_admin_user && @pagedata
+              render_with_edit(options, extra_options, &block)
+            else
+              render_base(options, extra_options, &block)
+            end
+
           end
         end
       end
