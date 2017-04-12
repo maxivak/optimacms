@@ -2,19 +2,28 @@
   background-color: transparent;
   border-style: none;
 
+  > .debug_commands{
+    display:none;
+
+    position: absolute;
+    background-color: #a1a1a1;
+    /*opacity: 0.9;*/
+    padding: 2px 12px 6px 12px;
+    z-index: 999;
+  }
+
+
   &:hover{
     background-color: #fefefe;
     border: 2px dotted orange;
 
-    .debug_commands{
+    > .debug_commands{
       display:block;
     }
   }
 
 
-  .debug_commands{
-    display:none;
-  }
+
 }
 
 

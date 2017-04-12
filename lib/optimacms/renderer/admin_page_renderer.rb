@@ -27,7 +27,6 @@ module Optimacms
 
 
           # template
-
           #@__page_tpl = Optimacms::PageServices::TemplateService.get_by_name(@__page_tpl_name)
 
           # data relations
@@ -37,6 +36,9 @@ module Optimacms
           #
           render_base 'optimacms/admin_page_edit/page', extra_options, &block
         end
+
+
+
       end
 
     end

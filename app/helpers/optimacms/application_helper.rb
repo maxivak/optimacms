@@ -63,7 +63,7 @@
       #content_tag(:meta, nil, content: desc, name: 'description')
     end
 
-    def block_with_edit(name, opts={})
+    def block_with_edit(name, tpl_filename, opts={})
 
       # find template
       row_tpl = Optimacms::PageServices::TemplateService.get_by_name(name)
@@ -102,16 +102,21 @@
 
 
       # render
+      return render template: 'optimacms/admin_page_edit/block_edit', locals: {filename: tpl_filename, row_tpl: row_tpl}
+
       content_tag(:div, class: "debug_box") do
         #(link_to "edit", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+
         content_tag(:div, class: "debug_commands") do
           html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
 
-          ((link_to "edit block", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+"<br>"+html_links).html_safe
+          ((link_to "edit block", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+"<br>".html_safe+html_links).html_safe
         end+
-        block(name, opts)
+        #block(name, opts)
+        (render file: tpl_filename, locals: opts)
       end
     end
+
+
 
     def block(name, opts={})
       x = Dir.pwd
@@ -169,10 +174,18 @@
         end
       end
 
+      # render from file
       if File.exists? f
         #opts[:file] = f
         #return render opts
-        return render file: f, locals: opts
+
+        if current_cms_admin_user
+          #return block_with_edit file: f, locals: opts
+          return block_with_edit name, f, opts
+        else
+          return render file: f, locals: opts
+        end
+
       end
 
 

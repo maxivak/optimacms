@@ -1,0 +1,9 @@
+.debug_box
+  .debug_commands
+    =link_to "edit", "/admin/templates/#{row_tpl.id}/edit", target: "_blank"
+
+    -#html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
+
+    -#((link_to "edit block", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+"<br>".html_safe+html_links).html_safe
+
+  =render file: filename
