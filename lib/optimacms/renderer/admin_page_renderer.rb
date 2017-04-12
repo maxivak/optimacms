@@ -31,7 +31,7 @@ module Optimacms
           #@__page_tpl = Optimacms::PageServices::TemplateService.get_by_name(@__page_tpl_name)
 
           # data relations
-          @__page_tpl_data_relations = @pagedata.template.data_relations.all.index_by { |t| t.var_name }
+          @__page_tpl_data_relations = (@pagedata.template.data_relations.all.index_by { |t| t.var_name } rescue [])
 
 
           #
