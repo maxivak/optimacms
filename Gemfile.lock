@@ -96,7 +96,6 @@ GEM
       execjs
     bcrypt (3.1.11)
     bcrypt (3.1.11-x64-mingw32)
-    bcrypt-ruby (3.1.1.rc1)
     bootstrap (4.0.0.alpha6)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
@@ -295,7 +294,7 @@ PLATFORMS
 DEPENDENCIES
   activemodel-serializers-xml
   ancestry
-  bcrypt-ruby (= 3.1.1.rc1)
+  bcrypt (~> 3.1.10)
   bootstrap (~> 4.0.0.alpha6)
   bootstrap_autocomplete_input (~> 0.2.0)
   capybara
