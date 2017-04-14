@@ -1,6 +1,18 @@
 .debug_box
   .debug_commands
-    =link_to "edit", "/admin/templates/#{row_tpl.id}/edit", target: "_blank"
+
+    .fl-cont.fl-center
+      .fl-wrap.padd_ri_15
+        .div.padd_15{ style: "border-radius: 4px; background-color: rgba(95, 95, 95, 1) !important;"}
+          %h6.no_marg.white
+            =row_tpl.title
+      .fl-wrap
+        =link_to "/admin/templates/#{row_tpl.id}/edit", target: "_blank" do
+          %button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon.mdl-button--colored.gex-btn-icon{id: "edit_#{row_tpl.id}", style: "background-color: #e49f1d !important"}
+            = image_tag 'icons/edit.svg', style:"margin-top: -4px; opacity: 0.9"
+          .mdl-tooltip.mdl-tooltip--large.mdl-tooltip--right{:for => "edit_#{row_tpl.id}"}
+            Edit block
+
 
     -#html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
 
