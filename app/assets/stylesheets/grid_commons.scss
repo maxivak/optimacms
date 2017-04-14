@@ -1,0 +1,185 @@
+///////////////////////////////////////////// flex commons /////////////////////////////////////////////////////////////
+
+
+
+.fl-cont {  display: flex !important;  }
+
+.fl-col {  flex-wrap: wrap;  }
+
+.fl-grow {  flex-grow: 1;  }
+
+.fl-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+.flex-container{
+  display: flex !important;
+}
+.flex-wrap{
+  flex-wrap: wrap;
+}
+.flex-grow{
+  flex-grow: 1;
+}
+
+.flex-center{
+  display: flex;
+  align-items: center;
+  //justify-content: center;
+}
+
+
+
+
+///////////////////////////////////////////// padd and marg commons /////////////////////////////////////////////////////////////
+
+.no_padd{padding: 0 !important;}
+.no_marg{margin: 0 !important;}
+
+
+//PADDING
+
+//px---------------------------------
+
+.padd_13{padding: 13px !important;}
+
+.padd_15{padding: 15px !important;}
+
+.padd_top_15{padding-top: 15px !important;}
+.padd_ri_15{padding-right: 15px !important;}
+.padd_bott_15{padding-bottom: 15px !important;}
+.padd_left_15{padding-left: 15px !important;}
+
+.padd_10{padding: 10px !important;}
+
+.padd_top_10{padding-top: 10px !important;}
+.padd_ri_10{padding-right: 10px !important;}
+.padd_bott_10{padding-bottom: 10px !important;}
+.padd_left_10{padding-left: 10px !important;}
+
+
+.padd_md{padding: 20px !important;}
+
+// no padd
+.no_padd_top{padding-top: 0 !important;}
+.no_padd_ri{padding-right: 0 !important;}
+.no_padd_bott{padding-bottom: 0 !important;}
+.no_padd_left{padding-left: 0 !important;}
+
+// padd sm
+.padd_top_sm{padding-top: 5px !important;}
+.padd_ri_sm{padding-right: 5px !important;}
+.padd_bott_sm{padding-bottom: 5px !important;}
+.padd_left_sm{padding-left: 5px !important;}
+
+//padd md
+.padd_top_md{padding-top: 20px !important;}
+.padd_ri_md{padding-right: 20px !important;}
+.padd_bott_md{padding-bottom: 20px !important;}
+.padd_left_md{padding-left: 20px !important;}
+
+//padd big
+.padd_top_big{  padding-top: 50px !important;}
+.padd_ri_big{padding-right: 50px !important;}
+.padd_bott_big{padding-bottom: 50px !important;}
+.padd_left_big{padding-left: 50px !important;}
+
+//%---------------------------------
+
+// padd sm per
+.padd_top_sm_per{padding-top: 5% !important;}
+.padd_ri_sm_per{padding-right: 5% !important;}
+.padd_bott_sm_per{padding-bottom: 5% !important;}
+.padd_left_sm_per{padding-left: 5% !important;}
+
+//padd md per
+.padd_top_md_per{padding-top: 10% !important;}
+.padd_ri_md_per{padding-right: 10% !important;}
+.padd_bott_md_per{padding-bottom: 10% !important;}
+.padd_left_md_per{padding-left: 10% !important;}
+
+//padd big per
+.padd_top_big_per{padding-top: 25% !important;}
+.padd_ri_big_per{padding-right: 25% !important;}
+.padd_bott_big_per{padding-bottom: 25% !important;}
+.padd_left_big_per{padding-left: 25% !important;}
+
+
+/// upd
+
+.padd_top_10{padding-top: 10px !important;}
+.padd_bott_10{padding-bottom: 10px !important;}
+
+
+
+//MARGIN
+
+//px---------------------------------
+
+.marg_15{margin: 15px !important;}
+
+.marg_top_15{margin-top: 15px !important;}
+.marg_ri_15{margin-right: 15px !important;}
+.marg_bott_15{margin-bottom: 15px !important;}
+.marg_left_15{margin-left: 15px !important;}
+
+.marg_10{margin: 10px !important;}
+
+.marg_top_10{margin-top: 10px !important;}
+.marg_ri_10{margin-right: 10px !important;}
+.marg_bott_10{margin-bottom: 10px !important;}
+.marg_left_10{margin-left: 10px !important;}
+
+.marg_md{  margin: 20px !important;}
+
+// no marg
+.no_marg_top{margin-top: 0 !important;}
+.no_marg_ri{margin-right: 0 !important;}
+.no_marg_bott{margin-bottom: 0 !important;}
+.no_marg_left{margin-left: 0 !important;}
+
+//marg sm
+.marg_top_sm{margin-top: 5px !important;}
+.marg_ri_sm{margin-right: 5px !important;}
+.marg_bott_sm{margin-bottom: 5px !important;}
+.marg_left_sm{margin-left: 5px !important;}
+
+//marg md
+.marg_top_md{margin-top: 20px !important;}
+.marg_ri_md{margin-right: 20px !important;}
+.marg_bott_md{margin-bottom: 20px !important;}
+.marg_left_md{margin-left: 20px !important;}
+
+//marg big
+.marg_top_big{margin-top: 50px !important;}
+.marg_ri_big{margin-right: 50px !important;}
+.marg_bott_big{margin-bottom: 50px !important;}
+.marg_left_big{margin-left: 50px !important;}
+
+//%---------------------------------
+
+//marg sm per
+.marg_top_sm_per{margin-top: 5% !important;}
+.marg_ri_sm_per{margin-right: 5% !important;}
+.marg_bott_sm_per{margin-bottom: 5% !important;}
+.marg_left_sm_per{margin-left: 5% !important;}
+
+//marg md per
+.marg_top_md_per{margin-top: 10% !important;}
+.marg_ri_md_per{margin-right: 10% !important;}
+.marg_bott_md_per{margin-bottom: 10% !important;}
+.marg_left_md_per{margin-left: 10% !important;}
+
+//marg big per
+.marg_top_big_per{margin-top: 25% !important;}
+.marg_ri_big_per{margin-right: 25% !important;}
+.marg_bott_big_per{margin-bottom: 25% !important;}
+.marg_left_big_per{margin-left: 25% !important;}
