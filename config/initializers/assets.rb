@@ -1,5 +1,4 @@
 Rails.application.config.assets.precompile += %w( bootstrap4/bootstrap.css )
-Rails.application.config.assets.precompile += %w( optimacms/grid_common.css )
 
 Rails.application.config.assets.precompile += %w( tinymce-jquery.js )
 Rails.application.config.assets.precompile += %w( optimacms/tinymce.css )
