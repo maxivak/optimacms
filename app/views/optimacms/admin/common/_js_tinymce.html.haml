@@ -13,7 +13,11 @@
       toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image myblock",
       file_browser_callback : elFinderBrowser,
       relative_urls: false,
-      content_css : "#{asset_path('optimacms/tinymce.css')}",
+      content_css : [
+        "#{asset_path('optimacms/tinymce.css')}",
+        "#{asset_path('bootstrap4/bootstrap.css')}",
+        "#{asset_path('optimacms/grid_common.css')}"
+      ],
       protect2: [
               /\<\/?(if|endif)\>/g, // Protect <if> & </endif>
               /\<xsl\:[^>]+\>/g, // Protect <xsl:...>

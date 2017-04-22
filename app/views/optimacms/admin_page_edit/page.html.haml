@@ -1,16 +1,15 @@
 = stylesheet_link_tag "optimacms/admin_site", media: "all"
 
-.debug_box.debug_box_page
-  .debug_commands
-    -#html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
+.admin_edit_page_box
+  .commands
+    =link_to "/admin/templates/#{@pagedata.template.id}/edit", target: "_blank", class: "link" do
+      %span.cont
+        Edit&nbsp;page
 
-    -#=link_to "edit page", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+"<br>"+html_links).html_safe
-    =link_to "/admin/templates/#{@pagedata.template.id}/edit", target: "_blank" do
-      %button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon.mdl-button--colored.gex-btn-icon{id: "edit_#{@pagedata.template.id}", style: "background-color: rgba(95, 95, 95, 0.7) !important;"}
-        = image_tag 'icons/edit.svg', style:"margin-top: -4px; opacity: 0.9"
-        .mdl-tooltip.mdl-tooltip--large.mdl-tooltip--right{:for => "edit_#{@pagedata.template.id}"}
-          Edit page
   = render template: @pagedata.template.path
-%hr
 
--#= render 'optimacms/admin_page_edit/d1'
+
+/ data links
+-#
+  -#html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
+

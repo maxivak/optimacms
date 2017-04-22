@@ -25,7 +25,7 @@ GIT
 PATH
   remote: .
   specs:
-    optimacms (0.3.8)
+    optimacms (0.3.9)
       ancestry
       bootstrap_autocomplete_input
       devise (>= 4.0)
@@ -96,6 +96,7 @@ GEM
       execjs
     bcrypt (3.1.11)
     bcrypt (3.1.11-x64-mingw32)
+    bcrypt-ruby (3.1.1.rc1)
     bootstrap (4.0.0.alpha6)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
@@ -294,7 +295,7 @@ PLATFORMS
 DEPENDENCIES
   activemodel-serializers-xml
   ancestry
-  bcrypt (~> 3.1.10)
+  bcrypt-ruby (= 3.1.1.rc1)
   bootstrap (~> 4.0.0.alpha6)
   bootstrap_autocomplete_input (~> 0.2.0)
   capybara
