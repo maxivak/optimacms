@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Optimacms::VERSION
   s.authors     = ["Max Ivak"]
   s.email       = ["maxivak@gmail.com"]
-  s.homepage    = "http://maxivak.com"
+  s.homepage    = "https://github.com/maxivak/optimacms"
   s.summary     = "CMS"
   s.description = "CMS on Ruby on Rails"
   s.license     = "MIT"
@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'paperclip'
   s.add_dependency 'ancestry'
 
-  s.add_dependency 'globalize'
+  s.add_dependency 'globalize', '>=5.0'
   s.add_dependency 'globalize-accessors'
 
 
