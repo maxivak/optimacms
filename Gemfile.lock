@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/globalize/globalize.git
-  revision: e1cbe4247458c13b344738a682609d23eba53f65
+  revision: 8daef404a33fce7d8e6bf444451335e6f4d828d2
   specs:
-    globalize (5.1.0)
+    globalize (5.1.0.beta1)
       activemodel (>= 4.2, < 5.1)
       activerecord (>= 4.2, < 5.1)
       request_store (~> 1.0)
@@ -14,24 +14,15 @@ GIT
   specs:
     net-ssh (3.1.1)
 
-GIT
-  remote: https://github.com/maxivak/simple_search_filter.git
-  revision: 68fdd72ac597da58868aa8ea2b45a79826dbd9e5
-  branch: bootstrap4
-  specs:
-    simple_search_filter (0.0.31)
-      rails (~> 5.0.0)
-
 PATH
   remote: .
   specs:
-    optimacms (0.3.4)
+    optimacms (0.3.10)
       ancestry
-      bootstrap_autocomplete_input
+      bootstrap_autocomplete_input (>= 0.2.0)
       devise (>= 4.0)
       font-awesome-rails
-      globalize
-      globalize-accessors
+      globalize (= 5.1.0.beta1)
       haml-rails (~> 0.9.0)
       jquery-rails
       jquery-ui-rails
@@ -39,7 +30,7 @@ PATH
       rails (~> 5.0)
       sass-rails (>= 5.0.4)
       simple_form
-      simple_search_filter
+      simple_search_filter (>= 0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -262,6 +253,8 @@ GEM
     simple_form (3.3.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
+    simple_search_filter (0.1.1)
+      rails (~> 5.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -305,7 +298,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   font-awesome-rails
-  globalize (~> 5.1.0)!
+  globalize (= 5.1.0.beta1)!
   globalize-accessors
   haml-rails (~> 0.9.0)
   jquery-rails
@@ -321,7 +314,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0.6)
   simple_form (~> 3.3.1)
-  simple_search_filter (~> 0.0.31)!
+  simple_search_filter (= 0.1.1)
   tinymce-rails
   tzinfo-data
   uglifier (>= 1.3.0)
