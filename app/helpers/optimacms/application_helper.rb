@@ -69,7 +69,11 @@
       row_tpl = Optimacms::PageServices::TemplateService.get_by_name(name)
 
       # data relations
-      tpl_data_relations = row_tpl.data_relations.all.index_by { |t| t.var_name }
+      tpl_data_relations = {}
+      if row_tpl
+        tpl_data_relations = row_tpl.data_relations.all.index_by { |t| t.var_name }
+      end
+
 
       # map locals and edit links
       links_data = []
