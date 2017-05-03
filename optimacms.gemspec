@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
 
 
   s.add_dependency 'simple_form'
-  s.add_dependency 'simple_search_filter', '>=0.1.1'
+  s.add_dependency 'simple_search_filter' #, '>=0.1.1'
   s.add_dependency 'bootstrap_autocomplete_input', '>=0.2.0'
 
 
