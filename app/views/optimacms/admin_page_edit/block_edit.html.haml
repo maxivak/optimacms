@@ -1,8 +1,12 @@
 .admin_edit_box
   .commands
-    =link_to "/admin/templates/#{row_tpl.id}/edit", target: "_blank", class: "link" do
-      Edit
-      %b=row_tpl.title
+    - if row_tpl
+      =link_to "/admin/templates/#{row_tpl.id}/edit", target: "_blank", class: "link" do
+        Edit
+        %b=row_tpl.title
+    - else
+      file #{filename}
+
 
   =render file: filename
 
