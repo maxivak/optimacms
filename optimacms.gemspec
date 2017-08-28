@@ -40,13 +40,14 @@ Gem::Specification.new do |s|
   s.add_dependency 'paperclip'
   s.add_dependency 'ancestry'
 
-  s.add_dependency 'globalize', '5.1.0.beta1'
+  #s.add_dependency 'globalize', '5.1.0.beta1'
+  s.add_dependency 'globalize'
   #s.add_dependency 'activemodel-serializers-xml', '1.0.1'
   #s.add_dependency 'globalize-accessors'
 
 
   s.add_dependency 'simple_form'
-  s.add_dependency 'simple_search_filter', '>=0.1.1'
+  s.add_dependency 'simple_search_filter' #, '>=0.1.1'
   s.add_dependency 'bootstrap_autocomplete_input', '>=0.2.0'
 
 
