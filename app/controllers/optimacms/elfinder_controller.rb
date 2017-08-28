@@ -2,7 +2,7 @@ require 'el_finder/action'
 
 module Optimacms
   class ElfinderController < ApplicationController
-    skip_before_filter :verify_authenticity_token, :only => ['elfinder']
+    skip_before_action :verify_authenticity_token, :only => ['elfinder']
 
     def index
        render :layout => false

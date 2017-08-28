@@ -1,6 +1,6 @@
 module Optimacms
   class Admin::MediafilesController < Admin::AdminBaseController
-    skip_before_filter :verify_authenticity_token, :only => ['elfinder']
+    skip_before_action :verify_authenticity_token, :only => ['elfinder']
 
     layout 'optimacms/admin/layouts/blank'
     #layout 'optimacms/admin/layouts/basic'

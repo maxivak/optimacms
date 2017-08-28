@@ -19,7 +19,7 @@ end
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem 'rails', '~> 5.0.1'
+gem 'rails', '5.1.3'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -33,7 +33,7 @@ gem 'globalize-accessors'
 
 
 #
-gem 'devise', '4.2.0'
+gem 'devise', '4.3.0'
 
 if Bundler::WINDOWS
   gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
@@ -43,26 +43,28 @@ end
 gem 'net-ssh', '3.1.1', :git => 'https://github.com/maxivak/net-ssh', :branch => '3-1-release'
 
 
-gem 'haml-rails', '~>0.9.0'
-gem 'sass-rails', '~>5.0.6'
-gem 'uglifier', '>= 1.3.0'
+gem 'haml-rails', '1.0.0'
+gem 'sass-rails' #, '~>5.0.6'
+gem 'uglifier', '3.2.0'
 #gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 
-gem 'bootstrap', '~> 4.0.0.alpha6'
+# bootstrap v4
+#gem 'bootstrap', '~> 4.0.0.beta'
+
 
 # Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.3.3'
-end
+#source 'https://rails-assets.org' do
+#  gem 'rails-assets-tether', '>= 1.3.3'
+#end
 
 #
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 
 
-gem 'simple_form', '~>3.3.1'
+gem 'simple_form', '3.5.0' #, '~>3.3.1'
 gem 'simple_search_filter', '0.1.1'
 gem 'bootstrap_autocomplete_input', '~>0.2.0'
 

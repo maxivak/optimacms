@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  #before_filter :authenticate_beta if Rails.env.development? && Rails.application.config.TEST_ADMIN_PWD!=''
-  #before_filter :authenticate_beta if Rails.env.development?
+  #before_action :authenticate_beta if Rails.env.development? && Rails.application.config.TEST_ADMIN_PWD!=''
+  #before_action :authenticate_beta if Rails.env.development?
 
   def authenticate_beta
     authenticate_or_request_with_http_basic('Administration') do |username, password|

@@ -1,6 +1,6 @@
 class Optimacms::Admin::CommonController < Optimacms::Admin::AdminBaseController
 
-  before_filter :init_data
+  before_action :init_data
 
   def init_data
     @res = params[:res].to_i

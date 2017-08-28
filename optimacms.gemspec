@@ -18,13 +18,13 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
 
-  s.add_dependency "rails", "~> 5.0"
+  s.add_dependency "rails", ">= 5.0.5"
 
   s.add_development_dependency "mysql2", '~> 0'
 
   s.add_dependency "devise", '>=4.0'
 
-  s.add_dependency "haml-rails", "~> 0.9.0"
+  s.add_dependency "haml-rails", ">= 0.9.0"
 
   s.add_dependency "jquery-rails" #, "~> 4.0.3"
   s.add_dependency "jquery-ui-rails"

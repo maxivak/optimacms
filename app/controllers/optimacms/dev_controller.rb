@@ -1,7 +1,7 @@
 ﻿module Optimacms
   class DevController < ApplicationController
 
-    before_filter :check_env
+    before_action :check_env
 
     def check_env
       return false unless Rails.env.development?
