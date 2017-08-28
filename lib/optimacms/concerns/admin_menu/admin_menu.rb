@@ -42,6 +42,14 @@ module Optimacms::Concerns::AdminMenu::AdminMenu
 
     def get_menu_system
       [
+          {
+              title: 'Logs', url: nil,
+              submenu: [
+                  {title: 'Rails logs', url: Optimacms::Engine.routes.url_helpers.rails_logs_path},
+
+              ]
+          },
+
           {title: 'System', url: nil, submenu: [
               {title: 'Maintenance', url: Optimacms::Engine.routes.url_helpers.maintenance_path},
               {title: 'Backups', url: false},

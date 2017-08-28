@@ -1,0 +1,11 @@
+.page-header
+  .row
+    .col-md-7
+      %h1
+        Rails logs
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          view logs
+%ul
+  %li
+    = link_to "Rails logs", Optimacms::Engine.routes.url_helpers.list_logs_path(:name => 'app')

@@ -17,7 +17,7 @@ GIT
 PATH
   remote: .
   specs:
-    optimacms (0.3.13)
+    optimacms (0.3.14)
       ancestry
       bootstrap_autocomplete_input (>= 0.2.0)
       devise (>= 4.0)

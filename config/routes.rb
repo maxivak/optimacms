@@ -109,15 +109,11 @@ Optimacms::Engine.routes.draw do
       get 'assets_precompile'
     end
 
-=begin
-    resources :maintenance2 do
-      collection do
-        get :restart
-        get :info
-      end
 
+    # logs
+    resources :rails_logs, only: [:index] do
     end
-=end
+    get 'rails_logs/:name', to: "rails_logs#list_logs", as: 'list_logs'
 
 
   end

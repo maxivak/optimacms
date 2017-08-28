@@ -1,0 +1,11 @@
+.page-header
+  .row
+    .col-md-7
+      %h1
+        Rails logs
+      %p
+      %b file:
+      =@path
+
+%textarea{:style => "width: 100%;", rows: 30}
+  = @text
