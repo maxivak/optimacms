@@ -1,0 +1,13 @@
+{
+  "name": "optimacms",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "ssh://git@git.friendlydata.com:10022/friendlydata/cms.git",
+  "author": "mmx <maxivak@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "4.0.0-beta",
+    "jquery": "3.2.1",
+    "popper.js": "1.12.4"
+  }
+}
