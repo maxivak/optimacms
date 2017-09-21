@@ -12,7 +12,7 @@
       = f.input :url, as: :string, label: "URL", :hint=> "parsed: #{@item.parsed_url}"
 
       = f.input :name, as: :string, label: "Name", :hint=>'Unique name of page. only latin letters, no spaces'
-      - if @item && @item.parent_id>0
+      - if @item && @item.parent_id
         = f.input :parent_title, disabled: true, label: 'Folder'
 
       = f.input :controller_action, as: :string, label: "Controller", :hint=>'controller#action. ex.: news#index'
