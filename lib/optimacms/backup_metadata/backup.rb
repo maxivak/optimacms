@@ -63,6 +63,27 @@ module Optimacms
       end
 
 
+      def self.upload_backup(temp_file)
+        # download file
+        uploaded_file = temp_file
+        #f_basename = File.basename(uploaded_file.original_filename)
+        filename = make_backup_path uploaded_file.original_filename
+
+        d = File.dirname(filename)
+        unless Dir.exists?(d)
+          Optimacms::Fileutils::Fileutils.create_dir_if_not_exists(filename.to_s)
+        end
+
+        File.open(filename, 'wb') do |f|
+          f.write(uploaded_file.read)
+        end
+
+        # untar
+        output = `cd #{d} && tar -xzvf #{File.basename(@filename)}`
+
+        return true
+      end
+
       def self.list_backups
         res = []
 
@@ -78,6 +99,7 @@ module Optimacms
         res = files.map do |f|
           r = {}
           r[:shortpath] = f.gsub /#{dir_backups}\//, ''
+          r[:name] = File.basename r[:shortpath], '.tar.gz'
           r[:path] = f
           r[:size] = File.size(f)
 
@@ -89,6 +111,14 @@ module Optimacms
       end
 
 
+      def self.make_backup_path(f_basename)
+        Rails.root.join(dir_backups, f_basename)
+      end
+
+
+      def self.make_backup_dir_path(dirname)
+        Rails.root.join(dir_backups, dirname)
+      end
 
       def self.page_to_hash(row)
 

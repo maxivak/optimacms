@@ -192,8 +192,17 @@ module Optimacms
       end
 
 
+      ### settings
+      def self.dir_backups
+        BackupMetadata::Backup.dir_backups
+      end
+
+
+
       ### import
-      def self.import(dir_path, filename, cmd)
+      def self.import(backup_dir, filename, cmd)
+        dir_path = File.join(dir_backups, backup_dir, "pages")
+
         if cmd=='add'
           return import_add(dir_path, filename)
         elsif cmd=='update'

@@ -1,5 +1,5 @@
 %h1 Import templates
-Directory: #{@dirname}
+Directory: #{@backup_basedir}
 %br
 #list-templates-filter
   View:
@@ -89,7 +89,7 @@ Directory: #{@dirname}
     obj_log.html("updating...");
 
     $.ajax({
-      url: "/#{Optimacms.admin_namespace}/templates/import/?dirname=#{@dirname}&filename="+filename+"&cmd=" + cmd,
+      url: "/#{Optimacms.admin_namespace}/backup_metadata/import_template/?backup_dir=#{@dirname}&filename="+filename+"&cmd=" + cmd,
       data: {},
       type: "GET",
       dataType: "json",

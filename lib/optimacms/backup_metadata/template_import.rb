@@ -17,7 +17,6 @@ module Optimacms
 
         #
         res = files.map do |f|
-          puts "load file: #{f}"
           data = load_template_data(f)
           analysis = analyze_template_data(data)
 
@@ -149,9 +148,15 @@ module Optimacms
         res
       end
 
+      ### settings
+      def self.dir_backups
+        BackupMetadata::Backup.dir_backups
+      end
 
       ### import
-      def self.import_template(dir_path, filename, cmd)
+      def self.import_template(backup_dir, filename, cmd)
+        dir_path = File.join(dir_backups, backup_dir, "templates")
+
         if cmd=='add'
           return import_template_add(dir_path, filename)
         elsif cmd=='update'

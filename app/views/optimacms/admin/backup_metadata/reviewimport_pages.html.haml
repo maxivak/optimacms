@@ -1,5 +1,5 @@
 %h1 Import pages
-Directory: #{@dirname}
+Directory: #{@backup_basedir}
 %br
 #list-pages-filter
   View:
@@ -95,7 +95,7 @@ Directory: #{@dirname}
     obj_log.html("updating...");
 
     $.ajax({
-      url: "/#{Optimacms.admin_namespace}/pages/import/?dirname=#{@dirname}&filename="+filename+"&cmd=" + cmd,
+      url: "/#{Optimacms.admin_namespace}/backup_metadata/import_page/?backup_dir=#{@dirname}&filename="+filename+"&cmd=" + cmd,
       data: {},
       type: "GET",
       dataType: "json",

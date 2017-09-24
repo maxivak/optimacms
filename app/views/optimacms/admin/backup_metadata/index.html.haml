@@ -1,4 +1,4 @@
-%h1 Backup metadata
+%h1 Metadata backups
 backup pages/templates metadata.
 
 %br
@@ -6,6 +6,16 @@ Base dir: #{Optimacms::BackupMetadata::Backup.dir_backups}
 
 %ul.list-inline#commands
   %li=link_to 'Backup now', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'backup'
+
+.row
+  .col-md-12
+    %h2 Upload backup
+
+    =horizontal_simple_form_for :import, url: upload_backup_metadata_path do |f|
+      -#@item= render 'optimacms/admin/shared/form_errors', :object=>@item
+      = f.input :file, as: :file, hint: 'tar.gz file'
+      = f.button :submit_cancel, 'Upload', :cancel=>@url_back
+
 
 
 
