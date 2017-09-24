@@ -22,4 +22,11 @@ module Optimacms
     @@admin_namespace || 'admin'
   end
 
+
+  ### backup metadata
+  mattr_accessor :backup_metadata
+  def backup_metadata
+    @@backup_metadata || {}
+  end
+
 end
