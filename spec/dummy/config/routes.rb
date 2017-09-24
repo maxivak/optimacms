@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   get 'hello.html', to: 'my#hello', as: 'hello'
 
+  # debug
+  get '/debug/:action', to: 'debug#action', as: 'debug'
+
 
   # extend admin area
   scope '/'+Optimacms.main_namespace+'/'+Optimacms.admin_namespace, module: "optimacms" do
