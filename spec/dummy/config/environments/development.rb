@@ -42,4 +42,12 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+
+  ### optimacms
+  config.optimacms = {
+      backup_metadata: {
+          dir_base: "/data/backups/cms/metadata"
+      }
+  }
 end

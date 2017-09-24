@@ -1,0 +1,20 @@
+%h2 Backups
+
+#list-backups
+  - @list_backups.each do |r|
+    - f=Rack::Utils.escape(r[:shortpath])
+    .row
+      .col-md-8{data: {f: r[:shortpath]}}
+        -#=link_to r[:shortpath], download_admin_backups_path(f: r[:shortpath]), target: '_blank'
+        =link_to r[:shortpath], '#', target: '_blank'
+        (
+        #{number_to_human_size(r[:size])}
+        )
+      .col-md-4
+        %ul.list-inline
+          %li.list-inline-item=link_to 'view', view_backup_metadata_path(f: f, dirname: r[:name]), :method => :get
+          %li.list-inline-item=link_to 'download', '#', :method => :get
+          %li.list-inline-item=link_to 'import', '#', :method => :get
+          -#%li.list-inline-item=link_to 'delete', delete_admin_backups_path(f: Rack::Utils.escape(r[:shortpath])), :confirm => "Are you sure?", :method => :get, remote: true, :class=>'link_delete'
+          %li.list-inline-item=link_to 'delete', '#', :confirm => "Are you sure?", :method => :get, remote: true, :class=>'link_delete'
+

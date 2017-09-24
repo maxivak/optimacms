@@ -1,0 +1,6 @@
+%h1 Backup
+
+File #{@backup_filename}
+%br
+=link_to 'Import pages', reviewimport_pages_backup_metadata_path(dirname: @dirname), class: 'btn btn-primary'
+=link_to 'Import templates', reviewimport_templates_backup_metadata_path(dirname: @dirname), class: 'btn btn-primary'

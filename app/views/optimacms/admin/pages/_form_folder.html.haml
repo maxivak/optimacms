@@ -8,7 +8,7 @@
 
   = f.input :title, label: "Title"
 
-  - if @item.parent_id>0
+  - if @item.parent_id
     = f.input :parent_title, disabled: true, label: 'Parent folder'
 
   = f.button :submit_cancel, 'Save', :cancel=>@url_back

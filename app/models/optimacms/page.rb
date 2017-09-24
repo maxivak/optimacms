@@ -21,6 +21,9 @@ module Optimacms
     make_meta(Language.all.map(&:lang))
 
 
+    # scopes
+    scope :of_parent, lambda {  |parent_id| where_parent(parent_id) }
+
     #
     paginates_per 10
 
@@ -37,6 +40,15 @@ module Optimacms
       rescue => e
         #ActiveRecord::RecordInvalid
         false
+      end
+    end
+
+    ### search
+    def self.where_parent(parent_id)
+      if parent_id.nil? || parent_id==0
+        where("parent_id is null")
+      elsif parent_id>0
+        where(parent_id: parent_id)
       end
     end
 

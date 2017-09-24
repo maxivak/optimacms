@@ -16,5 +16,15 @@ module Optimacms
     def to_s
       title
     end
+
+    # find
+    def self.get_id_by_name(name)
+      row = TemplateType.where(name: name).first
+
+      return nil if row.nil?
+
+      row.id
+    end
+
   end
 end

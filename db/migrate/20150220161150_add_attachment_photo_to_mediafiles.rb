@@ -1,4 +1,4 @@
-class AddAttachmentPhotoToMediafiles < ActiveRecord::Migration
+class AddAttachmentPhotoToMediafiles < ActiveRecord::Migration[5.1]
   def self.up
     change_table :cms_mediafiles do |t|
       t.attachment :photo

@@ -16,7 +16,7 @@ File: #{@item.path}
 
       = f.input :title, label: "Title"
 
-      -# if @item && @item.parent_id>0
+      -# if @item && @item.parent_id
         = f.input :parent_title, disabled: true, label: 'Folder'
 
       -#= f.input :basename, disabled: true, label: 'Name'

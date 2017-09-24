@@ -25,6 +25,7 @@ Optimacms::Engine.routes.draw do
 
         get :newtextpage
         post :createtextpage
+
       end
 
       member do
@@ -114,6 +115,23 @@ Optimacms::Engine.routes.draw do
     resources :rails_logs, only: [:index] do
     end
     get 'rails_logs/:name', to: "rails_logs#list_logs", as: 'list_logs'
+
+
+    # backup metadata
+    resources :backup_metadata, only: [:index] do
+      collection do
+        get 'backup'
+        get 'view'
+
+        post 'upload'
+
+        get 'reviewimport_templates'
+        get 'import_template'
+
+        get 'reviewimport_pages'
+        get 'import_page'
+      end
+    end
 
 
   end

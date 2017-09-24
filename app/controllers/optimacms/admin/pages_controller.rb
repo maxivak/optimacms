@@ -2,7 +2,7 @@ module Optimacms
   class Admin::PagesController < Admin::AdminBaseController
 
     before_action :set_item, only: [:show, :edit, :update, :destroy, :editfolder, :updatefolder]
-    before_action :init_data_form, only: [:edit, :new, :create, :update, :newtextpage, :createtextpage]
+    before_action :init_data_form, only: [:edit, :new, :create, :update, :newtextpage, :createtextpage, :reviewimport]
 
 
     def index
@@ -33,7 +33,8 @@ module Optimacms
 
       # fields
       field :title, :string, :text, {label: '', default_value: '', condition: :like_full}
-      field :parent_id, :int, :hidden, {label: '', default_value: 0, ignore_value: -1}
+      #field :parent_id, :int, :hidden, {label: '', default_value: 0, ignore_value: -1}
+      field :parent_id, :int, :hidden, {label: '', default_value: 0, ignore_value: -1, condition: :custom, condition_scope: :of_parent}
     end
 
 
