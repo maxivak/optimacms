@@ -1,0 +1,46 @@
+%h1 Backup metadata
+backup pages/templates metadata.
+
+%br
+Base dir: #{Optimacms::BackupMetadata::Backup.dir_backups}
+
+%ul.list-inline#commands
+  %li=link_to 'Backup now', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'backup'
+
+
+
+#status_commands.bg-info.well
+
+
+:javascript
+  // commands
+  $( '#commands a[data-name="command"]' ).click(function() {
+    send_command($(this).data('cmd'));
+  });
+
+  function send_command(cmd){
+    $('#status_commands').html("Sending...");
+
+    $.ajax({
+      url: "/#{Optimacms.admin_namespace}/backup_metadata/backup/?cmd=" + cmd,
+      data: {},
+      type: "GET",
+      dataType: "json",
+      contentType: "application/json",
+      beforeSend: function(){
+        // Handle the beforeSend event
+      },
+      success: function(res){
+        $('#status_commands').html("Result: "+res.res+", output: "+res.output);
+      },
+
+      complete: function (res) {
+
+      }
+
+    });
+  }
+
+
+
+= render 'list'

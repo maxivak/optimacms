@@ -14,6 +14,7 @@
           New... <span class="caret"></span>
         .dropdown-menu(aria-labelledby="btnGroupDrop1")
           =link_to 'text page', newtextpage_pages_path(:parent_id=>@parent_id), class: 'dropdown-item'
+          =link_to 'Import', newimportselect_pages_path(:parent_id=>@parent_id), class: 'dropdown-item'
 
 
 

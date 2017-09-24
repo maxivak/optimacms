@@ -1,0 +1,22 @@
+.page-header
+  .row
+    .col-md-6
+      %h1
+        Import template
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          enter path and create
+    .col-md-4
+      =link_to 'Back to templates', templates_path
+
+
+.row
+  .col-md-12
+    =horizontal_simple_form_for :import, url: uploadimport_templates_path do |f|
+      -#@item= render 'optimacms/admin/shared/form_errors', :object=>@item
+
+      = f.input :file, as: :file, hint: 'tar.gz file'
+
+      = f.button :submit_cancel, 'Upload', :cancel=>@url_back
+
+

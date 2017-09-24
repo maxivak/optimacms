@@ -25,6 +25,11 @@ Optimacms::Engine.routes.draw do
 
         get :newtextpage
         post :createtextpage
+
+        get 'newimportselect'
+        post 'uploadimport'
+        get 'reviewimport'
+        get 'import'
       end
 
       member do
@@ -40,6 +45,12 @@ Optimacms::Engine.routes.draw do
         get :autocomplete
 
         get 'newattach'
+
+        get 'newimportselect'
+        post 'uploadimport'
+        get 'reviewimport'
+        get 'import'
+
         post 'attach'
 
         get 'newfolder'
@@ -114,6 +125,14 @@ Optimacms::Engine.routes.draw do
     resources :rails_logs, only: [:index] do
     end
     get 'rails_logs/:name', to: "rails_logs#list_logs", as: 'list_logs'
+
+
+    # backup metadata
+    resources :backup_metadata, only: [:index] do
+      collection do
+        get 'backup'
+      end
+    end
 
 
   end

@@ -3,7 +3,7 @@ module Optimacms
 
     before_action :set_item, only: [:show, :edit, :update, :destroy]
     before_action :init_common
-    before_action :init_data_form, only: [:new, :edit, :update, :create, :newfolder, :editfolder, :newattach]
+    before_action :init_data_form, only: [:new, :edit, :update, :create, :newfolder, :editfolder, :newattach, :reviewimport]
     #before_action :set_layout_modal
 
 
@@ -225,6 +225,70 @@ module Optimacms
           #format.json { render json: @item.errors, status: :unprocessable_entity }
           format.js {}
         end
+      end
+    end
+
+
+    ### import
+
+    def newimportselect
+
+    end
+
+
+    def uploadimport
+      # download file
+      uploaded_file = params[:import][:file]
+      f_basename = File.basename(uploaded_file.original_filename)
+      @filename = Rails.root.join('temp', 'metadata', uploaded_file.original_filename)
+
+      d = File.dirname(@filename)
+      unless Dir.exists?(d)
+        Optimacms::Fileutils::Fileutils.create_dir_if_not_exists(@filename.to_s)
+      end
+
+      File.open(@filename, 'wb') do |f|
+        f.write(uploaded_file.read)
+      end
+
+      # untar
+      output = `cd #{d} && tar -xzvf #{File.basename(@filename)}`
+
+
+      # process data
+      f = File.basename(@filename).to_s.gsub /.tar\.gz$/, ''
+      @dirname = File.join(d, f, "templates")
+
+
+      redirect_to reviewimport_templates_path(dirname: @dirname)
+    end
+
+
+    def reviewimport
+      # input
+      @dirname = params[:dirname]
+
+      # work
+      @analysis = Optimacms::BackupMetadata::TemplateImport.analyze_data_dir(@dirname)
+
+      x=0
+    end
+
+
+
+    def import
+      # input
+      @dirname = params[:dirname]
+      @filename = params[:filename]
+      @cmd = params[:cmd]
+
+      # work
+      @res = Optimacms::BackupMetadata::TemplateImport.import_template(@dirname, @filename, @cmd)
+
+
+      respond_to do |format|
+        format.html {      }
+        format.json{        render :json=>@res      }
       end
     end
 

@@ -1,0 +1,135 @@
+%h1 Import pages
+Directory: #{@dirname}
+%br
+#list-pages-filter
+  View:
+  %ul.list-inline
+    %li.list-inline-item
+      =link_to 'All', '#', data: {t: 'filter', filter: 'all'}
+    %li.list-inline-item
+      =link_to 'Hide not changed', '#', data: {t: 'filter', filter: 'hide_not_changed'}
+
+#list-pages-import
+
+  - @analysis.each do |r|
+    - data = r[:data]
+    - analysis = r[:analysis]
+    .row.mb-2{data: {t: "row", filename: r[:filename], status: analysis['status']}}(style="border-bottom: 1px #aaaaaa solid;")
+      .col-md-5
+        - if data['is_folder']
+          %i.fa.fa-folder-o
+
+        - if data['parent_name']
+          %span.small
+            = data['parent_name']
+            ="/"
+            %br
+        %b
+          =data['name']
+
+      .col-md-2
+        - if analysis['status']==''
+          .alert.alert-dark.m-1.p-2.small OK
+        - elsif analysis['status']=='new'
+          .alert.alert-warning.m-1.p-2.small new
+        - elsif analysis['status']=='changed'
+          .alert.alert-warning.m-1.p-2.small changed
+        - elsif analysis['status']=='error'
+          .alert.alert-danger.m-1.p-2.small error
+        - else
+          =analysis['status']
+      .col-md-3
+        %p.small
+          - if analysis['changes']
+            - analysis['changes'].each do |f|
+              #{f[:field]}: #{f[:message]}
+              %br
+          - if analysis['warnings'] && analysis['warnings'].length>0
+            warnings:<br>
+            - analysis['warnings'].each do |f|
+              #{f[:field]}: #{f[:message]}
+              %br
+          - if analysis['errors'] && analysis['errors'].length>0
+            Errors:<br>
+            - analysis['errors'].each do |f|
+              #{f[:field]}: #{f[:message]}
+              %br
+
+      .col-md-2
+        - if analysis['status']=='new'
+          =link_to 'Add', '#', class: 'btn btn-sm btn-primary', data: {t: 'cmd', cmd: 'add'}
+
+        - elsif analysis['status']=='changed'
+          =link_to 'Update', '#', class: 'btn btn-sm btn-primary', data: {t: 'cmd', cmd: 'update'}
+        %br
+
+        .command_log.alert
+
+:javascript
+  $( document ).ready(function() {
+    $( '#list-pages-import a[data-t="cmd"]' ).click(function(e) {
+      e.preventDefault();
+
+      var obj_row = $(this).closest('.row[data-t="row"]');
+      var filename = obj_row.data('filename');
+
+      do_command(obj_row, filename, $(this).data('cmd'));
+    });
+
+    // filter
+    $( '#list-pages-filter a[data-t="filter"]' ).click(function(e) {
+      e.preventDefault();
+
+      var f = $(this).data('filter');
+
+      do_filter(f);
+    });
+
+  });
+
+  function do_command(obj_row, filename, cmd){
+    console.log("do "+cmd+" with file "+filename);
+
+    var obj_log = obj_row.find('.command_log').first();
+
+    obj_log.html("updating...");
+
+    $.ajax({
+      url: "/#{Optimacms.admin_namespace}/pages/import/?dirname=#{@dirname}&filename="+filename+"&cmd=" + cmd,
+      data: {},
+      type: "GET",
+      dataType: "json",
+      contentType: "application/json",
+      beforeSend: function(){
+        // Handle the beforeSend event
+      },
+      success: function(res){
+        obj_log.html("Result: "+res.res+", message: "+res.message);
+
+        obj_log.removeClass("alert-danger alert-success" );
+
+        if (res.res=="1"){
+          obj_log.addClass("alert-success");
+        }
+        else{
+          obj_log.addClass("alert-danger");
+        }
+      },
+
+      complete: function (res) {
+      }
+
+    });
+
+  }
+
+  function do_filter(t){
+
+    if (t=="all"){
+      $("#list-pages-import > .row").show();
+    }
+    else if (t=="hide_not_changed"){
+      $('#list-pages-import > .row[data-status=""]').hide();
+      $("#list-pages-import > .row").not('[data-status=""]').show();
+    }
+  }
