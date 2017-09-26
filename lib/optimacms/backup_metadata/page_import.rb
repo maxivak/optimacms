@@ -147,7 +147,7 @@ module Optimacms
 
         if !data['is_folder']
           old_template_basepath = (row.template.basepath rescue "")
-          old_layout_basepath = (row.layout.basepath rescue "")
+
 
           if old_template_basepath != data['template_basepath']
             # check template exists
@@ -156,12 +156,22 @@ module Optimacms
             if row_template.nil?
               res['errors'] << {field: 'template', message: "not found: #{data['template_basepath']}"}
             else
-              res['changes'] << {field: 'template', message: "changed"}
+              if row.nil?
+                # it is new row
+
+              else
+                # updated row
+                res['changes'] << {field: 'template', message: "changed"}
+              end
+
             end
 
 
           end
 
+
+          # layout
+          old_layout_basepath = (row.layout.basepath rescue "")
 
           if old_layout_basepath != data['layout_basepath']
             # check layout exists
@@ -170,7 +180,12 @@ module Optimacms
             if row_layout.nil?
               res['errors'] << {field: 'layout', message: "not found: #{data['layout_basepath']}"}
             else
-              res['changes'] << {field: 'layout', message: "changed"}
+              if row.nil?
+                # it is new row
+              else
+                res['changes'] << {field: 'layout', message: "changed"}
+              end
+
             end
 
 
@@ -179,13 +194,12 @@ module Optimacms
 
 
 
-        #
-        if !res['changes'].empty?
-          res['status'] = 'changed'
+        # fix status
+        if res['status']==''
+          res['status'] = 'changed' if !res['changes'].empty?
+          res['status'] = 'error' if !res['errors'].empty?
         end
-        if !res['errors'].empty?
-          res['status'] = 'error'
-        end
+
 
 
         res
