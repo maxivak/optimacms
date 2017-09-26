@@ -43,6 +43,26 @@ module Optimacms
 
     end
 
+    def download
+      f = params[:f]
+
+      path = File.join(BackupMetadata::Backup.dir_backups, f)
+
+      send_data File.read(path), filename: f
+    end
+
+    def delete
+      f =  CGI::unescape(params[:f])
+      @res = BackupMetadata::Backup.delete_backup(f)
+
+      #
+      respond_to do |format|
+        format.html {      }
+        format.js{ }
+        format.json{        render :json=>@res      }
+      end
+    end
+
 
     ### import templates
 

@@ -111,6 +111,24 @@ module Optimacms
       end
 
 
+
+      def self.delete_backup(f)
+        path = File.join(dir_backups, f)
+
+        File.delete(path)
+
+        # delete folder
+        require 'fileutils'
+        d = File.join(dir_backups, File.basename(f, ".tar.gz"))
+        FileUtils.rm_r d if Dir.exists?(d)
+
+        return {res:1 , output: "deleted"}
+      rescue Exception => e
+        return {res: 0, output: "error"}
+      end
+
+
+      ###
       def self.make_backup_path(f_basename)
         Rails.root.join(dir_backups, f_basename)
       end

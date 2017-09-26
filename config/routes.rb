@@ -121,7 +121,10 @@ Optimacms::Engine.routes.draw do
     resources :backup_metadata, only: [:index] do
       collection do
         get 'backup'
+
         get 'view'
+        get 'download'
+        get 'delete'
 
         post 'upload'
 

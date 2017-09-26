@@ -22,6 +22,12 @@ Base dir: #{Optimacms::BackupMetadata::Backup.dir_backups}
 #status_commands.bg-info.well
 
 
+
+
+
+= render 'list'
+
+
 :javascript
   // commands
   $( '#commands a[data-name="command"]' ).click(function() {
@@ -52,5 +58,7 @@ Base dir: #{Optimacms::BackupMetadata::Backup.dir_backups}
   }
 
 
-
-= render 'list'
+  // delete
+  $("#list-backups").on( "ajax:success", "a.link_delete", function() {
+      $(this).closest('div.backup-item').hide();
+  });
