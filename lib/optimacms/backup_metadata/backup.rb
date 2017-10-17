@@ -79,7 +79,7 @@ module Optimacms
         end
 
         # untar
-        output = `cd #{d} && tar -xzvf #{File.basename(@filename)}`
+        output = `cd #{d} && tar -xzvf #{File.basename(filename)}`
 
         return true
       end
