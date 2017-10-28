@@ -1,6 +1,6 @@
 namespace :deploy do
 namespace :appdata do
-  require_relative '../../lib/optimacms/deploy/settings'
+  require_relative '../../lib/optimacms/appdata/settings'
 
 
   task :check do
@@ -28,8 +28,8 @@ namespace :appdata do
 =begin
   task :upload do
     # variant. upload using local cache of git repo
-    d_repo = Optimacms::Deploy::Settings.appdata_repo_path(release_path, app_env)
-    git_repo = Optimacms::Deploy::Settings.repo_app_site_data(app_env)
+    d_repo = Optimacms::Appdata::Settings.appdata_repo_path(release_path, app_env)
+    git_repo = Optimacms::Appdata::Settings.repo_app_site_data(app_env)
 
     # init local repo
     %x(mkdir -p #{d_repo})
@@ -40,7 +40,7 @@ namespace :appdata do
     %x(cd #{d_repo} && git pull origin master)
 
     # copy
-    Optimacms::Deploy::Settings.site_app_data_dirs.each do |d|
+    Optimacms::Appdata::Settings.site_app_data_dirs.each do |d|
       d_server_base = File.dirname(d)
 
       #puts "from #{d} to #{d_server_base}"

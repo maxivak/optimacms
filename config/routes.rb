@@ -102,7 +102,7 @@ Optimacms::Engine.routes.draw do
     end
 
     # deploy
-    resources :deploy, only: [:index] do
+    resources :appdata, only: [:index] do
       collection do
         get 'server_save'
         get 'server_update'

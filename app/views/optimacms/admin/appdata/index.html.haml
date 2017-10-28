@@ -1,4 +1,4 @@
-%h1 Deploy
+%h1 Application data
 
 Remote repo with data: #{@repo_data}
 %br
@@ -47,7 +47,7 @@ Local cache: #{@dir_local_repo}
 
 %h2 Help
 read more:
-=link_to 'TPL wiki', 'https://github.com/maxivak/rails-tpl/wiki/Synchronize-application-data', target: "_blank"
+=link_to 'Wiki', 'https://github.com/maxivak/rails-tpl/wiki/Synchronize-application-data', target: "_blank"
 
 
 #status_commands.bg-info.well
@@ -64,7 +64,7 @@ read more:
     $('#status_commands').html("Sending...");
 
     $.ajax({
-      url: "/admin/deploy/" + cmd+"?x="+Math.random(),
+      url: "/admin/appdata/" + cmd+"?x="+Math.random(),
       data: {},
       type: "GET",
       dataType: "json",

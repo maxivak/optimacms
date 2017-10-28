@@ -1,5 +1,5 @@
 module Optimacms
-  module Deploy
+  module Appdata
 
   class Settings
 

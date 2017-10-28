@@ -1,6 +1,6 @@
 # sync
 namespace :appdata do
-  require_relative '../../lib/optimacms/deploy/settings'
+  require_relative '../../lib/optimacms/appdata/settings'
 
   task :check => :environment do
     e = Rails.env
@@ -18,9 +18,9 @@ namespace :appdata do
     Rake::Task["appdata:repo:pull"].invoke
 
     # copy to project
-    d_repo = Optimacms::Deploy::Settings.appdata_repo_path(Rails.env)
+    d_repo = Optimacms::Appdata::Settings.appdata_repo_path(Rails.env)
 
-    Optimacms::Deploy::Settings.site_app_data_dirs(Rails.env).each do |d|
+    Optimacms::Appdata::Settings.site_app_data_dirs(Rails.env).each do |d|
       d_from = File.join(d_repo, d)
 
       d_to = File.join(Rails.root, d)
@@ -49,7 +49,7 @@ namespace :appdata do
     Rake::Task["appdata:repo:pull"].invoke
 
     #
-    d_repo = Optimacms::Deploy::Settings.appdata_repo_path(Rails.env)
+    d_repo = Optimacms::Appdata::Settings.appdata_repo_path(Rails.env)
 
 
     # rsync to repo-data
@@ -68,7 +68,7 @@ namespace :appdata do
     output = %x(which rsync)
     res_rsync = output.strip.delete(" \t\r\n")
 
-    Optimacms::Deploy::Settings.site_app_data_dirs(Rails.env).each do |d|
+    Optimacms::Appdata::Settings.site_app_data_dirs(Rails.env).each do |d|
       d_from = File.join(Rails.root, d)
 
       d_to = File.join(d_repo, d)
@@ -104,13 +104,13 @@ namespace :appdata do
 
   namespace :repo do
     task :setup => :environment do
-      d_repo = Optimacms::Deploy::Settings.appdata_repo_path(Rails.env)
+      d_repo = Optimacms::Appdata::Settings.appdata_repo_path(Rails.env)
 
       #
       FileUtils.mkdir_p(d_repo) unless File.directory?(d_repo)
 
       # init local git repo
-      repo_url = Optimacms::Deploy::Settings.appdata_remote_repo(Rails.env)
+      repo_url = Optimacms::Appdata::Settings.appdata_remote_repo(Rails.env)
 
       %x[cd #{d_repo} && git init ]
       %x[cd #{d_repo} && git remote add origin  #{repo_url} ] rescue nil
@@ -125,8 +125,8 @@ namespace :appdata do
 
 
       #
-      d_repo = Optimacms::Deploy::Settings.appdata_repo_path(Rails.env)
-      git_cmd = Optimacms::Deploy::Service.build_git_cmd('git pull origin master', Rails.env)
+      d_repo = Optimacms::Appdata::Settings.appdata_repo_path(Rails.env)
+      git_cmd = Optimacms::Appdata::Service.build_git_cmd('git pull origin master', Rails.env)
 
       puts "cd #{d_repo} && #{git_cmd}"
       %x[cd #{d_repo} && #{git_cmd}]
@@ -134,13 +134,13 @@ namespace :appdata do
 
     task :commit_push => :environment do
       #
-      d_repo = Optimacms::Deploy::Settings.appdata_repo_path(Rails.env)
+      d_repo = Optimacms::Appdata::Settings.appdata_repo_path(Rails.env)
 
       # commit & push to remote repo
       %x[cd #{d_repo} && git add . && git commit -m "server changes #{Time.now.utc}" ] rescue true
 
       #
-      git_cmd = Optimacms::Deploy::Service.build_git_cmd('git push origin master', Rails.env)
+      git_cmd = Optimacms::Appdata::Service.build_git_cmd('git push origin master', Rails.env)
 
       %x[cd #{d_repo} && #{git_cmd}] rescue true
 
