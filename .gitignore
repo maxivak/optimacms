@@ -8,6 +8,9 @@ test/dummy/log/*.log
 test/dummy/tmp/
 test/dummy/.sass-cache
 
+spec/dummy/config/secrets.yml
+spec/dummy/config/appdata/appdata.yml
+
 spec/dummy/db/*.sqlite3
 spec/dummy/db/*.sqlite3-journal
 spec/dummy/log/*.log

@@ -1,0 +1,33 @@
+default: &default
+  # dirs to sync
+  site_app_data_dirs:
+    - app/assets
+    - app/views
+
+  # dirs not to sync
+  site_user_data_dirs:
+    - public/system
+    - public/uploads
+    - public/img
+
+
+
+development:
+  <<: *default
+  code_remote_repo: ""
+  appdata_remote_repo: "git@github.com:maxivak/tpl-data.git"
+  appdata_local_repo_dir: "tmp/repo-data"
+  appdata_remote_repo_ssh_key: ""
+
+
+
+
+
+production:
+  <<: *default
+
+  code_remote_repo: ""
+  appdata_remote_repo: "git@github.com:maxivak/tpl-data.git"
+  appdata_local_repo_dir: "tmp/repo-data"
+  appdata_remote_repo_ssh_key: ""
+
