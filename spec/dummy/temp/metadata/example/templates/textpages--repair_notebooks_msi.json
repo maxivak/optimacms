@@ -1,0 +1,15 @@
+{
+  "id": 210,
+  "title": "Ремонт ноутбуков MSI Харьков",
+  "basename": "repair_notebooks_msi",
+  "basepath": "textpages/repair_notebooks_msi",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

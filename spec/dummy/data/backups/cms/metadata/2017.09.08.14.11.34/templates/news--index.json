@@ -1,0 +1,14 @@
+{
+  "id": 147,
+  "title": "news",
+  "basename": "index",
+  "basepath": "news/index",
+  "basedirpath": "news/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true
+}

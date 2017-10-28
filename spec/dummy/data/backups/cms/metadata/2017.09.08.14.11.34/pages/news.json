@@ -1,0 +1,21 @@
+{
+  "id": 136,
+  "name": "news",
+  "title": "News index",
+  "url": "news.html",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "news[.]html",
+  "parent_id": 104,
+  "is_translated": false,
+  "status": false,
+  "pos": false,
+  "redir_url": false,
+  "template_id": false,
+  "template_basepath": "news/index",
+  "layout_id": 4,
+  "layout_basepath": null,
+  "is_folder": false,
+  "controller_action": "news#index",
+  "enabled": 1
+}

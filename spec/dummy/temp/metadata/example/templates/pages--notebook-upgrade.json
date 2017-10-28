@@ -1,0 +1,15 @@
+{
+  "id": 257,
+  "title": "Модернизация ноутбука",
+  "basename": "notebook-upgrade",
+  "basepath": "pages/notebook-upgrade",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

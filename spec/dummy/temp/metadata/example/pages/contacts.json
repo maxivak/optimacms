@@ -1,0 +1,39 @@
+{
+  "id": 158,
+  "name": "contacts",
+  "title": "Контакты",
+  "url": "contacts.html",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^contacts[.]html$",
+  "parent_name": "newfolder",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "pages/contacts",
+  "layout_basepath": "layouts/basic",
+  "translation": {
+    "": {
+"lang": "",
+      "meta_title": "new - Сервисный центр Ависервис Харьков",
+      "meta_keywords": "ависервис, контакты, харьков, сервисный центр, телефоны, адрес ",
+      "meta_description": "Контакты сервисного центра Ависервис в Харькове"
+    },
+    "en": {
+"lang": "en",
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+"lang": "ru",
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

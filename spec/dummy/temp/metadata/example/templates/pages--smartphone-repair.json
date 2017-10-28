@@ -1,0 +1,15 @@
+{
+  "id": 256,
+  "title": "Ремонт смартфонов",
+  "basename": "smartphone-repair",
+  "basepath": "pages/smartphone-repair",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

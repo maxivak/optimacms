@@ -1,0 +1,15 @@
+{
+  "id": 146,
+  "title": "Home carousel",
+  "basename": "home_carousel",
+  "basepath": "blocks/home_carousel",
+  "basedirpath": "blocks/",
+  "type_id": 3,
+  "type_name": "partial",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "blocks"
+}

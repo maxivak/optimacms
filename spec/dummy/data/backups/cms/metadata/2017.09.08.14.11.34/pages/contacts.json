@@ -1,0 +1,21 @@
+{
+  "id": 126,
+  "name": "contacts",
+  "title": "Contacts",
+  "url": "contacts.html",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "contacts[.]html",
+  "parent_id": 24,
+  "is_translated": true,
+  "status": true,
+  "pos": true,
+  "redir_url": true,
+  "template_id": true,
+  "template_basepath": null,
+  "layout_id": null,
+  "layout_basepath": null,
+  "is_folder": false,
+  "controller_action": "0",
+  "enabled": 1
+}

@@ -1,0 +1,14 @@
+{
+  "id": 141,
+  "title": "h1",
+  "basename": "h1",
+  "basepath": "temp/h1",
+  "basedirpath": "temp/",
+  "type_id": 3,
+  "type_name": "partial",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true
+}

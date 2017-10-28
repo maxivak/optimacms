@@ -1,0 +1,14 @@
+{
+  "id": 74,
+  "title": "index",
+  "basename": "index",
+  "basepath": "temp/workers/index",
+  "basedirpath": "temp/workers/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true
+}

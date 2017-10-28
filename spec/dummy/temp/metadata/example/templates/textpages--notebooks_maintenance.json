@@ -1,0 +1,15 @@
+{
+  "id": 172,
+  "title": "Обслуживание ноутбуков",
+  "basename": "notebooks_maintenance",
+  "basepath": "textpages/notebooks_maintenance",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

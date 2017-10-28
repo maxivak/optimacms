@@ -1,0 +1,36 @@
+{
+  "id": 179,
+  "name": "jobs",
+  "title": "Вакансии",
+  "url": "job-repair-notebooks-kharkov",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^job-repair-notebooks-kharkov$",
+  "parent_name": "vacancies",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "pages/jobs",
+  "layout_basepath": "layouts/page_wide",
+  "translation": {
+    "": {
+      "meta_title": "Вакансии - ремонт ноутбуков - Ависервис Харьков",
+      "meta_keywords": "вакансия, работа, ремонт ноутбуков, харьков",
+      "meta_description": "Вакансии специалиста по ремонту ноутбуков в Харькове."
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

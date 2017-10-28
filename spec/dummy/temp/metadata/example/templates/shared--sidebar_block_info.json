@@ -1,0 +1,15 @@
+{
+  "id": 227,
+  "title": "sidebar_block_info",
+  "basename": "sidebar_block_info",
+  "basepath": "shared/sidebar_block_info",
+  "basedirpath": "shared/",
+  "type_id": 3,
+  "type_name": "partial",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "shared"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 148,
+  "title": "Top Menu",
+  "basename": "topmenu",
+  "basepath": "shared/topmenu",
+  "basedirpath": "shared/",
+  "type_id": 3,
+  "type_name": "partial",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "shared"
+}

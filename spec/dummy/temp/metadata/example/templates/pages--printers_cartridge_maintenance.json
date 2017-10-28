@@ -1,0 +1,15 @@
+{
+  "id": 165,
+  "title": "printers_cartridge_maintenance",
+  "basename": "printers_cartridge_maintenance",
+  "basepath": "pages/printers_cartridge_maintenance",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

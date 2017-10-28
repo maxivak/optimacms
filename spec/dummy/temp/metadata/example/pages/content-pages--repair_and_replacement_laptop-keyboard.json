@@ -1,0 +1,36 @@
+{
+  "id": 189,
+  "name": "repair_and_replacement_laptop-keyboard",
+  "title": "Ремонт и замена клавиатуры ноутбука",
+  "url": "repair-and-replacement-laptop-keyboard",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^repair-and-replacement-laptop-keyboard$",
+  "parent_name": "content-pages",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "textpages/repair_and_replacement_laptop-keyboard",
+  "layout_basepath": "layouts/article",
+  "translation": {
+    "": {
+      "meta_title": "Ремонт и замена клавиатуры ноутбука",
+      "meta_keywords": "ремонт, замена, клавиатура, ноутбука",
+      "meta_description": "Правила ремонта и замена клавиатуры ноутбука в сервисном центре"
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

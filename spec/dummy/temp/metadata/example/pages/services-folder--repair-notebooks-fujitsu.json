@@ -1,0 +1,36 @@
+{
+  "id": 173,
+  "name": "repair-notebooks-fujitsu",
+  "title": "Ремонт ноутбуков Fujitsu Харьков",
+  "url": "repair-notebooks-fujitsu.html",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^repair-notebooks-fujitsu[.]html$",
+  "parent_name": "services-folder",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "pages/repair_notebooks_fujitsu",
+  "layout_basepath": "layouts/page_wide",
+  "translation": {
+    "": {
+      "meta_title": "Ремонт ноутбуков Fujitsu Харьков",
+      "meta_keywords": "ремонт, ноутбуки, fujitsu, харьков, фуджицу, фуджитсу ",
+      "meta_description": "Послегарантийный и гарантийный ремонт ноутбуков Fujitsu в Харькове"
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

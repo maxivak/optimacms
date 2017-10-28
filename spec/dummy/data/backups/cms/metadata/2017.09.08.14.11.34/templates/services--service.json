@@ -1,0 +1,14 @@
+{
+  "id": 144,
+  "title": "Service item",
+  "basename": "service",
+  "basepath": "services/service",
+  "basedirpath": "services/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true
+}

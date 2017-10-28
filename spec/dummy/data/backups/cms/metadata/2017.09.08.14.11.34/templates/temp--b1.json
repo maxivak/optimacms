@@ -1,0 +1,14 @@
+{
+  "id": 162,
+  "title": "b1",
+  "basename": "b1",
+  "basepath": "temp/b1",
+  "basedirpath": "temp/",
+  "type_id": 4,
+  "type_name": "block",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": true,
+  "is_folder": false,
+  "enabled": true
+}

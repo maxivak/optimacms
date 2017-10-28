@@ -1,0 +1,15 @@
+{
+  "id": 124,
+  "title": "pages",
+  "basename": "pages",
+  "basepath": "pages",
+  "basedirpath": "",
+  "type_id": null,
+  "type_name": null,
+  "tpl_format": null,
+  "pos": null,
+  "is_translated": false,
+  "is_folder": true,
+  "enabled": true,
+  "ancestry_path": ""
+}

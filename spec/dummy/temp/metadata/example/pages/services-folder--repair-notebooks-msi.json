@@ -1,0 +1,36 @@
+{
+  "id": 172,
+  "name": "repair-notebooks-msi",
+  "title": "Ремонт ноутбуков MSI Харьков",
+  "url": "repair-notebooks-msi",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^repair-notebooks-msi$",
+  "parent_name": "services-folder",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "pages/repair_notebooks_msi",
+  "layout_basepath": "layouts/page_wide",
+  "translation": {
+    "": {
+      "meta_title": "Ремонт ноутбуков MSI Харьков",
+      "meta_keywords": "ремонт, ноутбуки, msi, харьков",
+      "meta_description": "Послегарантийный и гарантийный ремонт ноутбуков MSI в Харькове"
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

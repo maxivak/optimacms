@@ -1,0 +1,14 @@
+{
+  "id": 120,
+  "title": "Услуги главная",
+  "basename": "index",
+  "basepath": "services/index",
+  "basedirpath": "services/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true
+}

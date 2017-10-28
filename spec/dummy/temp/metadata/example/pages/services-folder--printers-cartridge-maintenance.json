@@ -1,0 +1,36 @@
+{
+  "id": 160,
+  "name": "printers-cartridge-maintenance",
+  "title": "Заправка картриджей лазерных принтеров",
+  "url": "printers-cartridge-maintenance.html",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^printers-cartridge-maintenance[.]html",
+  "parent_name": "services-folder",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "pages/printers_cartridge_maintenance",
+  "layout_basepath": "layouts/page_wide",
+  "translation": {
+    "": {
+      "meta_title": "Заправка картриджей лазерных принтеров",
+      "meta_keywords": "заправка картриджей лазерных принтеров, заправка картриджей лазерных принтеров харьков, заправка картриджей лазерных принтеров по бзналу",
+      "meta_description": "Сервисный центр AVIservice занимается заправкой картриджей лазерных принтеров HP, Canon, Samsung, т.д. Только самое высокое качество тонера - производства компании SCC. Только полный технологический цикл профилактических работ при заправке! Работа с организациями по безналу, возможно с НДС."
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

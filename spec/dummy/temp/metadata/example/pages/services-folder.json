@@ -1,0 +1,21 @@
+{
+  "id": 155,
+  "name": "services-folder",
+  "title": "Услуги",
+  "url": null,
+  "url_parts_count": 0,
+  "url_vars_count": 0,
+  "parsed_url": null,
+  "parent_name": null,
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": true,
+  "controller_action": null,
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": null,
+  "layout_basepath": null,
+  "translation": {
+  }
+}

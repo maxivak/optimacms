@@ -1,0 +1,21 @@
+{
+  "id": 106,
+  "name": "newsarticle",
+  "title": "News article",
+  "url": "newsarticle/{$id}/",
+  "url_parts_count": 2,
+  "url_vars_count": 1,
+  "parsed_url": "newsarticle/([^/]+)/",
+  "parent_id": 104,
+  "is_translated": true,
+  "status": true,
+  "pos": true,
+  "redir_url": true,
+  "template_id": true,
+  "template_basepath": null,
+  "layout_id": null,
+  "layout_basepath": null,
+  "is_folder": false,
+  "controller_action": "1",
+  "enabled": 1
+}

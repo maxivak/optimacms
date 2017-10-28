@@ -1,0 +1,15 @@
+{
+  "id": 212,
+  "title": "Ремонт ноутбуков Acer",
+  "basename": "repair_notebooks_acer",
+  "basepath": "pages/repair_notebooks_acer",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

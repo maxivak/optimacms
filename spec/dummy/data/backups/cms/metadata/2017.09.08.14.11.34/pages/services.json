@@ -1,0 +1,21 @@
+{
+  "id": 151,
+  "name": "services",
+  "title": "Услуги - список",
+  "url": "services.html",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^services[.]html",
+  "parent_id": 148,
+  "is_translated": false,
+  "status": false,
+  "pos": false,
+  "redir_url": false,
+  "template_id": false,
+  "template_basepath": "services/index",
+  "layout_id": 4,
+  "layout_basepath": null,
+  "is_folder": false,
+  "controller_action": "",
+  "enabled": 1
+}

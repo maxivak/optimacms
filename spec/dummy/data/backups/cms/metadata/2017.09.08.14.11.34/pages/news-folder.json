@@ -1,0 +1,21 @@
+{
+  "id": 104,
+  "name": "news-folder",
+  "title": "News",
+  "url": "news-folder/",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "news-folder/",
+  "parent_id": 0,
+  "is_translated": false,
+  "status": false,
+  "pos": false,
+  "redir_url": false,
+  "template_id": false,
+  "template_basepath": null,
+  "layout_id": null,
+  "layout_basepath": null,
+  "is_folder": true,
+  "controller_action": "0",
+  "enabled": 1
+}

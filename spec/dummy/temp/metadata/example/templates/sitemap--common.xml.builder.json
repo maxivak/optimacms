@@ -1,0 +1,15 @@
+{
+  "id": 177,
+  "title": "common",
+  "basename": "common.xml.builder",
+  "basepath": "sitemap/common.xml.builder",
+  "basedirpath": "sitemap/",
+  "type_id": 3,
+  "type_name": "partial",
+  "tpl_format": "blank",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "sitemap"
+}

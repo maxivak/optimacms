@@ -1,0 +1,15 @@
+{
+  "id": 243,
+  "title": "Ремонт материнских плат Asus",
+  "basename": "repair-motherboard-notebook-asus",
+  "basepath": "pages/repair-motherboard-notebook-asus",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

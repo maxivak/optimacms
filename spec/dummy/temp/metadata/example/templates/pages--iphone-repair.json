@@ -1,0 +1,15 @@
+{
+  "id": 251,
+  "title": "Ремонт iPhone",
+  "basename": "iphone-repair",
+  "basepath": "pages/iphone-repair",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

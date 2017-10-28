@@ -1,0 +1,21 @@
+{
+  "id": 163,
+  "name": "p3",
+  "title": "p3",
+  "url": ":lang/p3.html",
+  "url_parts_count": 2,
+  "url_vars_count": 1,
+  "parsed_url": "^([^/]+)/p3[.]html$",
+  "parent_id": 24,
+  "is_translated": true,
+  "status": true,
+  "pos": true,
+  "redir_url": true,
+  "template_id": true,
+  "template_basepath": "company/p3",
+  "layout_id": 158,
+  "layout_basepath": "layouts/main",
+  "is_folder": false,
+  "controller_action": "",
+  "enabled": 1
+}

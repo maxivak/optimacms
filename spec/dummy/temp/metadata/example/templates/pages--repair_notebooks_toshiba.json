@@ -1,0 +1,15 @@
+{
+  "id": 216,
+  "title": "Ремонт ноутбуков Toshiba",
+  "basename": "repair_notebooks_toshiba",
+  "basepath": "pages/repair_notebooks_toshiba",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

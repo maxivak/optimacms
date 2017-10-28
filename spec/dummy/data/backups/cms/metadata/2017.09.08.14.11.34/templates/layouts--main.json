@@ -1,0 +1,14 @@
+{
+  "id": 158,
+  "title": "main",
+  "basename": "main",
+  "basepath": "layouts/main",
+  "basedirpath": "layouts/",
+  "type_id": 1,
+  "type_name": "layout",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true
+}

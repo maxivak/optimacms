@@ -1,0 +1,62 @@
+/* line 1, /data/projects/myrails/cms/site/app/assets/stylesheets/optimacms/tinymce.scss */
+pre {
+  font-family: consolas, monospace;
+  font-weight: normal;
+  color: #069;
+  border-top: 1px dotted #a9a9a9;
+  border-bottom: 4px solid #ededed;
+  border-left: 3px solid #6CE26C;
+  margin-left: 10px;
+  padding: 3px 0px 5px 7px;
+}
+
+/* line 12, /data/projects/myrails/cms/site/app/assets/stylesheets/optimacms/tinymce.scss */
+code {
+  font-family: consolas, monospace;
+  font-weight: bold;
+  color: #069;
+}
+
+/* line 18, /data/projects/myrails/cms/site/app/assets/stylesheets/optimacms/tinymce.scss */
+code a {
+  font-family: consolas, monospace;
+  font-size: 100%;
+  font-weight: bold;
+  color: #069;
+  text-decoration: underline;
+}
+
+/* line 26, /data/projects/myrails/cms/site/app/assets/stylesheets/optimacms/tinymce.scss */
+a > code {
+  font-family: consolas, monospace;
+  font-size: 100%;
+  font-weight: bold;
+  color: #069;
+  text-decoration: underline;
+}
+
+/* line 34, /data/projects/myrails/cms/site/app/assets/stylesheets/optimacms/tinymce.scss */
+ul {
+  list-style-type: disc;
+  padding-left: 14px;
+  margin-top: 3px;
+  margin-bottom: 7px;
+}
+
+/* line 41, /data/projects/myrails/cms/site/app/assets/stylesheets/optimacms/tinymce.scss */
+ul > li {
+  margin-bottom: 4px;
+}
+
+/* line 46, /data/projects/myrails/cms/site/app/assets/stylesheets/optimacms/tinymce.scss */
+ol {
+  list-style-type: decimal;
+  padding-left: 14px;
+  margin-top: 3px;
+  margin-bottom: 7px;
+}
+
+/* line 53, /data/projects/myrails/cms/site/app/assets/stylesheets/optimacms/tinymce.scss */
+ol > li {
+  margin-bottom: 4px;
+}

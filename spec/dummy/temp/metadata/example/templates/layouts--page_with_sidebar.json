@@ -1,0 +1,15 @@
+{
+  "id": 241,
+  "title": "page_with_sidebar",
+  "basename": "page_with_sidebar",
+  "basepath": "layouts/page_with_sidebar",
+  "basedirpath": "layouts/",
+  "type_id": 1,
+  "type_name": "layout",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "layouts"
+}

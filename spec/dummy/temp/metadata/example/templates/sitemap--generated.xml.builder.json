@@ -1,0 +1,15 @@
+{
+  "id": 178,
+  "title": "generated",
+  "basename": "generated.xml.builder",
+  "basepath": "sitemap/generated.xml.builder",
+  "basedirpath": "sitemap/",
+  "type_id": 3,
+  "type_name": "partial",
+  "tpl_format": "blank",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "sitemap"
+}

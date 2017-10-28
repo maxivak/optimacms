@@ -1,0 +1,21 @@
+{
+  "id": 16,
+  "name": "page4",
+  "title": "Новая страница",
+  "url": "{$lang}/page5/{$id}-blabla-{$name}/",
+  "url_parts_count": 3,
+  "url_vars_count": 0,
+  "parsed_url": "([^/]+)/page5/([^/]+)-blabla-([^/]+)/",
+  "parent_id": 15,
+  "is_translated": false,
+  "status": false,
+  "pos": false,
+  "redir_url": false,
+  "template_id": false,
+  "template_basepath": null,
+  "layout_id": null,
+  "layout_basepath": null,
+  "is_folder": false,
+  "controller_action": "0",
+  "enabled": 1
+}

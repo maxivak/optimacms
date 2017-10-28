@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "title": "App template",
+  "basename": "application",
+  "basepath": "layouts/application",
+  "basedirpath": "layouts/",
+  "type_id": 1,
+  "type_name": "layout",
+  "tpl_format": "haml",
+  "pos": 0,
+  "is_translated": true,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "layouts"
+}

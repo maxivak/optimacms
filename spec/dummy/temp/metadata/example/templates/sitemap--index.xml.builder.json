@@ -1,0 +1,15 @@
+{
+  "id": 176,
+  "title": "Sitemap",
+  "basename": "index.xml.builder",
+  "basepath": "sitemap/index.xml.builder",
+  "basedirpath": "sitemap/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "blank",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "sitemap"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 231,
+  "title": "Ремонт залитого ноутбука",
+  "basename": "repair_of_flooded_laptop",
+  "basepath": "textpages/repair_of_flooded_laptop",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

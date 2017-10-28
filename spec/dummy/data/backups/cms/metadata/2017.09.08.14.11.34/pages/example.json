@@ -1,0 +1,21 @@
+{
+  "id": 17,
+  "name": "example",
+  "title": "example",
+  "url": "{$lang}/page1/page2/",
+  "url_parts_count": 3,
+  "url_vars_count": 0,
+  "parsed_url": "([^/]+)/page1/page2/",
+  "parent_id": 15,
+  "is_translated": false,
+  "status": false,
+  "pos": false,
+  "redir_url": false,
+  "template_id": false,
+  "template_basepath": null,
+  "layout_id": null,
+  "layout_basepath": null,
+  "is_folder": false,
+  "controller_action": "1",
+  "enabled": 1
+}

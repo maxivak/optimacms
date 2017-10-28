@@ -1,0 +1,15 @@
+{
+  "id": 223,
+  "title": "Jobs",
+  "basename": "jobs",
+  "basepath": "page_headers/jobs",
+  "basedirpath": "page_headers/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "page_headers"
+}

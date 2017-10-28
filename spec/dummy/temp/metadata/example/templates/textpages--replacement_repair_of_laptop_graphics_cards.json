@@ -1,0 +1,15 @@
+{
+  "id": 232,
+  "title": "Замена и ремонт видеокарты ноутбука",
+  "basename": "replacement_repair_of_laptop_graphics_cards",
+  "basepath": "textpages/replacement_repair_of_laptop_graphics_cards",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

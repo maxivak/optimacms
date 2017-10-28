@@ -1,0 +1,36 @@
+{
+  "id": 194,
+  "name": "urgent-notebook-repair",
+  "title": "Срочный ремонт ноутбука",
+  "url": "urgent-notebook-repair",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^urgent-notebook-repair$",
+  "parent_name": "services-folder",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "pages/urgent-notebook-repair",
+  "layout_basepath": "layouts/page_wide",
+  "translation": {
+    "": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

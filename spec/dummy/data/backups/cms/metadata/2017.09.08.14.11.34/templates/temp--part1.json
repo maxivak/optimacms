@@ -1,0 +1,14 @@
+{
+  "id": 140,
+  "title": "part1",
+  "basename": "part1",
+  "basepath": "temp/part1",
+  "basedirpath": "temp/",
+  "type_id": 3,
+  "type_name": "partial",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true
+}

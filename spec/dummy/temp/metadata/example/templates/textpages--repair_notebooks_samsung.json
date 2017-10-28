@@ -1,0 +1,15 @@
+{
+  "id": 208,
+  "title": "Ремонт ноутбуков Samsung Харьков",
+  "basename": "repair_notebooks_samsung",
+  "basepath": "textpages/repair_notebooks_samsung",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 209,
+  "title": "Ремонт ноутбуков Lenovo Харьков",
+  "basename": "repair_notebooks_lenovo",
+  "basepath": "textpages/repair_notebooks_lenovo",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

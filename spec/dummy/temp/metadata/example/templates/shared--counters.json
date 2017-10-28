@@ -1,0 +1,15 @@
+{
+  "id": 144,
+  "title": "Counters",
+  "basename": "counters",
+  "basepath": "shared/counters",
+  "basedirpath": "shared/",
+  "type_id": 3,
+  "type_name": "partial",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "shared"
+}

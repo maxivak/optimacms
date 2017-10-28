@@ -1,0 +1,14 @@
+{
+  "id": 166,
+  "title": "news list",
+  "basename": "news",
+  "basepath": "temp/news",
+  "basedirpath": "temp/",
+  "type_id": 4,
+  "type_name": "block",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true
+}

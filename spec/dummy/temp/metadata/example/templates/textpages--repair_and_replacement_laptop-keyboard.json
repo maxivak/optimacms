@@ -1,0 +1,15 @@
+{
+  "id": 238,
+  "title": "Ремонт и замена клавиатуры ноутбука",
+  "basename": "repair_and_replacement_laptop-keyboard",
+  "basepath": "textpages/repair_and_replacement_laptop-keyboard",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

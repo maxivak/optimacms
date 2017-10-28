@@ -1,0 +1,15 @@
+{
+  "id": 167,
+  "title": "Ремонт ноутбуков",
+  "basename": "notebooks_repair",
+  "basepath": "textpages/notebooks_repair",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

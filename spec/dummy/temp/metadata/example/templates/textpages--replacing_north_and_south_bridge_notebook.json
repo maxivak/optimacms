@@ -1,0 +1,15 @@
+{
+  "id": 235,
+  "title": "Замена южного и северного моста ноутбука",
+  "basename": "replacing_north_and_south_bridge_notebook",
+  "basepath": "textpages/replacing_north_and_south_bridge_notebook",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

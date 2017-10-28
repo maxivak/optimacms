@@ -1,0 +1,15 @@
+{
+  "id": 159,
+  "title": "About",
+  "basename": "about",
+  "basepath": "textpages/about",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

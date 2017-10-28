@@ -1,0 +1,15 @@
+{
+  "id": 214,
+  "title": "page_header_repair",
+  "basename": "page_header_repair",
+  "basepath": "shared/page_header_repair",
+  "basedirpath": "shared/",
+  "type_id": 3,
+  "type_name": "partial",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "shared"
+}

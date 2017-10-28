@@ -1,0 +1,15 @@
+{
+  "id": 233,
+  "title": "Чистка ноутбука от пыли",
+  "basename": "cleaning_the_notebook_from_dust",
+  "basepath": "textpages/cleaning_the_notebook_from_dust",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

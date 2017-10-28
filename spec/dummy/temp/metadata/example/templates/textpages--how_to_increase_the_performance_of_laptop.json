@@ -1,0 +1,15 @@
+{
+  "id": 237,
+  "title": "Как увеличить работоспособность ноутбука",
+  "basename": "how_to_increase_the_performance_of_laptop",
+  "basepath": "textpages/how_to_increase_the_performance_of_laptop",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

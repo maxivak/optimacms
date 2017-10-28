@@ -1,0 +1,36 @@
+{
+  "id": 166,
+  "name": "repair-notebooks-asus",
+  "title": "Ремонт ноутбуков Asus Харьков",
+  "url": "repair-notebooks-asus.html",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^repair-notebooks-asus[.]html",
+  "parent_name": "services-folder",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "pages/repair_notebooks_asus",
+  "layout_basepath": "layouts/page_wide",
+  "translation": {
+    "": {
+      "meta_title": "Ремонт ноутбуков Asus Харьков",
+      "meta_keywords": "ремонт, ноутбуки, asus, асус, харьков",
+      "meta_description": "Послегарантийный и гарантийный ремонт ноутбуков Asus в Харькове"
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "dd",
+      "meta_keywords": "dd",
+      "meta_description": "ddd"
+    }
+  }
+}

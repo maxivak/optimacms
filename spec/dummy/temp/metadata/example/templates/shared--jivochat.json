@@ -1,0 +1,15 @@
+{
+  "id": 239,
+  "title": "jivochat",
+  "basename": "jivochat",
+  "basepath": "shared/jivochat",
+  "basedirpath": "shared/",
+  "type_id": 4,
+  "type_name": "block",
+  "tpl_format": "erb",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "shared"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 193,
+  "title": "Ремонт ноутбуков Asus",
+  "basename": "repair_notebooks_asus",
+  "basepath": "pages/repair_notebooks_asus",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

@@ -1,0 +1,36 @@
+{
+  "id": 185,
+  "name": "repair_laptop_case",
+  "title": "Ремонт корпуса ноутбука",
+  "url": "repair-laptop-case",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^repair-laptop-case$",
+  "parent_name": "content-pages",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "textpages/repair_laptop_case",
+  "layout_basepath": "layouts/article",
+  "translation": {
+    "": {
+      "meta_title": "Ремонт корпуса ноутбука",
+      "meta_keywords": "ремонт, корпус, ноутбук, элементы, детали",
+      "meta_description": "Реставрация и ремонт элементов корпуса ноутбуков и распространенные причины таких поломок"
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": 182,
+  "name": "repair_of_flooded_laptop",
+  "title": "Ремонт залитого ноутбука",
+  "url": "repair-of-flooded-laptop",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^repair-of-flooded-laptop$",
+  "parent_name": "content-pages",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "textpages/repair_of_flooded_laptop",
+  "layout_basepath": "layouts/article",
+  "translation": {
+    "": {
+      "meta_title": "Ремонт залитого ноутбука",
+      "meta_keywords": "ремонт, залитый, ноутбук, советы, ошибки ",
+      "meta_description": "Ремонт залитого ноутбука, распространенные ошибки владельцев и советы специалиста"
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

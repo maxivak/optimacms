@@ -1,0 +1,21 @@
+{
+  "id": 74,
+  "name": "sitemap",
+  "title": "Site map",
+  "url": "sitemap.html",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "sitemap[.]html",
+  "parent_id": 0,
+  "is_translated": false,
+  "status": false,
+  "pos": false,
+  "redir_url": false,
+  "template_id": false,
+  "template_basepath": null,
+  "layout_id": null,
+  "layout_basepath": null,
+  "is_folder": false,
+  "controller_action": "0",
+  "enabled": 1
+}

@@ -1,0 +1,21 @@
+{
+  "id": 164,
+  "name": "tt1",
+  "title": "tt1",
+  "url": "tt1.html",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^tt1[.]html$",
+  "parent_id": 148,
+  "is_translated": false,
+  "status": false,
+  "pos": false,
+  "redir_url": false,
+  "template_id": false,
+  "template_basepath": "temp/t2",
+  "layout_id": 157,
+  "layout_basepath": "layouts/application",
+  "is_folder": false,
+  "controller_action": "",
+  "enabled": 1
+}

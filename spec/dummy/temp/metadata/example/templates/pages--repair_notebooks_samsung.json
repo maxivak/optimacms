@@ -1,0 +1,15 @@
+{
+  "id": 206,
+  "title": "Ремонт ноутбуков Samsung",
+  "basename": "repair_notebooks_samsung",
+  "basepath": "pages/repair_notebooks_samsung",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

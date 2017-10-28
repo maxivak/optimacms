@@ -1,0 +1,14 @@
+{
+  "id": 155,
+  "title": "p2",
+  "basename": "p2",
+  "basepath": "company/p2",
+  "basedirpath": "company/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": true,
+  "is_folder": false,
+  "enabled": true
+}

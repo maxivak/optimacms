@@ -1,0 +1,14 @@
+{
+"id" : 123,
+  "title": "новый раздел",
+  "basename": "newfolder",
+  "basepath": "newfolder",
+  "basedirpath": "",
+  "type_name": null,
+  "tpl_format": null,
+  "pos": null,
+  "is_translated": false,
+  "is_folder": true,
+  "enabled": true,
+  "ancestry_path": ""
+}

@@ -1,0 +1,36 @@
+{
+  "id": 186,
+  "name": "replacing_north_and_south_bridge_notebook",
+  "title": "Замена южного и северного моста ноутбука",
+  "url": "replacing-north-and-south-bridge-notebook",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^replacing-north-and-south-bridge-notebook$",
+  "parent_name": "content-pages",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "textpages/replacing_north_and_south_bridge_notebook",
+  "layout_basepath": "layouts/article",
+  "translation": {
+    "": {
+      "meta_title": "Замена южного и северного моста ноутбука",
+      "meta_keywords": "ремонт, замена, южный мост, северный мост, ноутбук, реболлинг, чип",
+      "meta_description": "Замена южного и северного моста ноутбука - замена чипа и реболлинг"
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

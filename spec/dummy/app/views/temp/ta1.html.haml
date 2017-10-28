@@ -1,0 +1,108 @@
+111
+jhk
+%h2 News
+
+= block 'temp/news'
+
+
+:css
+  .box .overlay
+  {
+     display:none;
+  }
+
+  .box{
+     background-color: transparent;
+     border-style: none;
+
+  }
+  .box:hover{
+    background-color: #fefefe;
+    border: 1px dotted orange;
+
+  }
+
+  .box:hover div.overlay
+  {
+    display:block;
+    float:left;
+    /*right: -120px;*/
+    /*width:30px;
+    height:29px;
+    */
+    font-size: 80%;
+    background: rgba(150, 150, 150, 0.3);
+  }​
+
+  .box div.overlay-commands
+  {
+    display:block;
+    float:left;
+    /*right: -120px;*/
+    font-size: 80%;
+  }​
+
+
+-#=link_to "Edit..", '#', class: "link_edit"
+
+-#.dropdown.commands
+  .dropdown-commands.dropdown-menu(style="display:block;")
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+
+
+
+.box
+  Info about a game
+  .overlay
+    =link_to "Edit..", '#', class: "link_edit"
+
+  .dropdown.overlay-commands2.commands
+    .dropdown-commands.dropdown-menu.dropdown-menu-right2(style="display:none")
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+
+
+  -#.overlay-commands.commands(style="display:none;")
+    .dropdown
+      -#%button.btn.btn-sm.btn-secondary.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+        Edit
+      .dropdown-commands.dropdown-menu.dropdown-menu-right2(aria-labelledby="dropdownMenuButton")
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+
+
+
+
+-#= block_with_edit "temp/b1"
+-#= block "temp/b1"
+
+:javascript
+  $( document ).ready(function() {
+      $( "a.link_edit" ).click(function() {
+        console.log("111");
+
+        //var div_commands = $(this).siblings('.commands').first();
+        var div_commands = $(this).closest('.overlay').siblings('.commands').first();
+        //var div_commands = $(this).closest('.overlay');
+        console.log(div_commands);
+
+        //console.log(div_commands);
+        var d = div_commands.children().first();
+        console.log(d);
+
+        d.toggle();
+        /*
+        console.log("s="+d.style.display);
+
+        if (d.style.display === 'none' || d.style.display=="") {
+            d.style.display = 'block';
+        } else {
+            d.style.display = 'none';
+        }
+        */
+      });
+  });

@@ -1,0 +1,36 @@
+{
+  "id": 187,
+  "name": "laptop_screen_repair_matrix",
+  "title": "Ремонт матрицы экрана ноутбука",
+  "url": "laptop-screen-repair-matrix",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^laptop-screen-repair-matrix$",
+  "parent_name": "content-pages",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "textpages/laptop_screen_repair_matrix",
+  "layout_basepath": "layouts/article",
+  "translation": {
+    "": {
+      "meta_title": "Ремонт матрицы экрана ноутбука",
+      "meta_keywords": "ремонт, матрица, экрана, ноутбук",
+      "meta_description": "Причины выхода из строя и ремонт матрицы экрана ноутбука"
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

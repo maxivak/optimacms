@@ -1,0 +1,15 @@
+{
+  "id": 226,
+  "title": "services_sidebar",
+  "basename": "services_sidebar",
+  "basepath": "page_sidebars/services_sidebar",
+  "basedirpath": "page_sidebars/",
+  "type_id": 3,
+  "type_name": "partial",
+  "tpl_format": "erb",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "page_sidebars"
+}

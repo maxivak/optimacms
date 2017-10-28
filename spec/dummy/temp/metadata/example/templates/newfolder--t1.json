@@ -1,0 +1,15 @@
+{
+  "id": 196,
+  "title": "Temp new folder t1",
+  "basename": "t1",
+  "basepath": "newfolder/t1",
+  "basedirpath": "newfolder/",
+
+  "type_name": "partial",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "newfolder"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 260,
+  "title": "iphone 7",
+  "basename": "iphone7",
+  "basepath": "pages/iphone7",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

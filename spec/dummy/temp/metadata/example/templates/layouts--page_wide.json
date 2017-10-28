@@ -1,0 +1,15 @@
+{
+  "id": 240,
+  "title": "page_wide",
+  "basename": "page_wide",
+  "basepath": "layouts/page_wide",
+  "basedirpath": "layouts/",
+  "type_id": 1,
+  "type_name": "layout",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "layouts"
+}

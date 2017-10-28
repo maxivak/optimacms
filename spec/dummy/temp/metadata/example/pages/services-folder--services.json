@@ -1,0 +1,36 @@
+{
+  "id": 156,
+  "name": "services",
+  "title": "услуги - главная",
+  "url": "services.html",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^services[.]html",
+  "parent_name": "services-folder",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "pages/services",
+  "layout_basepath": null,
+  "translation": {
+    "": {
+      "meta_title": "Услуги Ависервис",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

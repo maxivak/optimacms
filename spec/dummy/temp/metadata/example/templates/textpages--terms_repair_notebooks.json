@@ -1,0 +1,15 @@
+{
+  "id": 182,
+  "title": "Правила и порядок работы СЦ Ависервис Харьков",
+  "basename": "terms_repair_notebooks",
+  "basepath": "textpages/terms_repair_notebooks",
+  "basedirpath": "textpages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "textpages"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 197,
+  "title": "Ремонт ноутбуков HP",
+  "basename": "repair_notebooks_hp",
+  "basepath": "pages/repair_notebooks_hp",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

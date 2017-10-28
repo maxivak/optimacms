@@ -1,0 +1,15 @@
+{
+  "id": 264,
+  "title": "article",
+  "basename": "article",
+  "basepath": "layouts/article",
+  "basedirpath": "layouts/",
+  "type_id": 1,
+  "type_name": "layout",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "layouts"
+}

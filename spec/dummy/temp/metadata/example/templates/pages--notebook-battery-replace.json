@@ -1,0 +1,15 @@
+{
+  "id": 252,
+  "title": "Замена аккумулятора ноутбука",
+  "basename": "notebook-battery-replace",
+  "basepath": "pages/notebook-battery-replace",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

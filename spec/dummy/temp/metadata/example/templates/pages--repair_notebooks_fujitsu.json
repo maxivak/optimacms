@@ -1,0 +1,15 @@
+{
+  "id": 204,
+  "title": "Ремонт ноутбуков Fujitsu",
+  "basename": "repair_notebooks_fujitsu",
+  "basepath": "pages/repair_notebooks_fujitsu",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

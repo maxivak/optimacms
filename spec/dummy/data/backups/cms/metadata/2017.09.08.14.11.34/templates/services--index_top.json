@@ -1,0 +1,14 @@
+{
+  "id": 121,
+  "title": "index_top",
+  "basename": "index_top",
+  "basepath": "services/index_top",
+  "basedirpath": "services/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "html",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true
+}

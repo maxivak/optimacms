@@ -1,0 +1,15 @@
+{
+  "id": 253,
+  "title": "Ремонт системы питания ноутбука",
+  "basename": "notebook-power-repair",
+  "basepath": "pages/notebook-power-repair",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

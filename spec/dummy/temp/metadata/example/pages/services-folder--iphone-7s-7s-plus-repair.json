@@ -1,0 +1,36 @@
+{
+  "id": 203,
+  "name": "iphone-7s-7s-plus-repair",
+  "title": "iphone 7",
+  "url": "iphone-7s-7s-plus-repair",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^iphone-7s-7s-plus-repair$",
+  "parent_name": "services-folder",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "pages/iphone7",
+  "layout_basepath": "layouts/page_wide",
+  "translation": {
+    "": {
+      "meta_title": "Ремонт Phone 7s, iPhone 7s plus в Харькове",
+      "meta_keywords": "ремонт iphone, 7s, 7s plus, Харьков",
+      "meta_description": ""
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}

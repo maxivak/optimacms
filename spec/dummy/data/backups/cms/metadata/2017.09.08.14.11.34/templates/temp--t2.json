@@ -1,0 +1,14 @@
+{
+  "id": 163,
+  "title": "t2",
+  "basename": "t2",
+  "basepath": "temp/t2",
+  "basedirpath": "temp/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true
+}

@@ -1,0 +1,15 @@
+{
+  "id": 255,
+  "title": "Ремонт корпуса ноутбука",
+  "basename": "notebook-case-repair",
+  "basepath": "pages/notebook-case-repair",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 205,
+  "title": "Ремонт ноутбуков Dell",
+  "basename": "repair_notebooks_dell",
+  "basepath": "pages/repair_notebooks_dell",
+  "basedirpath": "pages/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "pages"
+}

@@ -1,0 +1,14 @@
+{
+  "id": 151,
+  "title": "multi2",
+  "basename": "multi2",
+  "basepath": "temp/multi2",
+  "basedirpath": "temp/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": true,
+  "is_folder": false,
+  "enabled": true
+}

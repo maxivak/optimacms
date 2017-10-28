@@ -1,0 +1,15 @@
+{
+  "id": 259,
+  "title": "sitemap",
+  "basename": "sitemap",
+  "basepath": "sitemap/sitemap",
+  "basedirpath": "sitemap/",
+  "type_id": 2,
+  "type_name": "page",
+  "tpl_format": "haml",
+  "pos": null,
+  "is_translated": false,
+  "is_folder": false,
+  "enabled": true,
+  "ancestry_path": "sitemap"
+}

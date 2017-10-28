@@ -1,0 +1,36 @@
+{
+  "id": 190,
+  "name": "repair-motherboard-notebook",
+  "title": "Ремонт материнских плат ноутбуков",
+  "url": "repair-motherboard-notebook",
+  "url_parts_count": 1,
+  "url_vars_count": 0,
+  "parsed_url": "^repair-motherboard-notebook$",
+  "parent_name": "services-folder",
+  "pos": 0,
+  "redir_url": null,
+  "is_folder": false,
+  "controller_action": "",
+  "status": 0,
+  "enabled": 1,
+  "is_translated": false,
+  "template_basepath": "pages/repair-motherboard",
+  "layout_basepath": "layouts/page_wide",
+  "translation": {
+    "": {
+      "meta_title": "Ремонт материнских плат ноутбуков",
+      "meta_keywords": "ремонт материнских плат ноутбуков, ремонт материнских плат ноутбуков в харькове",
+      "meta_description": "Сервисный центр Ависервис производит ремонт материнских плат ноутбуков. Все виды ремонта материнских плат - замена северного моста, видеочипа, разъемов питания."
+    },
+    "en": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    },
+    "ru": {
+      "meta_title": "",
+      "meta_keywords": "",
+      "meta_description": ""
+    }
+  }
+}
