@@ -1,6 +1,6 @@
 # sync
 namespace :appdata do
-  require_relative '../lib/../../lib/optimacms/deploy/settings'
+  require_relative '../../lib/optimacms/deploy/settings'
 
   task :check => :environment do
     e = Rails.env
