@@ -1,0 +1,27 @@
+default: &default
+
+  # dirs to sync
+  site_app_data_dirs:
+    - app/assets
+    - app/views
+
+  # dirs not to sync
+  site_user_data_dirs:
+    - public/system
+    - public/uploads
+    - public/img
+
+
+development:
+  <<: *default
+  code_remote_repo: ""
+  appdata_remote_repo: "ssh://git@git.friendlydata.com:10022/friendlydata/optimacms-data.git"
+  appdata_local_repo_dir: "/data/temp/optimacms/repo-data"
+  appdata_remote_repo_ssh_key: "/data/keys/optimacms/id_rsa"
+
+
+
+
+
+production:
+  <<: *default

@@ -1,0 +1,88 @@
+%h1 Deploy
+
+Remote repo with data: #{@repo_data}
+%br
+Local cache: #{@dir_local_repo}
+
+#commands
+
+  %h2 Save changes
+  Save current changes to remote repo
+  %br
+
+  =link_to 'Save changes', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'server_save'
+  %br
+  %br
+  or<br>
+  * run on server
+  %pre
+    RAILS_ENV=#{Rails.env} rake appdata:save
+
+  * run from local project
+  %pre
+    cap #{Rails.env} deploy:appdata:server_save
+
+  %br
+  %br
+
+
+  %h2 Get changes
+  Get changes from remote repo
+  %br
+  =link_to 'Get changes', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'server_update'
+  %br
+  %br
+
+  or<br>
+  * run on server
+  %pre
+    RAILS_ENV=#{Rails.env} rake appdata:update
+
+  * run from local project
+  %pre
+    cap #{Rails.env} deploy:appdata:server_update
+
+
+
+
+%h2 Help
+read more:
+=link_to 'TPL wiki', 'https://github.com/maxivak/rails-tpl/wiki/Synchronize-application-data', target: "_blank"
+
+
+#status_commands.bg-info.well
+
+
+:javascript
+  // commands
+  $( '#commands a[data-name="command"]' ).click(function() {
+    //$('#status_commands').html("Handler for .click() called." );
+    send_command($(this).data('cmd'));
+  });
+
+  function send_command(cmd){
+    $('#status_commands').html("Sending...");
+
+    $.ajax({
+      url: "/admin/deploy/" + cmd+"?x="+Math.random(),
+      data: {},
+      type: "GET",
+      dataType: "json",
+      contentType: "application/json",
+      beforeSend: function(){
+        // Handle the beforeSend event
+      },
+      success: function(res_data){
+        $('#status_commands').html("Result: "+res_data.output);
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        alert(xhr.status);
+        //alert(thrownError);
+      },
+      complete: function (res_data) {
+
+      }
+
+    });
+  }
+

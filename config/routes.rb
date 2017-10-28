@@ -101,7 +101,17 @@ Optimacms::Engine.routes.draw do
 
     end
 
+    # deploy
+    resources :deploy, only: [:index] do
+      collection do
+        get 'server_save'
+        get 'server_update'
 
+      end
+    end
+
+
+    # maintenance
     get '/optimacms/maintenance', to: 'maintenance#index', as: :maintenance
 
     scope '/optimacms/maintenance', module: 'maintenance', as: "maintenance" do
