@@ -8,6 +8,8 @@ test/dummy/log/*.log
 test/dummy/tmp/
 test/dummy/.sass-cache
 
+yarn.lock
+
 spec/dummy/config/secrets.yml
 spec/dummy/config/appdata/appdata.yml
 
