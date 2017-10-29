@@ -7,6 +7,8 @@
   Storage:<br>
   #{content['storage']['type']}
   %br
+  Dirs: #{content['dirs'].map{|r| r}.join(", ") }
+  %br
 
   - if content['storage']['type']=='git'
     Remote repo: #{content['storage']['remote_repo']}
@@ -20,9 +22,9 @@
   .commands{data: {name: content['name']}}
     %ul.list-inline
       %li.list-inline-item
-        =link_to 'Save', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-content"=> content['name'], :"data-cmd"=>'save'
+        =link_to 'Save', '#', :class=>'btn btn-primary btn-lg', :"data-name"=>'command', :"data-content"=> content['name'], :"data-cmd"=>'save'
       %li.list-inline-item
-        =link_to 'Get', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-content"=> content['name'], :"data-cmd"=>'update'
+        =link_to 'Get', '#', :class=>'btn btn-primary btn-lg', :"data-name"=>'command', :"data-content"=> content['name'], :"data-cmd"=>'update'
 
 
 
