@@ -77,10 +77,177 @@ module Optimacms
         end
       end
 
+
+
       ###
 
-      def self.build_git_cmd(cmd, _env)
-        key_path = Settings.get_config_value('appdata_remote_repo_ssh_key', _env)
+      def self.save_by_git(_env, content_name)
+        # input
+        content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
+        storage = content['storage']
+
+        # setup
+        setup_git_storage storage
+
+        # update repo first
+        git_pull(_env, content_name)
+
+        #
+        repo_local_path = Optimacms::Appdata::Settings.storage_repo_local_path(storage)
+
+
+        # rsync to repo-data
+        #rsync -Lavrt --exclude-from '../{{server}}/files/rsync_exclude_list.txt' -e 'ssh -p {{ansible_ssh_port | default(22)}}'  {{root_user}}@{{inventory_hostname | quote}}:{{remote_path | quote}} {{backup_dir | quote }}
+        #rsync -Lavrt --exclude-from '../{{server}}/files/rsync_exclude_list.txt' {{root_user}}@{{inventory_hostname}}:{{remote_path}} {{backup_dir}}
+
+
+        # ok
+        #execute "rsync -Lavrt --exclude-from '#{release_path}/.rsync_ignore' #{release_path}/ #{p}"
+
+        # ok - app
+        #execute "rsync -Lavrt --exclude-from '#{release_path}/.rsync_ignore' #{release_path}/app/ #{p}/app"
+        #%x[rsync -Lavrt --exclude-from '#{d}/.rsync_ignore' #{d}/ #{p}/ ]
+
+        # check if rsync available
+        output = %x(which rsync)
+        res_rsync = output.strip.delete(" \t\r\n")
+
+        content['dirs'].each do |d|
+          d_from = File.join(Rails.root, d)
+          d_to = File.join(repo_local_path, d)
+          d_to_base = File.dirname(d_to)
+
+          puts "copy from #{d_from} to #{d_to}"
+
+          FileUtils.mkdir_p d_to
+
+          # rsync or copy
+          if res_rsync!=""
+            cmd = %Q(rsync -Lavrt #{d_from}/ #{d_to}/)
+            puts "#{cmd}"
+            %x(#{cmd})
+          else
+            # no rsync
+            puts "no rsync. copying..."
+
+            FileUtils.cp_r d_from, d_to_base
+          end
+        end
+
+
+
+        # repo
+        git_commit_push(_env, content_name)
+
+      end
+
+
+
+      def self.update_by_git(_env, content_name)
+        # input
+        content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
+        storage = content['storage']
+
+
+        # update repo first
+        git_pull _env, content_name
+
+        # copy to project
+        repo_local_path = Optimacms::Appdata::Settings.storage_repo_local_path(storage)
+
+        storage['dirs'].each do |d|
+          d_from = File.join(repo_local_path, d)
+          d_to = File.join(Rails.root, d)
+          d_to_base = File.dirname(d_to)
+
+          puts "copy from #{d_from} to #{d_to}"
+          #in #{d_to_parent}
+
+          FileUtils.mkdir_p d_to
+
+          # copy dir
+          FileUtils.cp_r d_from, d_to_base
+          #FileUtils.copy_entry d_from, d_to_parent
+          #FileUtils.cp_r d_from, Rails.root
+        end
+      end
+
+
+      def self.content_setup_git(_env, content_name)
+        # input
+        content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
+        storage = content['storage']
+
+        #
+        setup_git_storage(storage)
+
+      end
+
+      def self.setup_git_storage(storage)
+        repo_local_path = Optimacms::Appdata::Settings.storage_repo_local_path(storage)
+
+        #
+        FileUtils.mkdir_p(repo_local_path) unless File.directory?(repo_local_path)
+
+
+        # init local git repo
+        repo_url = storage['remote_repo']
+
+        # run commands
+        %x[cd #{repo_local_path} && git init ]
+        %x[cd #{repo_local_path} && git remote add origin  #{repo_url} ] rescue nil
+        %x[cd #{repo_local_path} && git remote set-url origin  #{repo_url} ]
+      end
+
+
+      def self.git_pull(_env, content_name)
+        # input
+        content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
+        storage = content['storage']
+
+
+        # init repo
+        #Rake::Task["appdata:repo:setup"].invoke
+
+
+        #
+        repo_local_path = Optimacms::Appdata::Settings.storage_repo_local_path(storage)
+        git_cmd = build_git_cmd(storage, 'git pull origin master')
+
+        cmd = %Q(cd #{repo_local_path} && #{git_cmd})
+        puts "#{cmd}"
+        %x[#{cmd}]
+      end
+
+
+
+      def self.git_commit_push(_env, content_name)
+        # input
+        content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
+        storage = content['storage']
+
+
+        #
+        repo_local_path = Optimacms::Appdata::Settings.storage_repo_local_path(storage)
+
+
+        # commit & push to remote repo
+        %x[cd #{repo_local_path} && git add . && git commit -m "server changes #{Time.now.utc}" ] rescue true
+
+        #
+        git_cmd = build_git_cmd(storage, 'git push origin master')
+
+        %x[cd #{repo_local_path} && #{git_cmd}] rescue true
+
+        #git add -A .
+      end
+
+
+
+      ### helpers
+
+      def self.build_git_cmd(storage, cmd)
+        key_path = storage['remote_repo_ssh_key']
 
 
         #ssh

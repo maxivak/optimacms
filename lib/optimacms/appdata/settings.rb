@@ -38,16 +38,18 @@ module Optimacms
   end
 
 
-  def self.appdata_repo_path(_env)
-    e = _env
-    dir_base_path = get_config_value("appdata_local_repo_dir", e)
+  def self.storage_repo_local_path(storage)
+    #e = _env
+    #dir_base_path = get_config_value("appdata_local_repo_dir", e)
+    d = storage['local_repo_dir']
 
-    if dir_base_path[0]=='/'
-      d_repo = File.join(dir_base_path)
+    if d[0]=='/'
+      d_repo = File.join(d)
     else
-      d_repo = File.join(Rails.root, dir_base_path)
+      d_repo = File.join(Rails.root, d)
     end
 
+    d_repo
   end
 
 
