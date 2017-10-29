@@ -1,70 +1,45 @@
+#status_commands.bg-info.well
+
 %h1 Application data
 
-Remote repo with data: #{@repo_data}
-%br
-Local cache: #{@dir_local_repo}
-
-#commands
-
-  %h2 Save changes
-  Save current changes to remote repo
+- @list.each do |content|
+  %h2 #{content['name']}
+  Storage:<br>
+  #{content['storage']['type']}
   %br
 
-  =link_to 'Save changes', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'server_save'
-  %br
-  %br
-  or<br>
-  * run on server
-  %pre
-    RAILS_ENV=#{Rails.env} rake appdata:save
+  - if content['storage']['type']=='git'
+    Remote repo: #{content['storage']['remote_repo']}
+    %br
+    Local cache: #{content['storage']['local_repo_dir']}
 
-  * run from local project
-  %pre
-    cap #{Rails.env} deploy:appdata:server_save
-
-  %br
-  %br
+  - elsif content['storage']['type']=='ssh'
+    ssh server: #{content['storage']['ssh_user']}@#{content['storage']['host']}:#{content['storage']['dir']}
 
 
-  %h2 Get changes
-  Get changes from remote repo
-  %br
-  =link_to 'Get changes', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'server_update'
-  %br
-  %br
-
-  or<br>
-  * run on server
-  %pre
-    RAILS_ENV=#{Rails.env} rake appdata:update
-
-  * run from local project
-  %pre
-    cap #{Rails.env} deploy:appdata:server_update
+  .commands{data: {name: content['name']}}
+    %ul.list-inline
+      %li.list-inline-item
+        =link_to 'Save', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-content"=> content['name'], :"data-cmd"=>'save'
+      %li.list-inline-item
+        =link_to 'Get', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-content"=> content['name'], :"data-cmd"=>'update'
 
 
 
-
-%h2 Help
-read more:
-=link_to 'Wiki', 'https://github.com/maxivak/rails-tpl/wiki/Synchronize-application-data', target: "_blank"
-
-
-#status_commands.bg-info.well
 
 
 :javascript
   // commands
-  $( '#commands a[data-name="command"]' ).click(function() {
+  $( '.commands a[data-name="command"]' ).click(function() {
     //$('#status_commands').html("Handler for .click() called." );
-    send_command($(this).data('cmd'));
+    send_command($(this).data('content'), $(this).data('cmd'));
   });
 
-  function send_command(cmd){
+  function send_command(content_name, cmd){
     $('#status_commands').html("Sending...");
 
     $.ajax({
-      url: "/admin/appdata/" + cmd+"?x="+Math.random(),
+      url: "/admin/appdata/"+ cmd+"?content="+content_name+"&x="+Math.random(),
       data: {},
       type: "GET",
       dataType: "json",
@@ -86,3 +61,39 @@ read more:
     });
   }
 
+
+
+%h1 Help
+
+%b Save changes
+Save current changes to remote repo
+* run on server
+%pre
+  RAILS_ENV=#{Rails.env} rake appdata:save
+
+* run from local project
+%pre
+  cap #{Rails.env} deploy:appdata:server_save
+
+%br
+%br
+
+
+%b Get changes
+Get changes from remote repo
+%br
+
+or<br>
+* run on server
+%pre
+  RAILS_ENV=#{Rails.env} rake appdata:update
+
+* run from local project
+%pre
+  cap #{Rails.env} deploy:appdata:server_update
+
+
+
+%p
+  read more:
+  =link_to 'Wiki', 'https://github.com/maxivak/rails-tpl/wiki/Synchronize-application-data', target: "_blank"

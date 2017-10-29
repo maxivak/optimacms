@@ -16,13 +16,27 @@ module Optimacms
   end
 
 
+  def self.list_content(_env)
+    list = get_config_value("content", _env)
 
-  def self.deploy_dirs_exclude(_env)
-    a1 = get_config_value('site_user_data_dirs', _env, [])
-    a2 = get_config_value('site_app_data_dirs', _env, [])
-
-    a1+a2
+    list
   end
+
+  def self.get_content_info(_env, name)
+    list = get_config_value("content", _env)
+
+    res = nil
+    list.each do |v|
+      if v['name']==name
+        res = v
+        break
+      end
+
+    end
+
+    res
+  end
+
 
   def self.appdata_repo_path(_env)
     e = _env
