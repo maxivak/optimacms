@@ -209,7 +209,7 @@ module Optimacms
         # copy to project
         repo_local_path = Optimacms::Appdata::Settings.storage_repo_local_path(storage)
 
-        storage['dirs'].each do |d|
+        content['dirs'].each do |d|
           d_from = File.join(repo_local_path, d)
           d_to = File.join(Rails.root, d)
           d_to_base = File.dirname(d_to)
