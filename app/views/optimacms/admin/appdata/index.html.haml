@@ -16,7 +16,7 @@
     Local cache: #{content['storage']['local_repo_dir']}
 
   - elsif content['storage']['type']=='ssh'
-    ssh server: #{content['storage']['ssh_user']}@#{content['storage']['host']}:#{content['storage']['dir']}
+    ssh server: #{content['storage']['ssh_user']}@#{content['storage']['host']}:#{content['storage']['path']}
 
 
   .commands{data: {name: content['name']}}

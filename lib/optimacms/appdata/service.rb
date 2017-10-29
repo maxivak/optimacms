@@ -3,18 +3,45 @@ module Optimacms
     class Service
 
       def self.save(_env, content_name)
+        #
+        content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
+        storage = content['storage']
 
-        Optimacms::Appdata::Service.run_rake_task("rake appdata:save  2>&1")
+        #
+        if storage['type']=='git'
+          return save_by_git(_env, content_name)
+        elsif storage['type']=='ssh'
+          return save_by_ssh(_env, content_name)
+        end
+
+
+        #Optimacms::Appdata::Service.run_rake_task("rake appdata:save  2>&1")
       end
 
       def self.update(_env, content_name)
-        Optimacms::Appdata::Service.run_rake_task("rake appdata:update  2>&1")
+        #
+        content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
+        storage = content['storage']
+
+        #
+        if storage['type']=='git'
+          return update_by_git(_env, content_name)
+        elsif storage['type']=='ssh'
+          return update_by_ssh(_env, content_name)
+        end
+
+
+        #Optimacms::Appdata::Service.run_rake_task("rake appdata:update  2>&1")
       end
 
 
       ### ssh
 
       def self.save_by_ssh(_env, content_name)
+        #
+        res_output = []
+
+        #
         content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
         storage = content['storage']
 
@@ -44,9 +71,20 @@ module Optimacms
           %x[#{cmd}]
 
         end
+
+        #
+        {res: true, output: res_output.join("; ")}
+
+      rescue => e
+        {res: false, output: "#{e.message}, #{e.backtrace.join(",")}"}
+
       end
 
       def self.update_by_ssh(_env, content_name)
+        #
+        res_output = []
+
+        #
         content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
         #puts "content: #{content}"
         storage = content['storage']
@@ -75,6 +113,12 @@ module Optimacms
           %x[#{cmd}]
 
         end
+
+        #
+        {res: true, output: res_output.join("; ")}
+
+      rescue => e
+        {res: false, output: "#{e.message}, #{e.backtrace.join(",")}"}
       end
 
 
@@ -82,6 +126,8 @@ module Optimacms
       ###
 
       def self.save_by_git(_env, content_name)
+        res_output =[]
+
         # input
         content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
         storage = content['storage']
@@ -139,11 +185,19 @@ module Optimacms
         # repo
         git_commit_push(_env, content_name)
 
+
+        #
+        {res: true, output: res_output.join("; ")}
+
+      rescue => e
+        {res: false, output: "#{e.message}, #{e.backtrace.join(",")}"}
       end
 
 
 
       def self.update_by_git(_env, content_name)
+        res_output = []
+
         # input
         content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
         storage = content['storage']
@@ -170,8 +224,17 @@ module Optimacms
           #FileUtils.copy_entry d_from, d_to_parent
           #FileUtils.cp_r d_from, Rails.root
         end
+
+        #
+        {res: true, output: res_output.join("; ")}
+
+      rescue => e
+        {res: false, output: "#{e.message}, #{e.backtrace.join(",")}"}
       end
 
+
+
+      ### git helpers
 
       def self.content_setup_git(_env, content_name)
         # input

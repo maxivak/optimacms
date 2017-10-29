@@ -14,7 +14,7 @@ module Optimacms
 
 
     def save
-      @res = Optimacms::Appdata::Service.save(Rails.env, params[:content_name])
+      @res = Optimacms::Appdata::Service.save(Rails.env, params[:content])
 
 
       respond_to do |format|
@@ -24,7 +24,7 @@ module Optimacms
     end
 
     def update
-      @res = Optimacms::Appdata::Service.update(Rails.env, params[:content_name])
+      @res = Optimacms::Appdata::Service.update(Rails.env, params[:content])
 
 
       respond_to do |format|
