@@ -18,6 +18,9 @@
   - elsif content['storage']['type']=='ssh'
     ssh server: #{content['storage']['ssh_user']}@#{content['storage']['host']}:#{content['storage']['path']}
 
+  - if content['storage']['type']=='local'
+    path: #{content['storage']['path']}
+
 
   .commands{data: {name: content['name']}}
     %ul.list-inline
@@ -71,7 +74,7 @@
 Save current changes to remote repo
 * run on server
 %pre
-  RAILS_ENV=#{Rails.env} rake appdata:save
+  name=NAME RAILS_ENV=#{Rails.env} rake appdata:save
 
 * run from local project
 %pre
@@ -88,7 +91,7 @@ Get changes from remote repo
 or<br>
 * run on server
 %pre
-  content=NAME RAILS_ENV=#{Rails.env} rake appdata:update
+  name=NAME RAILS_ENV=#{Rails.env} rake appdata:update
 
 * run from local project
 %pre

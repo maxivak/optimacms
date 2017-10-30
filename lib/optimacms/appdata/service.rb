@@ -12,10 +12,11 @@ module Optimacms
           return save_by_git(_env, content_name)
         elsif storage['type']=='ssh'
           return save_by_ssh(_env, content_name)
+        elsif storage['type']=='local'
+          return save_by_local(_env, content_name)
         end
 
-
-        #Optimacms::Appdata::Service.run_rake_task("rake appdata:save  2>&1")
+        return nil
       end
 
       def self.update(_env, content_name)
@@ -28,11 +29,82 @@ module Optimacms
           return update_by_git(_env, content_name)
         elsif storage['type']=='ssh'
           return update_by_ssh(_env, content_name)
+        elsif storage['type']=='local'
+          return update_by_local(_env, content_name)
         end
 
 
         #Optimacms::Appdata::Service.run_rake_task("rake appdata:update  2>&1")
       end
+
+
+      ### local storage
+
+      def self.save_by_local(_env, content_name)
+        #
+        res_output = []
+
+        #
+        content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
+        storage = content['storage']
+
+        # sync dirs
+        content['dirs'].each do |d|
+          d_remote = File.join(storage['path'], d)
+          d_local = File.join(File.dirname(d), File.basename(d))+"/"
+          d_local_full = File.join(Rails.root, d_local)
+
+
+
+          # create remote dir
+          %x[mkdir -p #{d_remote}]
+
+          # rsync
+          cmd = %Q(rsync -Lavrt #{d_local_full} #{d_remote} --delete)
+          puts "#{cmd}"
+          %x[#{cmd}]
+
+        end
+
+        #
+        {res: true, output: res_output.join("; ")}
+
+      rescue => e
+        {res: false, output: "#{e.message}, #{e.backtrace.join(",")}"}
+
+      end
+
+      def self.update_by_local(_env, content_name)
+        #
+        res_output = []
+
+        #
+        content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
+        storage = content['storage']
+
+        # sync dirs
+        content['dirs'].each do |d|
+          d_remote = File.join(storage['path'], d)+"/"
+          d_local = File.join(File.dirname(d), File.basename(d))+"/"
+          d_local_full = File.join(Rails.root, d_local)
+
+          #
+          %x[mkdir -p #{d_local_full}]
+
+          # rsync
+          cmd = %Q(rsync -Lavrt #{d_remote} #{d_local_full} --delete)
+          puts "#{cmd}"
+          %x[#{cmd}]
+
+        end
+
+        #
+        {res: true, output: res_output.join("; ")}
+
+      rescue => e
+        {res: false, output: "#{e.message}, #{e.backtrace.join(",")}"}
+      end
+
 
 
       ### ssh

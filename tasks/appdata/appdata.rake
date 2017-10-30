@@ -22,6 +22,8 @@ namespace :appdata do
       Rake::Task["appdata:repo:update"].invoke(content_name)
     elsif storage['type']=='ssh'
       Rake::Task["appdata:ssh:update"].invoke(content_name)
+    elsif storage['type']=='local'
+      Rake::Task["appdata:local:update"].invoke(content_name)
     end
 
   end
@@ -40,8 +42,29 @@ namespace :appdata do
       Rake::Task["appdata:repo:save"].invoke(content_name)
     elsif storage['type']=='ssh'
       Rake::Task["appdata:ssh:save"].invoke(content_name)
+    elsif storage['type']=='local'
+      Rake::Task["appdata:local:save"].invoke(content_name)
     end
 
+  end
+
+
+
+  ### local storage
+
+  namespace :local do
+
+    task :save, [:name] => :environment do |t, args|
+      res = Optimacms::Appdata::Service.save_by_local  Rails.env, args[:name]
+
+    end
+
+
+
+    task :update, [:name] => :environment do |t, args|
+      res = Optimacms::Appdata::Service.update_by_local  Rails.env, args[:name]
+
+    end
   end
 
 
