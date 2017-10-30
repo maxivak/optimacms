@@ -23,7 +23,7 @@ module Optimacms
       end
     end
 
-    def update
+    def get
       @res = Optimacms::Appdata::Service.update(Rails.env, params[:content])
 
 

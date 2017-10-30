@@ -24,7 +24,7 @@
       %li.list-inline-item
         =link_to 'Save', '#', :class=>'btn btn-primary btn-lg', :"data-name"=>'command', :"data-content"=> content['name'], :"data-cmd"=>'save'
       %li.list-inline-item
-        =link_to 'Get', '#', :class=>'btn btn-primary btn-lg', :"data-name"=>'command', :"data-content"=> content['name'], :"data-cmd"=>'update'
+        =link_to 'Get', '#', :class=>'btn btn-primary btn-lg', :"data-name"=>'command', :"data-content"=> content['name'], :"data-cmd"=>'get'
 
 
 
@@ -88,7 +88,7 @@ Get changes from remote repo
 or<br>
 * run on server
 %pre
-  RAILS_ENV=#{Rails.env} rake appdata:update
+  content=NAME RAILS_ENV=#{Rails.env} rake appdata:update
 
 * run from local project
 %pre

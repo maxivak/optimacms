@@ -105,8 +105,7 @@ Optimacms::Engine.routes.draw do
     resources :appdata, only: [:index] do
       collection do
         get 'save'
-        get 'update'
-
+        get 'get'
       end
     end
 
