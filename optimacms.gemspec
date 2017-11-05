@@ -40,7 +40,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'paperclip'
   s.add_dependency 'ancestry'
 
-  #s.add_dependency 'globalize', '5.1.0.beta1'
   s.add_dependency 'globalize'
   #s.add_dependency 'activemodel-serializers-xml', '1.0.1'
   #s.add_dependency 'globalize-accessors'
