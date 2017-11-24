@@ -165,7 +165,8 @@ module Optimacms
         #c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.compiled_view_path, @pagedata.layout.basename)
         c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.template_path, @pagedata.layout.basename)
 
-        render text: c
+        #puts "#{c}"
+        render_base inline: c
 
         return
 =begin
