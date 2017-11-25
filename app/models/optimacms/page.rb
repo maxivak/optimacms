@@ -56,7 +56,7 @@ module Optimacms
     #### folder
 
     def parent_title
-      self.folder.title
+      self.folder.title rescue nil
     end
 
 
