@@ -3,16 +3,17 @@
     = render 'optimacms/admin/shared/header'
 
     .main-container
-      #sidebar.sidebar
-        = render 'optimacms/admin/shared/leftmenu'
+      .row.no-gutters
+        #sidebar.sidebar.col-md-2
+          = render 'optimacms/admin/shared/leftmenu'
 
-      .main-content
-        .main-content-inner
-          = render 'optimacms/admin/shared/breadcrumbs'
-          = render 'optimacms/admin/shared/flash'
+        .main-content.col-md-10
+          .main-content-inner
+            = render 'optimacms/admin/shared/breadcrumbs'
+            = render 'optimacms/admin/shared/flash'
 
-          .page-content
-            = yield
+            .page-content
+              = yield
 
 
   = render 'optimacms/admin/shared/footer'

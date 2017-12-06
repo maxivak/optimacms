@@ -70,22 +70,25 @@ body {
 }
 
 .main-content {
-  min-height: 100%;
-  padding: 0;
+  min-height1: 100%;
+  padding1: 0;
 }
 
 
+/*
 .main-content-inner {
   float: left;
   width: 100%;
 }
+*/
+
 
 .sidebar {
-  float: left;
-  padding-left: 0;
-  padding-right: 0;
-  position: static;
-  width: 240px;
+  float1: left;
+  padding-left1: 0;
+  padding-right1: 0;
+  position1: static;
+  width1: 240px;
   min-height1:600px;
 }
 
@@ -105,7 +108,7 @@ body {
 }
 
 .sidebar + .main-content {
-  margin-left: 240px;
+  margin-left1: 240px;
 }
 
 
