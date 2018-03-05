@@ -1,13 +1,16 @@
 = stylesheet_link_tag "optimacms/admin_site", media: "all"
 
-.admin_edit_page_box
-  .commands
-    =link_to "/admin/templates/#{@pagedata.template.id}/edit", target: "_blank", class: "link" do
-      %span.cont
-        Edit&nbsp;page
+- if @pagedata && @pagedata.template
+  .admin_edit_page_box
+    .commands
+      =link_to "/admin/templates/#{@pagedata.template.id}/edit", target: "_blank", class: "link" do
+        %span.cont
+          Edit&nbsp;page
 
-  = render template: @pagedata.template.path
+    = render template: @pagedata.template_path
 
+- else
+  ERROR
 
 / data links
 -#
