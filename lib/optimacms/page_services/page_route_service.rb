@@ -26,7 +26,7 @@
           where = where_base + "url = '#{lang}'"
           rows = Page.where(where).order(order).all
 
-          pagedata.page = rows[0] if row.count>0
+          pagedata.page = rows[0] if rows.count>0
         end
 
         return pagedata if pagedata.page.nil?
