@@ -1,4 +1,14 @@
+
+## 0.3.17
+
+* Bug fixes:
+* fix eval pagedata
+
+
 ## 0.3.16
 
 * Added backups of metadata, import metadata
 * Added sync of application data
+
+* Bug fixes:
+* fix edit in admin mode for multilang pages
