@@ -6,7 +6,7 @@ require_dependency "../../lib/optimacms/renderer/admin_page_renderer.rb"
 module Optimacms
 
   class PagesController < Optimacms::ApplicationController
-    include Optimacms::Mycontroller
+    include ::Optimacms::Mycontroller
 
     # render
     unless respond_to?(:render_base)
@@ -14,7 +14,7 @@ module Optimacms
     end
 
 
-    include Optimacms::Renderer::AdminPageRenderer
+    include ::Optimacms::Renderer::AdminPageRenderer
 
     renderer_admin_edit
 

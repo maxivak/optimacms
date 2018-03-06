@@ -52,7 +52,7 @@ module Optimacms
 
     config.before_initialize do
       ActiveSupport.on_load :action_controller do
-        include Optimacms::Mycontroller
+        include ::Optimacms::Mycontroller
 
         ::ActionController::Base.helper Optimacms::Engine.helpers
       end
