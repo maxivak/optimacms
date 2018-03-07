@@ -1,3 +1,7 @@
+## 0.3.19
+
+* move rake tasks to folder 'tasks'
+
 
 ## 0.3.17
 
