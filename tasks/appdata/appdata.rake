@@ -1,6 +1,7 @@
 # sync
 namespace :appdata do
   require_relative '../../lib/optimacms/appdata/settings'
+  require_relative '../../lib/optimacms/appdata/service'
 
   task :check => :environment do
     e = Rails.env
@@ -111,12 +112,23 @@ namespace :appdata do
     end
 
 
-    task :setup => :environment do
+    task :setup, [:name] => :environment do |t, args|
       #
       res = Optimacms::Appdata::Service.content_setup_git Rails.env, args[:name]
 
     end
 
+    task :setup_all do
+      #
+      list = Optimacms::Appdata::Settings.list_content  Rails.env
+
+      list.each do |cont|
+        res = Optimacms::Appdata::Service.setup Rails.env, cont['name']
+      end
+
+
+
+    end
 
 
   end

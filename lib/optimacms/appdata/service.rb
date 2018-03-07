@@ -2,6 +2,16 @@ module Optimacms
   module Appdata
     class Service
 
+      def self.setup(_env, content_name)
+        #
+        content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
+
+        # storage
+        setup_storage content
+
+
+      end
+
       def self.save(_env, content_name)
         #
         content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
@@ -37,6 +47,20 @@ module Optimacms
         #Optimacms::Appdata::Service.run_rake_task("rake appdata:update  2>&1")
       end
 
+
+      ###
+      def self.setup_storage(content)
+        # storage
+        storage = content['storage']
+
+        if storage['type']=='git'
+          return setup_git_storage(storage)
+        elsif storage['type']=='ssh'
+        elsif storage['type']=='local'
+        end
+
+        return nil
+      end
 
       ### local storage
 

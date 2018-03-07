@@ -17,7 +17,7 @@ namespace :appdata do
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :rake, "appdata:setup"
+          execute :rake, "appdata:repo:setup_all"
         end
       end
     end
