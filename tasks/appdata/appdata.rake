@@ -9,10 +9,24 @@ namespace :appdata do
 
   end
 
+  ### setup
+  task :setup_all do
+    #
+    list = Optimacms::Appdata::Settings.list_content  Rails.env
+
+    list.each do |cont|
+      res = Optimacms::Appdata::Service.setup Rails.env, cont['name']
+    end
+
+
+
+  end
+
+
   # get from remote storage and update the project
-  task :update => :environment do
+  task :update, [:name] => :environment do |t, args|
     # input
-    content_name = ENV['name']
+    content_name = ENV['name'] || args[:name]
 
     #
     content = Optimacms::Appdata::Settings.get_content_info(Rails.env, content_name)
@@ -30,9 +44,9 @@ namespace :appdata do
   end
 
   # save current data to remote storage
-  task :save => :environment do
+  task :save, [:name] => :environment do |t, args|
     # input
-    content_name = ENV['name']
+    content_name = ENV['name'] || args[:name]
 
     #
     content = Optimacms::Appdata::Settings.get_content_info(Rails.env, content_name)
@@ -59,7 +73,6 @@ namespace :appdata do
       res = Optimacms::Appdata::Service.save_by_local  Rails.env, args[:name]
 
     end
-
 
 
     task :update, [:name] => :environment do |t, args|
@@ -118,20 +131,11 @@ namespace :appdata do
 
     end
 
-    task :setup_all do
-      #
-      list = Optimacms::Appdata::Settings.list_content  Rails.env
 
-      list.each do |cont|
-        res = Optimacms::Appdata::Service.setup Rails.env, cont['name']
-      end
-
-
-
-    end
 
 
   end
+
 
 
 

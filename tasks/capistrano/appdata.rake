@@ -17,7 +17,7 @@ namespace :appdata do
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :rake, "appdata:repo:setup_all"
+          execute :rake, "appdata:setup_all"
         end
       end
     end
@@ -75,23 +75,23 @@ namespace :appdata do
 =end
 
 
-  task :server_save do
+  task :server_save, [:name] => :environment do |t, args|
     on roles(:app) do
       within release_path do
         #with fetch(:bundle_env_variables, {}) do
         with rails_env: fetch(:rails_env) do
-          execute :rake, "appdata:save"
+          execute :rake, "appdata:save['#{args[:name]}']"
         end
       end
     end
   end
 
 
-  task :server_update do
+  task :server_update, [:name] => :environment do |t, args|
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :rake, "appdata:update"
+          execute :rake, "appdata:update['#{args[:name]}']"
           #execute :bundle, 'exec', "rake appdata:update"
           #execute "cd #{release_path} && RAILS_ENV=#{e} bundle exec rake appdata:update"
           #execute "RAILS_ENV=#{e} rake appdata:update"
