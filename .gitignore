@@ -8,6 +8,7 @@ test/dummy/log/*.log
 test/dummy/tmp/
 test/dummy/.sass-cache
 
+node_modules
 yarn.lock
 
 spec/dummy/config/secrets.yml
