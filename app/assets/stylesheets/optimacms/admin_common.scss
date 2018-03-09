@@ -1,8 +1,11 @@
-@import "font-awesome";
+$fa-font-path: "../font-awesome/fonts";
+@import 'font-awesome/scss/font-awesome';
+
 
 @import "admin_variables";
 
-@import 'bootstrap/dist/css/bootstrap';
+// Bootstrap and its default variables
+@import "bootstrap/scss/bootstrap";
 
 
 
