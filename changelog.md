@@ -1,3 +1,14 @@
+## 0.3.22
+
+* fix font-awesome
+* refactor css
+ 
+ 
+## 0.3.21
+
+* appdata sync
+
+
 ## 0.3.19
 
 * move rake tasks to folder 'tasks'
