@@ -1,3 +1,8 @@
+## 0.3.23
+
+* refactor css in admin area
+
+
 ## 0.3.22
 
 * fix font-awesome
