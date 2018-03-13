@@ -1,17 +1,18 @@
-.dropdown
+.btn-group
   %button.btn.btn-secondary.btn-sm.dropdown-toggle(type="button" id="ddTopmenuUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
     %span.user-info Admin
 
   .dropdown-menu.dropdown-menu-right(aria-labelledby="ddTopmenuUser")
     %a.dropdown-item{:href => '#'}
-      = fa_icon "user"
+      %i.fa.fa-user
       #{current_cms_admin_user.email}
 
     %a.dropdown-item{ href: "#"}
-      = fa_icon "cog"
+      %i.fa.fa-cog
       Settings
     %a.dropdown-item{ href: "/profile"}
-      <i class="fa fa-user"></i> Profile
+      %i.fa.fa-user
+      Profile
 
     .dropdown-divider
 

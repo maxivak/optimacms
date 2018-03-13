@@ -12,7 +12,7 @@
         %b.arrow.fa.fa-angle-down.for-expanded
         %b.arrow.fa.fa-angle-left.for-collapsed
 
-      %ul.submenu.collapse.show{id: "submenu#{ind}"}
+      %ul.submenu.list-unstyled.collapse.show{id: "submenu#{ind}"}
         - if m[:submenu]
           - m[:submenu].each do |sm|
             - u = sm[:route] ? send("#{sm[:route]}_path") : sm[:url]

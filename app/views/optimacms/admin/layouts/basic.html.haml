@@ -1,19 +1,16 @@
 - content_for :main do
-  #wrapper
-    = render 'optimacms/admin/shared/header'
+  = render 'optimacms/admin/shared/header'
 
-    .main-container
-      .row.no-gutters
-        #sidebar.sidebar.col-md-2
-          = render 'optimacms/admin/shared/leftmenu'
+  .container-fluid.p-0.m-0
+    .row.no-gutters
+      .col-lg-2
+        = render 'optimacms/admin/shared/leftmenu'
+      .col
+        = render 'optimacms/admin/shared/breadcrumbs'
+        = render 'optimacms/admin/shared/flash'
 
-        .main-content.col-md-10
-          .main-content-inner
-            = render 'optimacms/admin/shared/breadcrumbs'
-            = render 'optimacms/admin/shared/flash'
-
-            .page-content
-              = yield
+        .container.pl-4
+          = yield
 
 
   = render 'optimacms/admin/shared/footer'
