@@ -17,6 +17,10 @@ code, pre{
   color: #134161;
 }
 
+.no-corners{
+  @include border-radius(0);
+}
+
 /* forms */
 /*
 .radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
