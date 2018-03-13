@@ -1,59 +1,31 @@
 //== Colors
 
-$col-blue-1: #1e6887;
-$col-blue-2: #2679b5;
-$col-blue-3: #438eb9;
-$col-blue-4: #8089a0;
-
-
-$col-blue-dark: #3b73b1;
-$col-blue-darker: #205081;
-$col-blue-light: #3879bb;
-$col-blue-lighter: #4c9ac9;
-$col-blue-lightest: #59afe1;
-$col-blue-medium: #009ac4;
-
-
-$col-green-lighter: #5fb611;
-$col-green-light: #67ab49;
-$col-green-med: #72c02c;
-$col-green-dark: #7ca60a;
-$col-green-darker: #51873a;
+$primary: #3b73b1;
+$secondary: #6bb34d;
 
 
 
-$gray-darker:            lighten(#000, 13.5%); // #222
-$gray-dark:              #7b8a8b;   // #333
-$gray:                   #95a5a6; // #555
-$gray-light:             #b4bcc2;   // #999
-$gray-lighter:           #ecf0f1; // #eee
+$light: #70a1e3;
+$dark: #004881;
 
-$gray-light-light: #f5f5f5;
-
-
-/* main colors */
-$col-blue: $col-blue-light;
-$col-green: $col-green-lighter;
+$secondary-light: #9de67c;
+$secondary-dark: #39831e;
 
 
 
-//## Gray and brand colors for use across Bootstrap.
-$col-primary: $col-blue;
-$col-second: $col-green;
+$primary-darkest: hsl(hue($primary), saturation($primary), 20%);
+$primary-dark: hsl(hue($primary), 27%, 20%);
 
-$brand-primary:         $col-primary;
-$brand-success:         $col-second;
-
-$brand-info:            $col-primary;
-$brand-warning:         #F39C12;
-$brand-danger:          #E74C3C;
+$primary-desat: hsl(hue($primary), 18%, 54%);
+$primary-desat-light: hsl(hue($primary), 18%, 74%);
+$primary-desat-dark: hsl(hue($primary), 18%, 40%);
+$primary-desat-darker: hsl(hue($primary), 18%, 20%);
 
 
-//
 
-$col-light-bg: #f5f5f5;
-$col-sel-bg: $col-blue;
-$col-bg-light: #d3d6db;
+// reassign color scheme
+$theme-colors: (
+  primary: $primary,
+  secondary: $secondary,
 
-$col-font-blue-dark: #384f59;
-
+);

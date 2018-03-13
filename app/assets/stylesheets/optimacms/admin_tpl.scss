@@ -1,48 +1,31 @@
-@import "admin_variables";
-@import "skins/noskin";
+//@import "admin_variables";
 
 
+/* fix bootstrap */
 
-/* html */
-html,
-body {
-  height: 100%;
-}
-
-/* Wrapper for page content to push down footer */
-#wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-
-  /* Negative indent footer by its height */
-  margin: 0 auto 20px;
-  /* Pad bottom by footer height */
-  padding: 0 0 0px;
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
 }
 
 
+/* common */
 
-
-/* main layout */
-#topbar{
-  padding: 3px 10px 3px 12px;
-  background-color: $col-blue-1;
-
-
-  a.navbar-brand{
-    color: #ffffff;
-  }
-
-  ul.nav{
-    a{
-      color: $gray;
-    }
-  }
+code, pre{
+  border:1px #333333 dotted;
+  background-color: #e4edf4;
+  color: #134161;
 }
 
+/* forms */
+/*
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+  margin-left: -30px;
+}
+*/
 
-// solution 1
+
+// sidebar. solution 1
 
 .main-container:before {
   background-color: #ffffff;
@@ -75,12 +58,6 @@ body {
 }
 
 
-/*
-.main-content-inner {
-  float: left;
-  width: 100%;
-}
-*/
 
 
 .sidebar {
@@ -113,90 +90,15 @@ body {
 
 
 
-.page-content {
-  background-color: #ffffff;
-  margin: 0;
-  position: relative;
-}
-
-
-.page-content{
-  padding: 0px 14px 20px 24px;
-}
-
-
-
-/* Set the fixed height of the footer here */
-#footer {
-  min-height: 60px;
-  background: none repeat scroll 0 0 #272727;
-  padding: 40px 0;
-  color: #dedede;
-
-  a {
-    margin: 0 2px;
-    font-size:13px;
-    color: $gray-light;
-    text-decoration: underline;
-
-    &:hover{
-      color:$gray-lighter;
-    }
-  }
-
-
-  .t{
-    color: #ffffff;
-  }
-
-  #footer-socials {
-    margin-top: 12px;
-    text-align: left;
-
-    li a {
-      color: #777777;
-      font-size: 17px;
-    }
-
-  }
-
-}
-
-
-/* common */
-
-.clear{
-  clear:both;
-}
-
-.pad20{
-  padding:20px;
-}
-
-
-
-code, pre{
-  border:1px #333333 dotted;
-  background-color: #e4edf4;
-  color: #134161;
-}
-
-/* forms */
-/*
-.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
-  margin-left: -30px;
-}
-*/
 
 
 /* nav list */
 
-ul#leftmenu,
-ul.nav-list{
+ul#leftmenu{
   list-style-type: none;
   padding-left: 0;
 
-  font-size: 13px;
+  //font-size: 13px;
 
 
   > li {
@@ -299,13 +201,13 @@ ul.nav-list{
 
   h1{
     margin: 0 8px 0px 0px;
-    color: $col-blue-2;
+    color: $primary-darkest;
     font-size: 24px;
     font-weight: 400;
     padding: 0;
 
     small {
-      color: $col-blue-4;
+      color: $primary;
       font-size: 14px;
       font-weight: 400;
       margin: 0 6px;
@@ -313,23 +215,5 @@ ul.nav-list{
   }
 }
 
-
-/* breadcrumbs */
-/*
-div.breadcrumbs{
-  background-color: $gray-light-light;
-  border-bottom: 1px solid #e5e5e5;
-  line-height: 30px;
-  min-height: 35px;
-  padding: 4px 0px 4px 0;
-  position: relative;
-  z-index: auto;
-  font-size: 13px;
-
-  ul.breadcrumb{
-    margin-bottom:0px;
-  }
-}
-*/
 
 

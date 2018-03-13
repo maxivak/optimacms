@@ -1,7 +1,7 @@
-$fa-font-path: "../font-awesome/fonts";
-@import 'font-awesome/scss/font-awesome';
+// font-awesome
+@import "font_awesome";
 
-
+//
 @import "admin_variables";
 
 // Bootstrap and its default variables
@@ -9,3 +9,6 @@ $fa-font-path: "../font-awesome/fonts";
 
 
 
+//
+@import "admin_tpl";
+@import "skins/noskin";
