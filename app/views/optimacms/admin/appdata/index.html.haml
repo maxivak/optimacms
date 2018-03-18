@@ -5,7 +5,7 @@
 - @list.each do |content|
   %h2 #{content['name']}
   Storage:<br>
-  #{content['storage']['type']}
+  Type: #{content['storage']['type']}
   %br
   Dirs: #{content['dirs'].map{|r| r}.join(", ") }
   %br
@@ -71,14 +71,17 @@
 %h1 Help
 
 %b Save changes
-Save current changes to remote repo
+%br
+Save current changes to remote repo:
+%br
 * run on server
 %pre
-  name=NAME RAILS_ENV=#{Rails.env} rake appdata:save
+  RAILS_ENV=#{Rails.env} rake appdata:save['CONTENT_NAME']
 
 * run from local project
 %pre
-  cap #{Rails.env} deploy:appdata:server_save
+  name=CONTENT_NAME cap #{Rails.env} deploy:appdata:server_save
+
 
 %br
 %br
@@ -87,15 +90,13 @@ Save current changes to remote repo
 %b Get changes
 Get changes from remote repo
 %br
-
-or<br>
 * run on server
 %pre
-  name=NAME RAILS_ENV=#{Rails.env} rake appdata:update
+  name=CONTENT_NAME RAILS_ENV=#{Rails.env} rake appdata:update
 
-* run from local project
+* or run from local project
 %pre
-  cap #{Rails.env} deploy:appdata:server_update
+  name=CONTENT_NAME cap #{Rails.env} deploy:appdata:server_update
 
 
 
