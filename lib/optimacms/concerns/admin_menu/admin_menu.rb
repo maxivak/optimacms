@@ -43,12 +43,12 @@ module Optimacms::Concerns::AdminMenu::AdminMenu
     def get_menu_system
       [
           {title: 'System', url: nil, submenu: [
+              {title: 'Info', url: Optimacms::Engine.routes.url_helpers.maintenance_info_path},
               {title: 'Logs', url: Optimacms::Engine.routes.url_helpers.rails_logs_path},
               {title: 'Maintenance', url: Optimacms::Engine.routes.url_helpers.maintenance_path},
-              {title: 'Sync app data', url: Optimacms::Engine.routes.url_helpers.appdata_path},
+              {title: 'App data', url: Optimacms::Engine.routes.url_helpers.appdata_path},
               #{title: 'Backups', url: false},
-              {title: 'Backup metadata', url: Optimacms::Engine.routes.url_helpers.backup_metadata_path},
-              {title: 'Info', url: Optimacms::Engine.routes.url_helpers.maintenance_info_path}
+              {title: 'Metadata', url: Optimacms::Engine.routes.url_helpers.backup_metadata_path},
             ]
           }
 
