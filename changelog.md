@@ -1,3 +1,8 @@
+## 0.3.24
+
+* appdata - fix for storage with ssh password
+
+
 ## 0.3.23
 
 * refactor css in admin area
