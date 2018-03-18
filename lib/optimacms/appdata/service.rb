@@ -142,13 +142,19 @@ module Optimacms
         storage = content['storage']
 
         #
-        s_ssh = " #{storage['ssh_user']}@#{storage['host']}"
-        ssh_opts = "-p #{storage['ssh_port']||22} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+        cmd = SshCommand.new
+        ssh_options = {
+            port: storage['ssh_port'],
+            user: storage['ssh_user'],
+            password: storage['ssh_password'],
+            key: storage['ssh_key']
+        }
 
-        if storage['ssh_key'] && storage['ssh_key']!=''
-          ssh_opts << " -i #{storage['ssh_key']}"
-        end
-
+        #s_ssh = " #{storage['ssh_user']}@#{storage['host']}"
+        #ssh_opts = "-p #{storage['ssh_port']||22} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+        #if storage['ssh_key'] && storage['ssh_key']!=''
+        #  ssh_opts << " -i #{storage['ssh_key']}"
+        #end
 
         # sync dirs
         content['dirs'].each do |d|
@@ -159,12 +165,19 @@ module Optimacms
 
 
           # create remote dir
-          %x[ssh -t #{ssh_opts} #{s_ssh} mkdir -p #{d_remote}]
+          #%x[ssh -t #{ssh_opts} #{s_ssh} mkdir -p #{d_remote}]
+          cmd_create = %Q(mkdir -p #{d_remote})
+          res_cmd_create = cmd.run_ssh_cmd(storage['host'], ssh_options, cmd_create)
+
+          if res_cmd_create[:res]!=1
+            raise "Cannot create dir: #{res_cmd_create[:error]}"
+          end
+
 
           # rsync
-          cmd = %Q(rsync -Lavrt -e "ssh #{ssh_opts}" #{d_local_full} #{s_ssh}:#{d_remote} --delete)
-          puts "#{cmd}"
-          %x[#{cmd}]
+          cmd_rsync = RsyncCommand.build_cmd_with_ssh_save(storage, d_local_full, d_remote)
+          #puts "#{cmd_rsync}"
+          output = %x[#{cmd_rsync}]
 
         end
 
@@ -182,16 +195,14 @@ module Optimacms
 
         #
         content = Optimacms::Appdata::Settings.get_content_info(_env, content_name)
-        #puts "content: #{content}"
         storage = content['storage']
 
         #
-        s_ssh = " #{storage['ssh_user']}@#{storage['host']}"
-        ssh_opts = "-p #{storage['ssh_port']||22} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-
-        if storage['ssh_key'] && storage['ssh_key']!=''
-          ssh_opts << " -i #{storage['ssh_key']}"
-        end
+        #s_ssh = " #{storage['ssh_user']}@#{storage['host']}"
+        #ssh_opts = "-p #{storage['ssh_port']||22} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+        #if storage['ssh_key'] && storage['ssh_key']!=''
+        #  ssh_opts << " -i #{storage['ssh_key']}"
+        #end
 
 
         # sync dirs
@@ -200,13 +211,16 @@ module Optimacms
           d_local = File.join(File.dirname(d), File.basename(d))+"/"
           d_local_full = File.join(Rails.root, d_local)
 
-          #
+          # create local dir
           %x[mkdir -p #{d_local_full}]
 
+
           # rsync
-          cmd = %Q(rsync -Lavrt -e "ssh #{ssh_opts}" #{s_ssh}:#{d_remote} #{d_local_full} --delete)
-          puts "#{cmd}"
-          %x[#{cmd}]
+          cmd_rsync = RsyncCommand.build_cmd_with_ssh_update(storage, d_local_full, d_remote)
+          #puts "#{cmd_rsync}"
+          output = %x[#{cmd_rsync}]
+
+          #cmd = %Q(rsync -Lavrt -e "ssh #{ssh_opts}" #{s_ssh}:#{d_remote} #{d_local_full} --delete)
 
         end
 
