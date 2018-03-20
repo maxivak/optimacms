@@ -48,8 +48,9 @@ module Optimacms
 
       path = File.join(BackupMetadata::Backup.dir_backups, f)
 
-      #send_data File.read(path), filename: f
-      send_file path
+      data = IO.read(path)
+      send_data data, filename: f
+      #send_file path
     end
 
     def delete
