@@ -29,7 +29,8 @@ module Optimacms
         pages_all.each do |p|
           s = JSON.pretty_generate(page_to_hash(p))
 
-          f = File.join(d_pages, page_filename(p)+".json")
+          pfname = page_filename(p)
+          f = File.join(d_pages, pfname+".json")
 
           File.open(f, "w+") do |f|
             f.write(s)
@@ -194,8 +195,10 @@ module Optimacms
       def self.page_filename(row)
         if row.parent_id && row.parent_id>0 && row.folder
           "#{row.folder.name}--#{row.name}" rescue "error-#{row.id}"
-        else
+        elsif row.name
           row.name
+        else
+          "#{row.id}"
         end
 
       end
@@ -204,7 +207,6 @@ module Optimacms
       ###
 
       def self.template_filename(row)
-
         row.basepath.gsub /\//, "--"
       end
 
