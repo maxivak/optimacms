@@ -48,6 +48,7 @@ module Optimacms
 
       path = File.join(BackupMetadata::Backup.dir_backups, f)
 
+      #data = File.open(path, 'rb') { |f| f.read }
       data = IO.read(path)
       send_data data, filename: f
       #send_file path
