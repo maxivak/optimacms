@@ -5,10 +5,10 @@
       .card
         .card-body
           %h3.card-title.text-uppercase
-            Log in
-          %h6.card-subtitle.mt-2.mb-2.text-muted
+            Admin Area
+          -#%h6.card-subtitle.mt-2.mb-2.text-muted
             OptimaCMS Admin Area
-          %p.card-text
+          -#%p.card-text
 
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .form-group
@@ -32,11 +32,10 @@
               %p.mt-3
                 = render "devise/shared/links"
 
-              %hr.mt-2
-              %p
-                =link_to 'OptimaCMS', 'https://github.com/maxivak/optimacms'
-                %br
-                v.#{Optimacms::Common::Common.version}
+            %hr.mt-2
+            %p
+              =link_to 'OptimaCMS', 'https://github.com/maxivak/optimacms'
+              v.#{Optimacms::Common::Common.version}
 
 
 

@@ -1,6 +1,6 @@
-## 0.3.27
+## 0.3.28
 
-* login with username or email
+* admin login with username or email
 
 
 ## 0.3.26

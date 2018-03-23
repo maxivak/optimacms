@@ -11,7 +11,9 @@ module Optimacms
           #path: ActiveAdmin.application.default_namespace || "/",
           controllers: Optimacms::Devise.controllers,
           path_names: { sign_in: 'login', sign_out: "logout" },
-          scoped_views: true
+          options: {
+              scoped_views: true
+          }
           #sign_out_via: [*::Devise.sign_out_via, ActiveAdmin.application.logout_link_method].uniq
       }
     end
