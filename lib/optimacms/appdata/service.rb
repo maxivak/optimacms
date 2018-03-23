@@ -273,18 +273,18 @@ module Optimacms
           d_to = File.join(repo_local_path, d)
           d_to_base = File.dirname(d_to)
 
-          puts "copy from #{d_from} to #{d_to}"
+          #puts "copy from #{d_from} to #{d_to}"
 
           FileUtils.mkdir_p d_to
 
           # rsync or copy
           if res_rsync!=""
             cmd = %Q(rsync -Lavrt #{d_from}/ #{d_to}/)
-            puts "#{cmd}"
+            #puts "#{cmd}"
             %x(#{cmd})
           else
             # no rsync
-            puts "no rsync. copying..."
+            #puts "no rsync. copying..."
 
             FileUtils.cp_r d_from, d_to_base
           end
