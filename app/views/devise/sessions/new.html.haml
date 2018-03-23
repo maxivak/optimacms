@@ -29,9 +29,14 @@
             .actions
               = f.submit "Log in", class: 'btn btn-primary btn-lg'
 
-              %hr.mt-4
-              = render "devise/shared/links"
+              %p.mt-3
+                = render "devise/shared/links"
 
+              %hr.mt-2
+              %p
+                =link_to 'OptimaCMS', 'https://github.com/maxivak/optimacms'
+                %br
+                v.#{Optimacms::Common::Common.version}
 
 
 
