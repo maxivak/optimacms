@@ -1,3 +1,19 @@
+## 0.3.27
+
+* login with username or email
+
+
+## 0.3.26
+
+* https for media files
+
+
+## 0.3.25
+
+* backup metadata
+  * fixed for empty page names
+  
+  
 ## 0.3.24
 
 * appdata - fix for storage with ssh password
