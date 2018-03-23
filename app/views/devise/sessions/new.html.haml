@@ -1,0 +1,39 @@
+
+.container
+  .row.justify-content-center
+    .col-xl-4.col-lg-4.col-md-6.col-12
+      .card
+        .card-body
+          %h3.card-title.text-uppercase
+            Log in
+          %h6.card-subtitle.mt-2.mb-2.text-muted
+            OptimaCMS Admin Area
+          %p.card-text
+
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form-group
+              = f.label :login
+              %br
+              = f.text_field :login, autofocus: true, class: 'form-control'
+
+            .form-group
+              = f.label :password
+              %br
+              = f.password_field :password, autocomplete: "off", class: 'form-control'
+
+            - if devise_mapping.rememberable?
+              .form-group
+                = f.check_box :remember_me
+                = f.label :remember_me
+
+            .actions
+              = f.submit "Log in", class: 'btn btn-primary btn-lg'
+
+              %hr.mt-4
+              = render "devise/shared/links"
+
+
+
+
+
+
