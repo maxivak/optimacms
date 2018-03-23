@@ -2,7 +2,7 @@
   "name": "optimacms",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "ssh://git@git.friendlydata.com:10022/friendlydata/cms.git",
+  "repository": "git@github.com:maxivak/optimacms.git",
   "author": "mmx <maxivak@gmail.com>",
   "license": "MIT",
   "dependencies": {
