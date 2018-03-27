@@ -1,7 +1,15 @@
+## 0.3.29
+
+* Pages
+  * folder has attribute 'name'
+* fixed pages for unique names
+    
+* fixed import pages in metadata
+
+
 ## 0.3.28
 
 * admin login with username or email
-
 
 ## 0.3.26
 
