@@ -63,7 +63,7 @@
       url = @cache_page_urls.fetch(page_name.to_s, nil)
 
       if url.nil?
-        page = Page.find_by_name(page_name)
+        page = Page.w_page.where(name: page_name).first
         url = page.url if page
       end
 
