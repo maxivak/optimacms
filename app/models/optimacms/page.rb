@@ -2,18 +2,37 @@ module Optimacms
   class Page < ActiveRecord::Base
     self.table_name = 'cms_pages'
 
+
+    # relations
+
     belongs_to :layout, :foreign_key => 'layout_id', :class_name => 'Template'
     belongs_to :template, :foreign_key => 'template_id', :class_name => 'Template'
     belongs_to :folder, :foreign_key => 'parent_id', :class_name => 'Page'
     has_many :translations, :foreign_key => 'item_id', :class_name => 'PageTranslation', :dependent => :destroy
     accepts_nested_attributes_for :translations
-
     accepts_nested_attributes_for :template
 
     #has_many :page_translations
     #accepts_nested_attributes_for :page_translations
 
+    # validation
+    #validates :name, uniqueness: { scope: :w_page}
+
+    with_options unless: :is_folder? do |m|
+      m.validates :name, uniqueness: {
+          conditions: -> {
+            w_page
+          }
+      }
+    end
+
+    with_options if: :is_folder? do |m|
+      m.validates :name, uniqueness: { scope: :parent_id}
+    end
+
+
     # callbacks
+    before_save :_before_validate
     before_save :_before_save
 
     # modules
@@ -23,6 +42,8 @@ module Optimacms
 
     # scopes
     scope :of_parent, lambda {  |parent_id| where_parent(parent_id) }
+    scope :w_page, -> { where(is_folder: false) }
+    scope :w_folder, -> { where(is_folder: false) }
 
     #
     paginates_per 10
@@ -57,6 +78,17 @@ module Optimacms
 
     def parent_title
       self.folder.title rescue nil
+    end
+
+
+    ### validate
+
+
+    ### callbacks
+
+
+    def _before_validate
+      self.parent_id = nil if self.parent_id && self.parent_id==0
     end
 
 

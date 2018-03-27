@@ -6,6 +6,7 @@
   = f.input :parent_id, as: :hidden
   = f.input :is_folder, as: :hidden
 
+  = f.input :name, label: "Name", hint: 'only English letters'
   = f.input :title, label: "Title"
 
   - if @item.parent_id

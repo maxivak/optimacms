@@ -11,6 +11,7 @@ module Optimacms
 
       #
       @parent_id = @filter.v('parent_id')
+      @parent_id = nil if @parent_id && @parent_id==0
       #@parent_id = (@parent_id || 0).to_i
       @parent = Page.find(@parent_id) rescue nil
 
