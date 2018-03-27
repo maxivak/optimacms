@@ -47,7 +47,7 @@ module Optimacms
 
 
         # find in db
-        row = Page.where(name: name).first
+        row = Page.where(name: name, is_folder: data['is_folder']).first
 
         if row.nil?
           res['status'] = 'new'
@@ -72,10 +72,12 @@ module Optimacms
 
         else
           # compare fields
-          basic_fields = ['title', 'url', 'parsed_url', 'pos', 'redir_url',
-                          'controller_action',
-                          'status', 'enabled',
-                          'is_translated']
+          fields_page = ['title', 'url', 'parsed_url', 'pos', 'redir_url',
+                         'controller_action',
+                         'status', 'enabled',
+                         'is_translated']
+          fields_folder = ['title', 'pos']
+          basic_fields = data['is_folder'] ? fields_folder : fields_page
 
           basic_fields.each do |field|
             if data[field]!=row.send(field.to_sym)
@@ -89,9 +91,9 @@ module Optimacms
           end
 
           # folder
-          if row.is_folder != data['is_folder']
-            res['changes'] << {field: 'is_folder', message: "is folder error"}
-          end
+          #if row.is_folder != data['is_folder']
+          #  res['changes'] << {field: 'is_folder', message: "is folder error"}
+          #end
 
 
 
