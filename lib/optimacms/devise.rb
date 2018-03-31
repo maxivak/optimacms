@@ -7,7 +7,7 @@ module Optimacms
     def self.config
       {
           class_name: "Optimacms::CmsAdminUser",
-          path: '/'+Optimacms.main_namespace+'/'+Optimacms.admin_namespace,
+          path: '/'+Optimacms.config.main_namespace+'/'+Optimacms.config.admin_namespace,
           #path: ActiveAdmin.application.default_namespace || "/",
           controllers: Optimacms::Devise.controllers,
           path_names: { sign_in: 'login', sign_out: "logout" },

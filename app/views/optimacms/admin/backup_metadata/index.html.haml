@@ -38,7 +38,7 @@ Base dir: #{Optimacms::BackupMetadata::Backup.dir_backups}
     $('#status_commands').html("Sending...");
 
     $.ajax({
-      url: "/#{Optimacms.admin_namespace}/backup_metadata/backup/?cmd=" + cmd,
+      url: "/#{Optimacms.config.admin_namespace}/backup_metadata/backup/?cmd=" + cmd,
       data: {},
       type: "GET",
       dataType: "json",

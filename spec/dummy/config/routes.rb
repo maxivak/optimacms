@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
 
   # extend admin area
-  scope '/'+Optimacms.main_namespace+'/'+Optimacms.admin_namespace, module: "optimacms" do
+  scope '/'+Optimacms.config.main_namespace+'/'+Optimacms.config.admin_namespace, module: "optimacms" do
     namespace :admin do
       resources :news do
         collection do
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
 
   # the last!!!
-  mount Optimacms::Engine => '/'+Optimacms.main_namespace
+  mount Optimacms::Engine => '/'+Optimacms.config.main_namespace
 
   #
   root to: 'home#index'

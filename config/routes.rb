@@ -3,7 +3,7 @@ Optimacms::Engine.routes.draw do
   get 'dev/:action', to: 'dev#action'
 
   # admin
-  scope '/'+Optimacms.admin_namespace, module: "admin" do
+  scope '/'+Optimacms.config.admin_namespace, module: "admin" do
     #devise_for :users, { class_name: "Optimacms::User", module: :devise }
 
     get '/' => 'dashboard#index', as: :dashboard

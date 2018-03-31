@@ -11,7 +11,7 @@ module Optimacms
     end
 
     def elfinder
-      dirpath = Optimacms.files_dir_path
+      dirpath = Optimacms.config.files_dir_path
       rootpath = File.join(Rails.public_path, dirpath)
       rooturl = '/'+dirpath
 

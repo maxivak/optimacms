@@ -50,7 +50,7 @@ Back to admin:
 
     var elf = $('#elfinder').elfinder({
       // set your elFinder options here
-      url: '/<%=Optimacms.admin_namespace%>/media_elfinder',  // connector URL
+      url: '/<%=Optimacms.config.admin_namespace%>/media_elfinder',  // connector URL
       transport : new elFinderSupportVer1(),
 
       getFileCallback: function(file) { // editor callback

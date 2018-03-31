@@ -1,3 +1,8 @@
+## 0.3.30
+
+* new configuration
+
+
 ## 0.3.29
 
 * Pages

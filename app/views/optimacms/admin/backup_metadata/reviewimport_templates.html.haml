@@ -89,7 +89,7 @@ Directory: #{@backup_basedir}
     obj_log.html("updating...");
 
     $.ajax({
-      url: "/#{Optimacms.admin_namespace}/backup_metadata/import_template/?backup_dir=#{@dirname}&filename="+filename+"&cmd=" + cmd,
+      url: "/#{Optimacms.config.admin_namespace}/backup_metadata/import_template/?backup_dir=#{@dirname}&filename="+filename+"&cmd=" + cmd,
       data: {},
       type: "GET",
       dataType: "json",

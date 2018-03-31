@@ -1,0 +1,19 @@
+default: &default
+  main_namespace: ''
+  admin_namespace: 'admin'
+  files_dir_path: 'img'
+
+development:
+  <<: *default
+  metadata:
+    backup_dir_base: "/data/backups/optimacms/local/metadata"
+
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+
+  metadata:
+    backup_dir_base: "/path/on/server/to/metadata"

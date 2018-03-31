@@ -1,7 +1,7 @@
 
 %ul#leftmenu.nav.nav-list.flex-column
   %li.nav-item
-    =link_to '/'+Optimacms.admin_namespace+'/dashboard', class: "nav-link active" do
+    =link_to '/'+Optimacms.config.admin_namespace+'/dashboard', class: "nav-link active" do
       Dashboard
 
   - Optimacms::AdminMenu::AdminMenu.get_menu.each_with_index do |m, ind|

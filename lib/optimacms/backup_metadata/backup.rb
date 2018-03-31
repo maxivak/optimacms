@@ -238,7 +238,7 @@ module Optimacms
 
 
       def self.dir_backups
-        Optimacms.backup_metadata[:dir_base]
+        Optimacms.config.metadata['backup_dir_base']
 
       end
 
