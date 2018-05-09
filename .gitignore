@@ -2,14 +2,19 @@
 .bundle/
 log/*.log
 pkg/
+
+node_modules
+yarn.lock
+
+public/assets
+
+
 test/dummy/db/*.sqlite3
 test/dummy/db/*.sqlite3-journal
 test/dummy/log/*.log
 test/dummy/tmp/
 test/dummy/.sass-cache
 
-node_modules
-yarn.lock
 
 spec/dummy/config/secrets.yml
 spec/dummy/config/appdata/appdata.yml
@@ -20,3 +25,4 @@ spec/dummy/log/*.log
 spec/dummy/tmp/
 spec/dummy/.sass-cache
 sped/dummy/node_modules
+sped/dummy/public/assets
