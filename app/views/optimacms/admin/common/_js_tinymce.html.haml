@@ -1,52 +1,6 @@
-<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
-<script type="text/javascript" src="/js/tinymce/jquery.tinymce.min.js"></script>
-
+= javascript_include_tag "optimacms/tinymce"
 
 :javascript
-    tinymce.init({
-      selector: "textarea.editor",
-      plugins: [
-              "advlist autolink lists link image charmap print preview anchor",
-              "searchreplace visualblocks code fullscreen",
-              "insertdatetime media table contextmenu paste"
-      ],
-      toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image myblock",
-      file_browser_callback : elFinderBrowser,
-      relative_urls: false,
-      content_css : [
-        "#{asset_path('optimacms/tinymce.css')}",
-        "#{asset_path('bootstrap4/bootstrap.css')}"
-      ],
-      protect2: [
-              /\<\/?(if|endif)\>/g, // Protect <if> & </endif>
-              /\<xsl\:[^>]+\>/g, // Protect <xsl:...>
-              /<\?php.*?\?>/g // Protect php code
-          ],
-      setup: function(editor) {
-          editor.addButton('myblock', {
-              title: 'block',
-              image: '/images/tinymce/icon_block2.png',
-              onclick: function() {
-                editor.insertContent('#{tinymce_editor_insert_block}');
-              }
-
-          });
-      }
-
-
-    });
-
-    function elFinderBrowser (field_name, url, type, win) {
-        tinymce.activeEditor.windowManager.open({
-          file: '/elfinder_manager',// use an absolute path!
-          title: 'elFinder 2.0',
-          width: 900,
-          height: 650,
-          resizable: 'yes'
-        }, {
-          setUrl: function (url) {
-            win.document.getElementById(field_name).value = url;
-          }
-        });
-        return false;
-    }
+  $( document ).ready(function() {
+    tinymce_init();
+  });
