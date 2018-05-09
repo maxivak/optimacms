@@ -24,6 +24,6 @@ spec/dummy/db/*.sqlite3-journal
 spec/dummy/log/*.log
 spec/dummy/tmp/
 spec/dummy/.sass-cache
-sped/dummy/node_modules
-sped/dummy/public/assets
-sped/dummy/public/uploads
+spec/dummy/node_modules
+spec/dummy/public/assets
+spec/dummy/public/uploads
