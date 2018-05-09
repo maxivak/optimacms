@@ -3,21 +3,15 @@
 <head>
   <title>File Manager</title>
 
+  <meta charset="utf-8">
 
-  <link rel="stylesheet" type="text/css" media="screen" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/smoothness/jquery-ui.css" />
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-
-
-  <script type="text/javascript" src="/elfinder/js/elfinder.min.js"></script>
-  <script src="/elfinder/js/proxy/elFinderSupportVer1.js" type="text/javascript" charset="utf-8"></script>
-  <script type="text/javascript" src="/elfinder/js/i18n/elfinder.ru.js"></script>
-
-  <link rel="stylesheet" type="text/css" media="screen" href="/elfinder/css/elfinder.min.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="/elfinder/css/theme.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
 
 
+  <%= javascript_include_tag 'optimacms/elfinder' %>
 
+
+  <%= stylesheet_link_tag    'optimacms/elfinder', media: 'all' %>
 
 </head>
 <body>
@@ -28,39 +22,70 @@ Back to admin:
 <%=link_to 'Templates', templates_path%>
 <br>
 
-<div id="elfinder"></div>
+<div id="elfinder"  style="box-sizing: border-box; "></div>
+
 
 <script type="text/javascript">
-  var FileBrowserDialogue = {
-    init: function() {
-    // Here goes your code for setting your custom things onLoad.
-    },
-    mySubmit: function (URL) {
-      // pass selected file path to TinyMCE
-      parent.tinymce.activeEditor.windowManager.getParams().setUrl(URL);
 
-      // close popup window
-      parent.tinymce.activeEditor.windowManager.close();
-    }
-  }
+    // Detect language (optional)
+    var lang = (function() {
+        var locq = window.location.search,
+            fullLang, locm, lang;
+        if (locq && (locm = locq.match(/lang=([a-zA-Z_-]+)/))) {
+            // detection by url query (?lang=xx)
+            fullLang = locm[1];
+        } else {
+            // detection by browser language
+            fullLang = (navigator.browserLanguage || navigator.language || navigator.userLanguage);
+        }
+        lang = fullLang.substr(0,2);
+        if (lang === 'ja') lang = 'jp';
+        else if (lang === 'pt') lang = 'pt_BR';
+        else if (lang === 'ug') lang = 'ug_CN';
+        else if (lang === 'zh') lang = (fullLang.substr(0,5) === 'zh-TW')? 'zh_TW' : 'zh_CN';
+        return lang;
+    })();
 
-  $().ready(function() {
-    var rails_csrf = {};
-    rails_csrf[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content');
 
-    var elf = $('#elfinder').elfinder({
-      // set your elFinder options here
-      url: '/<%=Optimacms.config.admin_namespace%>/media_elfinder',  // connector URL
-      transport : new elFinderSupportVer1(),
+    // elFinder options (REQUIRED)
+    // Documentation for client options:
+    // https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
+    var opts = {
 
-      getFileCallback: function(file) { // editor callback
-        // file.url - commandsOptions.getfile.onlyURL = false (default)
-        // file     - commandsOptions.getfile.onlyURL = true
-        FileBrowserDialogue.mySubmit(file); // pass selected file path to TinyMCE
-      }
-    }).elfinder('instance');
-  });
+        transport : new elFinderSupportVer1(),
+        resizable : true,
+        width : '100%',
+        height : '100%',
+        url: '/<%=Optimacms.config.admin_namespace%>/media_elfinder',  // connector URL
+        lang: lang                         // auto detected language (optional)
+    };
+
+
+    $().ready(function() {
+        var rails_csrf = {};
+        rails_csrf[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content');
+
+        // load jQueryUI CSS
+        //elFinder.prototype.loadCss('//cdnjs.cloudflare.com/ajax/libs/jqueryui/'+uiver+'/themes/smoothness/jquery-ui.css');
+
+        // Optional for Japanese decoder "extras/encoding-japanese.min"
+      /*
+       if (window.Encoding && Encoding.convert) {
+       elFinder.prototype._options.rawStringDecoder = function(s) {
+       return Encoding.convert(s,{to:'UNICODE',type:'string'});
+       };
+       }
+       */
+
+        // Make elFinder
+        $('#elfinder').elfinder(opts);
+
+    });
+
+
+
 </script>
+
 
 </body>
 </html>

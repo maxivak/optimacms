@@ -5,7 +5,7 @@ module Optimacms
     skip_before_action :verify_authenticity_token, :only => ['elfinder']
 
     def index
-       render :layout => false
+      render :layout => false
     end
 
     def elfinder
@@ -34,6 +34,7 @@ module Optimacms
       end
 
       render :json => r, :layout => false
+      #render :text => r.to_json, :layout => false
     end
   end
 end
