@@ -26,3 +26,4 @@ spec/dummy/tmp/
 spec/dummy/.sass-cache
 sped/dummy/node_modules
 sped/dummy/public/assets
+sped/dummy/public/uploads
