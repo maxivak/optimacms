@@ -26,13 +26,13 @@ Gem::Specification.new do |s|
 
   s.add_dependency "haml-rails", ">= 0.9.0"
 
-  s.add_dependency "jquery-rails" #, "~> 4.0.3"
-  s.add_dependency "jquery-ui-rails"
+  #s.add_dependency "jquery-rails" #, "~> 4.0.3"
+  #s.add_dependency "jquery-ui-rails"
   #s.add_dependency "coffee-rails" #, "~>4.1.0"
   #s.add_dependency "uglifier"
 
   s.add_dependency "sass-rails", '>= 5.0.4'
-  s.add_dependency "font-awesome-rails" #, '~> 4.3'
+  #s.add_dependency "font-awesome-rails" #, '~> 4.3'
 
   #s.add_dependency 'bootstrap-sass' #, '~> 3.3.4'
   #s.add_dependency 'bootstrap', '~> 4.0.0.alpha6'
@@ -49,6 +49,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple_search_filter' #, '>=0.1.1'
   s.add_dependency 'bootstrap_autocomplete_input', '>=0.2.0'
 
+
+  #s.add_dependency 'tinymce-rails'
 
   # test
   s.add_development_dependency 'rspec-rails'

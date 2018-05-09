@@ -21,8 +21,10 @@ end
 
 gem 'rails', '5.1.3'
 
+gem 'mysql2', '0.4.10'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data'
 
 
 gem 'puma', '~> 3.0'
@@ -47,11 +49,9 @@ gem 'haml-rails', '1.0.0'
 gem 'sass-rails' #, '~>5.0.6'
 gem 'uglifier', '3.2.0'
 #gem 'coffee-rails'
-gem 'jquery-rails'
+#gem 'jquery-rails'
 gem 'font-awesome-rails'
 
-# bootstrap v4
-#gem 'bootstrap', '~> 4.0.0.beta'
 
 
 # Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
@@ -76,10 +76,10 @@ gem 'ancestry'
 
 
 # tinymce
-gem 'tinymce-rails' #, '4.1.6'
+#gem 'tinymce-rails' #, '4.1.6'
 
 # editor
-gem 'el_finder' #, '1.1.12'
+gem 'el_finder', '1.1.13'
 
 #
 group :development, :test do
