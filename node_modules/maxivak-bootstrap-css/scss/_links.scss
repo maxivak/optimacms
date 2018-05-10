@@ -1,0 +1,36 @@
+/* links */
+
+a.normal{
+  color: $gray-700 !important;
+
+  &:hover{
+    color: $dark !important;
+  }
+}
+
+a.normal2{
+  color: $gray-700 !important;
+
+  &:hover{
+    color: $secondary-dark !important;
+    text-decoration: none;
+  }
+}
+
+a.dark{
+  color: $gray-700 !important;
+
+  &:hover{
+    color: $dark !important;
+  }
+}
+
+a.gray{
+  color: $gray-700 !important;
+
+  &:hover{
+    color: $gray-700 !important;
+  }
+}
+
+

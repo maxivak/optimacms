@@ -1,0 +1,73 @@
+
+/* icons */
+
+.icon-v1,
+.icon-v2,
+.icon-v3,
+.icon-v4 {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  transition: all .2s ease-in-out;
+}
+
+
+
+
+.icon-v1:hover,
+.icon-v2:hover,
+.icon-v3:hover,
+.icon-v4:hover {
+  text-decoration: none;
+}
+
+.icon-v1::before,
+.icon-v2::before,
+.icon-v3::before {
+  display: block;
+}
+
+.icon-v1 > i,
+.icon-v2 > i,
+.icon-v3 > i,
+.icon-v4 > i,
+.icon-v1 > span > i,
+.icon-v2 > span > i,
+.icon-v3 > span > i,
+.icon-v4 > span > i
+{
+  position: relative;
+  top: 50%;
+  display: block;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+
+
+.icon-big{
+  width: 3.92857rem;
+  height: 3.92857rem;
+  font-size: 1.57143rem;
+
+}
+
+
+
+
+.icon-v2, .icon-v2 .icon__elem-regular,
+.icon-v2 .icon__elem-hover, .icon-v3, .icon-v3 .icon__elem-regular,
+.icon-v3 .icon__elem-hover, .icon-v4 .icon-v4-inner, .icon-v4 .icon__elem-regular,
+.icon-v4 .icon__elem-hover, .icon-v5 {
+  width: 3.92857rem;
+  height: 3.92857rem;
+  font-size: 1.57143rem;
+}
+
+
+
+.rounded-50x {
+  border-radius: 50%;
+}

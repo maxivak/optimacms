@@ -1,0 +1,24 @@
+{
+  "name": "tinymce-dist",
+  "homepage": "https://github.com/sadiqhabib/tinymce-dist",
+  "description": "",
+  "main": [
+    "tinymce.full.js",
+    "jquery.tinymce.min.js"
+  ],
+  "authors": [
+    "Sadiq"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7"
+  }
+}
