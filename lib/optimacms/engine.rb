@@ -60,7 +60,7 @@ module Optimacms
 
     initializer "optimacms assets precompile" do |app|
 
-      app.config.assets.precompile += %w(admin.css admin.js optimacms/admin.css optimacms/admin.js )
+      app.config.assets.precompile += %w(admin.css admin.js optimacms/admin.css optimacms/admin.js optimacms/tinymce.css optimacms/tinymce.js  optimacms/ace.js optimacms/elfinder.css optimacms/elfinder.js)
 
 
     end

@@ -2,8 +2,6 @@
 #Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.paths << Optimacms::Engine.root.join('node_modules')
 
-#Rails.application.config.assets.paths << Optimacms::Engine.root.join('app/assets/images/tinymce')
-
 
 # optimacms
 Rails.application.config.assets.precompile += %w( optimacms/bootstrap.css )
