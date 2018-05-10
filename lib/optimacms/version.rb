@@ -1,3 +1,3 @@
 module Optimacms
-  VERSION = "0.3.31"
+  VERSION = "0.3.34"
 end
