@@ -1,4 +1,4 @@
-## 0.3.31
+## 0.3.32
 
 * yarn packages
   * jquery 3
