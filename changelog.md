@@ -1,3 +1,17 @@
+## 0.3.31
+
+* yarn packages
+  * jquery 3
+  * tinyMCE
+  * ace
+  * elfinder
+
+* removed dependency on tinymce-rails gem
+* fixed assets
+
+  
+  
+  
 ## 0.3.30
 
 * new configuration

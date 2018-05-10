@@ -51,6 +51,8 @@ Gem::Specification.new do |s|
 
 
   #s.add_dependency 'tinymce-rails'
+  s.add_dependency 'el_finder'
+
 
   # test
   s.add_development_dependency 'rspec-rails'
