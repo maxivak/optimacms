@@ -4,7 +4,7 @@ log/*.log
 pkg/
 
 
-#/node_modules
+node_modules
 #yarn.lock
 
 public/assets
