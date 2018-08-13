@@ -1,4 +1,20 @@
-## 0.3.33
+## 0.4.1
+
+* webpack 3.4.1, webpacker 3.5.3
+
+## 0.3.36
+
+* fix assets for tinymce
+    * tinymce package should be in public/js folder in project
+    
+ 
+
+## 0.3.35
+
+* fix assets for login page
+
+
+## 0.3.34
 
 * yarn packages
   * jquery 3

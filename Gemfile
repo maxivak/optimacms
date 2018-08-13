@@ -47,7 +47,7 @@ gem 'net-ssh', '3.1.1', :git => 'https://github.com/maxivak/net-ssh', :branch =>
 
 
 
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '3.5.3'
 
 gem 'haml-rails', '1.0.0'
 
