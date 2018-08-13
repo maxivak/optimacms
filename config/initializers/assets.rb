@@ -16,6 +16,13 @@ Rails.application.config.assets.precompile << %r{font-awesome/fonts/[\w-]+\.(?:e
 Rails.application.config.assets.precompile += %w( optimacms/tinymce.css optimacms/tinymce.js )
 #Rails.application.config.assets.precompile += %w( tinymce/plugins/advimage/plugin.js tinymce/plugins/uploadimage/plugin.js tinymce/plugins/uploadimage/langs/en.js )
 
+# ??
+#Rails.application.config.assets.precompile << %r{ optimacms/tinymce/.* $}
+
+
+#Rails.application.config.assets.precompile += %w( optimacms/skins/lightgray/skin.min.css )
+
+
 
 # ace
 Rails.application.config.assets.precompile += %w( optimacms/ace.js )
@@ -31,6 +38,7 @@ Rails.application.config.assets.precompile << %r{elfinder-theme-bootstrap/img/.*
 #Rails.application.config.assets.precompile << %r{elfinder-theme-material/img/.*$}
 #Rails.application.config.assets.precompile << %r{elfinder-theme-material/fonts/.*$}
 
+# jquery
 Rails.application.config.assets.precompile << %r{jquery-ui-dist/images/.*$}
 
 

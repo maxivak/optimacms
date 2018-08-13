@@ -1,0 +1,55 @@
+pre {
+    font-family: consolas, monospace;
+    font-weight: normal;
+    color: #069;
+    border-top: 1px dotted #a9a9a9;
+    border-bottom: 4px solid #ededed;
+    border-left: 3px solid #6CE26C;
+    margin-left: 10px;
+    padding: 3px 0px 5px 7px  ;
+}
+
+code {
+    font-family: consolas, monospace;
+    font-weight: bold;
+    color: #069;
+}
+
+code a {
+    font-family: consolas, monospace;
+    font-size: 100%;
+    font-weight: bold;
+    color: #069;
+    text-decoration: underline;
+}
+
+a > code {
+    font-family: consolas, monospace;
+    font-size: 100%;
+    font-weight: bold;
+    color: #069;
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 14px;
+    margin-top: 3px;
+    margin-bottom: 7px;
+}
+
+    ul > li {
+        margin-bottom: 4px;
+    }
+
+
+ol {
+    list-style-type: decimal;
+    padding-left: 14px;
+    margin-top: 3px;
+    margin-bottom: 7px;
+}
+
+ol > li {
+    margin-bottom: 4px;
+}

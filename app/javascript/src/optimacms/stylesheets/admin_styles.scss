@@ -1,0 +1,159 @@
+@import 'skins/noskin';
+
+
+/* fix bootstrap */
+
+.dropdown-menu-right {
+  right: 0;
+  left: auto;
+}
+
+
+/* common */
+
+code, pre{
+  border:1px #333333 dotted;
+  background-color: #e4edf4;
+  color: #134161;
+}
+
+.no-corners{
+  @include border-radius(0);
+}
+
+/* forms */
+/*
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+  margin-left: -30px;
+}
+*/
+
+
+
+
+
+/* nav list */
+
+ul#leftmenu{
+  list-style-type: none;
+  padding-left: 0;
+
+  //font-size: 13px;
+
+
+  > li {
+    a {
+      background-color: #ececec;
+      border-top: 1px solid #dfdfdf;
+      color: #555555;
+      display: block;
+      padding: 10px 0 10px 15px;
+      position: relative;
+
+      &:hover {
+        background-color: #f1f1f1;
+        text-decoration: none;
+      }
+
+      > .arrow {
+        display: block;
+        font-size: 18px;
+        height: 14px;
+        line-height: 14px;
+        padding: 0;
+        position: absolute;
+        right: 10px;
+        text-align: center;
+        text-shadow: none;
+        top: 12px;
+        width: 14px !important;
+      }
+
+    }
+
+    a[aria-expanded="false"]{
+      > .arrow{
+        &.for-expanded{
+          display:none;
+        }
+        &.for-collapsed{
+          display:block;
+        }
+      }
+    }
+
+    a[aria-expanded="true"]{
+      > .arrow{
+        &.for-expanded{
+          display:block;
+        }
+        &.for-collapsed{
+          display:none;
+        }
+      }
+    }
+
+  }
+
+  > li.active {
+    > a {
+      background-color: #dfdfdf;
+      font-weight: 700;
+    }
+  }
+
+  > li:first-child{
+    > a {
+      border-top: medium none;
+    }
+  }
+
+  .submenu {
+    padding-left: 0;
+    position: relative;
+
+    li{
+      a {
+        padding-left: 19px;
+      }
+    }
+
+    li.active {
+      a {
+        font-weight: 700;
+      }
+    }
+
+  }
+
+}
+
+
+
+/* page-header */
+
+.page-header{
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid #e2e2e2;
+
+  h1{
+    margin: 0 8px 0px 0px;
+    color: $primary-darkest;
+    font-size: 24px;
+    font-weight: 400;
+    padding: 0;
+
+    small {
+      color: $primary;
+      font-size: 14px;
+      font-weight: 400;
+      margin: 0 6px;
+    }
+  }
+}
+
+
+

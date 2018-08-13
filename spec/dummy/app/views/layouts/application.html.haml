@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    = meta_tags rescue nil
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    = csrf_meta_tag
+
+    = javascript_pack_tag 'application'
+    = stylesheet_pack_tag 'stylesheets'
+
+    = yield(:head)
+
+  %body
+    = content_for?(:content) ? yield(:content) : yield
+
+
+
+

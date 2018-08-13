@@ -1,4 +1,6 @@
-= javascript_include_tag "optimacms/ace"
+= javascript_pack_tag 'optimacms/ace'
+
+
 
 
 :javascript
@@ -34,7 +36,8 @@
       var editor = ace.edit(id);
       editor.setTheme("ace/theme/chrome");
       editor.getSession().setMode("ace/mode/haml");
-      editor.getSession().setNewLineMode("windows");
+      //editor.getSession().setNewLineMode("windows");
+      editor.getSession().setNewLineMode("unix");
       editor.getSession().setTabSize(2);
 
       return editor;

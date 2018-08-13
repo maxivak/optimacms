@@ -19,7 +19,7 @@ end
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem 'rails', '5.1.3'
+gem 'rails', '~> 5.1.6'
 
 gem 'mysql2', '0.4.10'
 
@@ -45,9 +45,14 @@ end
 gem 'net-ssh', '3.1.1', :git => 'https://github.com/maxivak/net-ssh', :branch => '3-1-release'
 
 
+
+
+gem 'webpacker', '~> 3.5'
+
 gem 'haml-rails', '1.0.0'
-gem 'sass-rails' #, '~>5.0.6'
-gem 'uglifier', '3.2.0'
+
+#gem 'sass-rails' #, '~>5.0.6'
+#gem 'uglifier', '3.2.0'
 #gem 'coffee-rails'
 #gem 'jquery-rails'
 gem 'font-awesome-rails'
@@ -76,7 +81,8 @@ gem 'ancestry'
 
 
 # tinymce
-#gem 'tinymce-rails' #, '4.1.6'
+gem 'tinymce-rails', '4.7.13' #, '4.1.6'
+
 
 # editor
 gem 'el_finder', '1.1.13'
@@ -90,5 +96,13 @@ group :development, :test do
   gem 'capybara'
 #gem "capybara-webkit"
 #gem 'selenium-webdriver'
+end
+
+
+group :development do
+  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+
 end
 
