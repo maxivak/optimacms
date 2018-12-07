@@ -1,12 +1,15 @@
 namespace :optimacms do
 
   task 'install' do
-    Rake::Task["install_assets"].execute
+    Rake::Task["install:assets"].execute
 
   end
 
+  namespace :install do
+
+
   # This task should be used to copy assets to app/javascript/ of the main
-  task 'install_assets' do
+  task 'assets' do
     folders = [
         'app/javascript/packs/optimacms',
         'app/javascript/src/optimacms',
@@ -29,7 +32,7 @@ namespace :optimacms do
   # This task should be used to copy assets to app/javascript/ of the main
   # After it's execution consider to add vendor/modules to resolved paths on
   # webpack configuration.
-  task 'old_install_assets' do
+  task 'old_assets' do
     # copy package.json to vendor directory
     src = "#{Optimacms::Engine.root}/package.json"
     dst = "#{Rails.root}/vendor/modules/optimacms/package.json"
@@ -43,18 +46,6 @@ namespace :optimacms do
     FileUtils.cp_r(src, dst)
   end
 
-
-
-
-  desc "Set admin password or create a new admin user"
-  task :set_admin_user, [:email, :password] => :environment do |t, args|
-    email = args[:email]
-    row = Optimacms::CmsAdminUser.where(email: email).first || Optimacms::CmsAdminUser.new(email: email)
-    row.password = args[:password]
-    row.password_confirmation = args[:password]
-
-    row.save
-  end
 
 
   desc 'import db'
@@ -79,4 +70,5 @@ namespace :optimacms do
     end
   end
 
+end
 end
