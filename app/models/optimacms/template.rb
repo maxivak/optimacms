@@ -6,7 +6,7 @@ module Optimacms
     EXTENSIONS = {'blank'=>'', 'html'=>'html', 'erb'=>'html.erb', 'haml'=>'html.haml'}
 
 
-    belongs_to :type, :foreign_key => 'type_id', :class_name => 'TemplateType'
+    belongs_to :type, :foreign_key => 'type_id', :class_name => 'TemplateType', optional: true
 
     has_many :translations, foreign_key: 'item_id', class_name: 'TemplateTranslation', dependent: :destroy
     accepts_nested_attributes_for :translations
