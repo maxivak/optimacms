@@ -19,7 +19,7 @@ end
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem 'rails', '~> 5.1.6'
+gem 'rails', '5.2.2'
 
 gem 'mysql2', '0.4.10'
 
@@ -35,7 +35,7 @@ gem 'globalize-accessors'
 
 
 #
-gem 'devise', '4.3.0'
+#gem 'devise', '4.5.0'
 
 if Bundler::WINDOWS
   gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
@@ -69,7 +69,8 @@ gem 'kaminari'
 gem 'kaminari-bootstrap'
 
 
-gem 'simple_form', '3.5.0' #, '~>3.3.1'
+gem 'simple_form', '4.1.0'
+#gem 'simple_form', '3.5.0' #, '~>3.3.1'
 gem 'simple_search_filter', '0.1.1'
 gem 'bootstrap_autocomplete_input', '~>0.2.0'
 
