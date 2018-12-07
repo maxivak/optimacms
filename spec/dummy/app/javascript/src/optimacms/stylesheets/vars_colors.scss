@@ -1,0 +1,31 @@
+//== Colors
+
+$primary: #3b73b1;
+$secondary: #6bb34d;
+
+
+
+$light: #70a1e3;
+$dark: #004881;
+
+$secondary-light: #9de67c;
+$secondary-dark: #39831e;
+
+
+
+$primary-darkest: hsl(hue($primary), saturation($primary), 20%);
+$primary-dark: hsl(hue($primary), 27%, 20%);
+
+$primary-desat: hsl(hue($primary), 18%, 54%);
+$primary-desat-light: hsl(hue($primary), 18%, 74%);
+$primary-desat-dark: hsl(hue($primary), 18%, 40%);
+$primary-desat-darker: hsl(hue($primary), 18%, 20%);
+
+
+
+// reassign color scheme
+$theme-colors: (
+        primary: $primary,
+        secondary: $secondary,
+
+);
