@@ -1,3 +1,3 @@
 module ApplicationHelper
-  include FontAwesome::Rails::IconHelper
+  #include FontAwesome::Rails::IconHelper
 end

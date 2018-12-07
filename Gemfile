@@ -55,7 +55,7 @@ gem 'haml-rails', '1.0.0'
 #gem 'uglifier', '3.2.0'
 #gem 'coffee-rails'
 #gem 'jquery-rails'
-gem 'font-awesome-rails'
+#gem 'font-awesome-rails'
 
 
 
