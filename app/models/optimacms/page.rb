@@ -7,7 +7,7 @@ module Optimacms
 
     belongs_to :layout, :foreign_key => 'layout_id', :class_name => 'Template'
     belongs_to :template, :foreign_key => 'template_id', :class_name => 'Template'
-    belongs_to :folder, :foreign_key => 'parent_id', :class_name => 'Page'
+    belongs_to :folder, :foreign_key => 'parent_id', :class_name => 'Page', optional: true
     has_many :translations, :foreign_key => 'item_id', :class_name => 'PageTranslation', :dependent => :destroy
     accepts_nested_attributes_for :translations
     accepts_nested_attributes_for :template
