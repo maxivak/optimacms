@@ -1,5 +1,5 @@
 module Optimacms
-  class Template < ActiveRecord::Base
+  class Template < ApplicationRecord
     self.table_name = 'cms_templates'
 
     EXTENSION_DEFAULT = 'html'
@@ -8,7 +8,7 @@ module Optimacms
 
     belongs_to :type, :foreign_key => 'type_id', :class_name => 'TemplateType', optional: true
 
-    has_many :translations, foreign_key: 'item_id', class_name: 'TemplateTranslation', dependent: :destroy
+    has_many :translations, foreign_key: 'item_id', class_name: 'TemplateTranslation', dependent: :destroy, :inverse_of => :template
     accepts_nested_attributes_for :translations
 
     has_many :data_relations, foreign_key: 'template_id', class_name: 'TemplateDataRelation', dependent: :destroy

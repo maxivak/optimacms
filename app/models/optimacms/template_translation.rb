@@ -1,8 +1,8 @@
 module Optimacms
-  class TemplateTranslation < ActiveRecord::Base
+  class TemplateTranslation < ApplicationRecord
     self.table_name = 'cms_templates_translation'
 
-    belongs_to :template, :foreign_key => 'item_id', :class_name => 'Template'
+    belongs_to :template, :foreign_key => 'item_id', :class_name => 'Template', :inverse_of => :translations
 
     delegate :basename, :basedirpath, :tpl_format, :is_type_partial?, to: :template
 
