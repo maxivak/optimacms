@@ -1,6 +1,9 @@
 ## 0.4.1
 
-* webpack 3.4.1, webpacker 3.5.3
+* webpack
+    * webpack 3.4.1, webpacker 3.5.3
+* Rails 5.2.2 for dummy app
+
 
 ## 0.3.36
 
