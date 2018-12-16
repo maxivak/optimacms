@@ -129,10 +129,18 @@ module Optimacms
         not_found and return
       end
 
+
       # page mapped to controller
       @pagedata.url_vars.each do |k,v|
         params[k] = v
       end
+
+
+      # callback
+      if respond_to?(:after_init_pagedata)
+        send(:after_init_pagedata)
+      end
+
 
 
 
