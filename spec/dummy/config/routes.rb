@@ -14,8 +14,9 @@ Rails.application.routes.draw do
 
 
   # extend admin area
-  scope '/'+Optimacms.config.main_namespace+'/'+Optimacms.config.admin_namespace, module: "optimacms" do
-    namespace :admin do
+  #scope '/'+Optimacms.config.main_namespace+'/'+Optimacms.config.admin_namespace, module: "admin" do
+  scope '/'+Optimacms.config.admin_namespace do
+    scope module: 'admin', as: 'admin' do
       resources :news do
         collection do
           post 'search'
