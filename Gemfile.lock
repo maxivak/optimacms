@@ -17,7 +17,7 @@ GIT
 PATH
   remote: .
   specs:
-    optimacms (0.4.1)
+    optimacms (0.4.3)
       ancestry
       bootstrap_autocomplete_input (>= 0.2.0)
       devise (>= 4.0)
@@ -328,4 +328,4 @@ DEPENDENCIES
   webpacker (= 3.5.3)
 
 BUNDLED WITH
-   1.16.2
+   1.16.6

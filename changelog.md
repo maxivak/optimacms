@@ -1,4 +1,9 @@
-## 0.4.1
+## 0.4.3
+
+* links for editing for blocks on site
+  
+  
+## 0.4.2
 
 * webpack
     * webpack 3.4.1, webpacker 3.5.3
