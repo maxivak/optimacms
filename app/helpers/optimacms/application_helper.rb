@@ -68,62 +68,35 @@
       # find template
       row_tpl = Optimacms::PageServices::TemplateService.get_by_name(name)
 
-      # data relations
-      tpl_data_relations = {}
-      if row_tpl
-        tpl_data_relations = row_tpl.data_relations.all.index_by { |t| t.var_name }
-      end
-
-
-      # map locals and edit links
-      links_data = []
-
-      opts.each do |_var_name, v|
-        var_name = _var_name.to_s
-
-        next unless tpl_data_relations[var_name]
-        data = tpl_data_relations[var_name]
-
-        #if class exists $modelDecorator
-        #klass = Object.const_get "#{p['model']}CmsDecorator"
-        #objDecorator = klass.new(v)
-        #classify.
-        modelEditDecorator = "#{data.data_model_name}CmsDecorator".safe_constantize.new(v)
-
-        next unless modelEditDecorator
-
-        link_edit = modelEditDecorator.edit_path
-
-        next unless link_edit
-
-        #p = tpl_data_relations[var_name]
-        #id = v.send(:id)
-        #links_edit << {link: send(p["root_edit"]+"_path", id)}
-        link_html = link_to("edit #{data.title}", link_edit, target: "_blank")
-        links_data << {link: link_edit, link_html: link_html}
-      end
-
+      links_edit = Optimacms::PageServices::TemplateService.get_links_edit(row_tpl)
 
 
       # render
-      return render template: 'optimacms/admin_page_edit/block_edit', locals: {filename: tpl_filename, row_tpl: row_tpl}
+      opts.merge!({optimacms_filename: tpl_filename, optimacms_tpl: row_tpl})
+      opts[:optimacms_admin_links_edit] = links_edit
 
+      return render template: 'optimacms/admin_page_edit/block_edit', :locals => opts
+
+=begin
       content_tag(:div, class: "debug_box") do
         #(link_to "edit", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+
         content_tag(:div, class: "debug_commands") do
-          html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
+          #html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
+          html_links = links_edit.map{|r| URI::join(root_url, Optimacms.config.admin_namespace, r[:path])}.join("<br>").html_safe
 
           ((link_to "edit block", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+"<br>".html_safe+html_links).html_safe
         end+
         #block(name, opts)
         (render file: tpl_filename, locals: opts)
       end
+=end
+
     end
 
 
 
+
     def block(name, opts={})
-      x = Dir.pwd
       #y = File.expand_path File.dirname(__FILE__)
       d = File.dirname(@optimacms_tpl)
 

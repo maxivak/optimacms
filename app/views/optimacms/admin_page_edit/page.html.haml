@@ -1,18 +1,15 @@
-= stylesheet_pack_tag "optimacms/site_edit_styles", media: "all"
+= stylesheet_pack_tag "optimacms/site_edit_styles"
 
 - if @pagedata && @pagedata.template
   .admin_edit_page_box
     .commands
-      =link_to "/admin/templates/#{@pagedata.template.id}/edit", target: "_blank", class: "link" do
+      =link_to Optimacms::Engine.routes.url_helpers.edit_template_path(@pagedata.template.id), target: "_blank", class: "link" do
         %span.cont
-          Edit&nbsp;page
+          Template
 
     = render template: @pagedata.template_path
 
 - else
   ERROR
 
-/ data links
--#
-  -#html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
 

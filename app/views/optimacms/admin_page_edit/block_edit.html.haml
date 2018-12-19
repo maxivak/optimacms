@@ -1,14 +1,29 @@
 .admin_edit_box
   .commands
-    - if row_tpl
-      =link_to "/admin/templates/#{row_tpl.id}/edit", target: "_blank", class: "link" do
-        Edit
-        %b=row_tpl.title
+    - if optimacms_tpl
+      =link_to Optimacms::Engine.routes.url_helpers.edit_template_path(optimacms_tpl.id), target: "_blank", class: "link" do
+        template
+        /%b=row_tpl.title
+
+      %br
+      - optimacms_admin_links_edit.each do |link|
+        - u=eval(%Q("/#{Optimacms.config.admin_namespace}#{link['path']}"))
+
+        =link_to u, target: "_blank", class: "link" do
+          =link['title']
+        %br
+
     - else
-      file #{filename}
+      file #{optimacms_filename}
 
 
-  =render file: filename
+  =render file: optimacms_filename, locals: local_assigns
+
+
+-#-html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
+
+-#-((link_to "edit block", "/admin/templates/#{row_tpl.id}/edit", target: "_blank")+"<br>".html_safe+html_links).html_safe
+
 
 / data
 -#html_links = links_data.map{|r| r[:link_html]}.join("<br>").html_safe
