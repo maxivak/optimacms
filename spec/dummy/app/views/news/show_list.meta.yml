@@ -1,0 +1,4 @@
+links:
+  -
+    title: "News item"
+    path: "/news/#{item.id}/edit"

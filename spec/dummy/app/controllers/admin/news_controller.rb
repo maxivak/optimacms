@@ -1,4 +1,4 @@
-class Optimacms::Admin::NewsController < Optimacms::Admin::AdminBaseController
+class Admin::NewsController < Optimacms::Admin::AdminBaseController
   #search
   search_filter :index, {save_session: true, search_method: :post_and_redirect, url: :admin_news_index_url, search_url: :search_admin_news_index_url, search_action: :search} do
     default_order "id", 'desc'
