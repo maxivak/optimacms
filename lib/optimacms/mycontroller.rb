@@ -3,6 +3,8 @@
     extend ActiveSupport::Concern
 
 
+    ### rendering
+
     included do
       if respond_to?(:helper_method)
         helper_method :site_page_path
@@ -33,6 +35,9 @@
       super
     end
 
+
+    ### pagedata
+
     def optimacms_pagedata
       @pagedata
     end
@@ -42,16 +47,34 @@
 
     end
 
+=begin
     def my_set_render_template(tpl_view, tpl_layout)
       @optimacms_tpl = tpl_view
       @optimacms_layout = tpl_layout
     end
+=end
+=begin
+    def my_set_render_template(tpl_view)
+      @optimacms_tpl = tpl_view
+    end
 
+    def my_set_render_layout(tpl_layout)
+      @optimacms_layout = tpl_layout
+    end
+
+
+
+=end
+
+=begin
     def my_set_meta(meta)
       @optimacms_meta_title = meta[:title]
       @optimacms_meta_keywords = meta[:keywords]
       @optimacms_meta_description = meta[:description]
     end
+=end
+
+    # page paths
 
     def site_page_path(name, p={})
       get_page_path(name, p)

@@ -5,10 +5,14 @@ module Optimacms
       attr_accessor :page # page object
       #, :params
       attr_accessor :url, :url_vars
+
       attr_accessor :lang
+
       attr_accessor :controller, :action
-      attr_accessor :layout
-      attr_accessor :template
+
+      #attr_accessor :layout
+      #attr_accessor :template
+      #attr_accessor :template_source
 
       attr_accessor :render_options
       attr_accessor :render_extra_options
@@ -40,22 +44,37 @@ module Optimacms
         I18n.locale
       end
 
-      def layout
-        page.layout
+
+      ### rendering data
+
+      def page_template
+        #page.template
+
+        return @page_template unless @page_template.nil?
+
+        #@page_template = Optimacms::PageTemplate::Factory.for(page, {lang: lang})
+        #@page_template = Optimacms::ContentBlock::Factory.for_page(page, page.template_source_name, page.template_path, {lang: lang})
+        @page_template = Optimacms::ContentBlock::Factory.for_page(page, {lang: lang})
+
+        @page_template
       end
+
 
       def template
-        page.template
+        page_template.local_file.basepath
       end
 
-      def template_path
-        if template.is_translated
-          tpl_lang = self.lang
-        else
-          tpl_lang=''
-        end
-        page.template.path(tpl_lang)
+      def layout
+        page.layout.basename
       end
+
+      def template_source
+        page_template.source_name
+      end
+
+
+
+      ### meta
 
       def meta
         page_lang = page.is_translated ? lang : ''
@@ -66,6 +85,10 @@ module Optimacms
         {:title=>row.meta_title, :keywords=>row.meta_keywords, :description=>row.meta_description}
       end
 
+
+
+      ### view
+=begin
       def view_content
         return '' if template.basepath.nil?
 
@@ -93,6 +116,7 @@ module Optimacms
       end
 
       def dir_cache
+        raise 'not used'
         # TODO: get from settings
         Rails.root.to_s+'/app/views/'+dirname_views
       end
@@ -105,6 +129,7 @@ module Optimacms
         text = compile_content view_content
         save_text_to_compiled_view text
       end
+=end
 
     end
   end

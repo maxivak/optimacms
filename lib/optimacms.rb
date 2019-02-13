@@ -17,6 +17,7 @@ module Optimacms
 
   def self.configure
     yield(config) if block_given?
+
   end
 
 
