@@ -1,6 +1,6 @@
 Optimacms::Engine.routes.draw do
   # dev
-  get 'dev/:action', to: 'dev#action'
+  #get 'dev/:action', to: 'dev#action'
 
   # admin
   scope '/'+Optimacms.config.admin_namespace, module: "admin" do
@@ -31,6 +31,8 @@ Optimacms::Engine.routes.draw do
       member do
         get 'editfolder'
         patch 'updatefolder'
+
+        get 'edit_template_content'
       end
     end
 
@@ -39,6 +41,7 @@ Optimacms::Engine.routes.draw do
         post 'search'
 
         get :autocomplete
+        get :autocomplete_path
 
         get 'newattach'
         post 'attach'
@@ -101,6 +104,18 @@ Optimacms::Engine.routes.draw do
 
     end
 
+
+    # remote content
+    resources :content_sources, only: [:index, :show] do
+      collection do
+      end
+
+      member do
+        get 'clean_cache'
+      end
+    end
+
+
     # deploy
     resources :appdata, only: [:index] do
       collection do
@@ -154,7 +169,7 @@ Optimacms::Engine.routes.draw do
   get '/elfinder_manager', to: 'elfinder#index'
   match 'elfinder' => 'elfinder#elfinder', via: [:get, :post]
 
-  #
+  # OK. 2019-01-14
   root to: 'pages#show'
   match '*url', :to => 'pages#show', via: :all, format: false, as: :cms_page
 

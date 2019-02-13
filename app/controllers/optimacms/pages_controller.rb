@@ -18,6 +18,111 @@ module Optimacms
 
     renderer_admin_edit
 
+
+    def show
+      @path = params[:url]
+      @pagedata = PageServices::PageRouteService.find_page_by_url(@path, current_lang)
+
+      if @pagedata.page.nil?
+        not_found and return
+      end
+
+
+      # page mapped to controller
+      @pagedata.url_vars.each do |k,v|
+        params[k] = v
+      end
+
+
+      # callback
+      if respond_to?(:after_init_pagedata)
+        send(:after_init_pagedata)
+      end
+
+
+      optimacms_set_pagedata @pagedata
+
+      ## prepare template file
+      # download file from remote source
+      @pagedata.page_template.get_file
+
+
+      # for remote tempalte
+      unless @pagedata.page_template.is_local?
+        prepend_view_path Optimacms.config.templates_remote_dir
+      end
+
+
+
+      # render
+      if @pagedata.page.content_page?
+        # callbacks from main app
+        if respond_to?(:before_page_render)
+          send(:before_page_render)
+        end
+
+
+        return Optimacms::Renderer::ContentRenderer.new(self, @pagedata).render_page_content
+
+      else
+        # process page with controller
+        #@pagedata.generate_content
+
+        # OK 2019-01-03
+        #c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.template_path, @pagedata.layout.basename)
+
+        # new 2019-01-03
+        #c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.page_template.local_file.basepath, @pagedata.layout)
+        c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.page_template, @pagedata.layout)
+
+        # debug
+        #tpl = Template.find(127)
+        #c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, tpl.path('en'), @pagedata.layout.basename)
+
+
+        #puts "#{c}"
+        render_base inline: c
+
+        return
+=begin
+
+
+        #
+        template = ERB.new(s, 0, "%<>")
+
+        #vv = OpenStruct.new(pg: 75, last: 'Maragall')
+        #vv = OpenStruct.new(c.instance_values)
+        #ss = template.result(vv.instance_eval { binding })
+        #ss = template.result(c.instance_values.instance_eval { binding })
+        #ss = template.result(c.get_binding)
+        #ss = template.result(c.instance_values.binding())
+
+        #render :text=>ss
+        #render :text=>c
+
+        vars = {}
+        c.instance_values.each do |k,v|
+          vars[k.to_sym] = v
+        end
+
+        #render template: 'pages/1.html.erb', locals: vars
+
+        #render template: 'pages/news2.html.erb', locals: {pg: 4}
+        #render text: s, locals: {pg: 4}
+
+        #render :text => (render_to_string :template=>'pages/news2.html', :locals=> {pg: 4})
+        #render :text => (render_to_string 'pages/news2.html', locals: c.instance_values)
+        #render :text => renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params)
+=end
+
+
+      end
+
+
+    end
+
+
+
     def render(options = nil, extra_options = {}, &block)
       options ||= {} # initialise to empty hash if no options specified
 
@@ -54,7 +159,7 @@ module Optimacms
     end
 =end
 
-    def renderActionInOtherController(controller,action,params, tpl_view=nil, tpl_layout=nil)
+    def renderActionInOtherController(controller,action,params, content_block, tpl_layuot=nil)
 
       # include render into controller class
       if current_cms_admin_user
@@ -85,6 +190,13 @@ module Optimacms
       end
 
 
+      # views
+      unless content_block.is_local?
+        c.prepend_view_path Optimacms.config.templates_remote_dir
+      end
+
+
+
       #c.process_action(action, request)
       #c.dispatch(action, request)
       #c.send 'index_page'
@@ -98,9 +210,9 @@ module Optimacms
 
       c.send 'my_set_render'
       c.send 'optimacms_set_pagedata', @pagedata
-      c.send 'my_set_render_template', tpl_view, tpl_layout
-      c.send 'my_set_meta', @pagedata.meta
-
+      #c.send 'my_set_render_template', tpl_view
+      #c.send 'my_set_render_layout', tpl_layout
+      #c.send 'my_set_meta', @pagedata.meta
 
 
       #renderer_admin_edit
@@ -121,129 +233,6 @@ module Optimacms
     end
 
 
-    def show
-      @path = params[:url]
-      @pagedata = PageServices::PageRouteService.find_page_by_url(@path, current_lang)
-
-      if @pagedata.page.nil?
-        not_found and return
-      end
-
-
-      # page mapped to controller
-      @pagedata.url_vars.each do |k,v|
-        params[k] = v
-      end
-
-
-      # callback
-      if respond_to?(:after_init_pagedata)
-        send(:after_init_pagedata)
-      end
-
-
-
-
-      # process page
-      if @pagedata.page.content_page?
-        # content page
-        #@content = @pagedata.get_content(@page)
-        #@content = @page.content
-
-        optimacms_set_pagedata @pagedata
-        my_set_render_template @pagedata.template_path, @pagedata.layout.basename
-        my_set_meta @pagedata.meta
-
-        # callbacks from main app
-        if respond_to?(:before_page_render)
-          send(:before_page_render)
-        end
-
-        render @optimacms_tpl, :layout=>@optimacms_layout
-        #render :text => @content, :layout => @page.layout.name
-        return
-        respond_to do |format|
-          format.html { render :text => @content }
-        end
-        return
-      else
-        #@pagedata.generate_content
-
-        #
-        #c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.compiled_view_path, @pagedata.layout.basename)
-        c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.template_path, @pagedata.layout.basename)
-
-        #puts "#{c}"
-        render_base inline: c
-
-        return
-=begin
-        # THE END
-
-        s = <<-eos
-From code
-<p>News on page</p>
-
-<p>page = <%=@pg%></p>
-
-<p>hello</p>
-
-<p>&nbsp;</p>
-
-<p>local page = <%=@pg%></p>
-
-news count = <%=News.all.count%>
-<br>
-render<br>
-<%=render 'pages/sub.html.erb'%>
-
-        eos
-
-        #s = File.read(Rails.root+'app/views/pages/news2.html.erb')
-
-        # save template content
-        tpl_view = 'pages/1.html.erb'
-        fnew = Rails.root+'app/views/'+tpl_view
-        File.open(fnew, "w+") do |f|
-          f.write(s)
-        end
-
-
-
-        #
-        template = ERB.new(s, 0, "%<>")
-
-        #vv = OpenStruct.new(pg: 75, last: 'Maragall')
-        #vv = OpenStruct.new(c.instance_values)
-        #ss = template.result(vv.instance_eval { binding })
-        #ss = template.result(c.instance_values.instance_eval { binding })
-        #ss = template.result(c.get_binding)
-        #ss = template.result(c.instance_values.binding())
-
-        #render :text=>ss
-        #render :text=>c
-
-        vars = {}
-        c.instance_values.each do |k,v|
-          vars[k.to_sym] = v
-        end
-
-        #render template: 'pages/1.html.erb', locals: vars
-
-        #render template: 'pages/news2.html.erb', locals: {pg: 4}
-        #render text: s, locals: {pg: 4}
-
-        #render :text => (render_to_string :template=>'pages/news2.html', :locals=> {pg: 4})
-        #render :text => (render_to_string 'pages/news2.html', locals: c.instance_values)
-        #render :text => renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params)
-=end
-
-
-      end
-
-    end
-
-    ### page URLs
 
 
   end

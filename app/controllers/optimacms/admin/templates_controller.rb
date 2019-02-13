@@ -67,6 +67,34 @@ module Optimacms
       render :json => data
     end
 
+    def autocomplete_path
+      q = params[:q]
+      source_name = params[:source_name] || ""
+
+      raise 'Source not set' if source_name.blank?
+
+      # get data
+      source = Optimacms.config.content_sources[source_name]
+
+      if source.nil?
+        data = []
+      else
+        if source[:type]=='local'
+          type_id = TemplateType::TYPE_PAGE
+          rows = Template.where("type_id=#{type_id} AND (basepath LIKE ? OR title like ?)", "%#{q}%", "%#{q}%").order('basepath asc').limit(20)
+          #data = rows.map{|r| [r.id, "#{r.title} (#{r.basepath})"]}
+          data = rows.map{|r| [r.id, "#{r.basepath}"]}
+
+        else
+          # not supported
+        end
+
+      end
+
+      render :json => data
+    end
+
+
     def show
     end
 

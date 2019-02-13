@@ -1,0 +1,34 @@
+
+- if Optimacms.config.template_content_sources.empty?
+  -#= f.input_field :client, :as => :autocomplete, :source_query => autocomplete_client_name_orders_path, :minLength => 1, :items => 10, :class=>'form-control', :afterSelect=>'client_autocomplete_after_select'
+  =f.input_field :template, :as => :autocomplete, :source_query => autocomplete_templates_url, :class=>'form-control'
+
+- else
+  =f.input_field :template_id, :as => :hidden, :value => ""
+
+  - list_sources = Optimacms.config.template_content_sources.map{|s| [s, s]}
+
+  .row
+    .col-4
+      = f.input :template_source, collection: list_sources, label: 'Source', label_method: :second, value_method: :first, include_blank: false
+
+    .col-8
+      path:
+      = f.input_field :template_path, :as => :autocomplete, :field_id=>false,
+        :source_query => autocomplete_path_templates_url,
+        :data => { func_params: "autocomplete_template_path_get_params"},
+        :class=>'form-control'
+
+
+:javascript
+  // query data from server
+    $('input[data-provide="typeahead"][data-source-query]').each(function() {
+        autocomplete_query($(this));
+
+    });
+
+  function autocomplete_template_path_get_params(){
+    var source_name = $("#page_template_source").val();
+
+    return {source_name: source_name};
+  }

@@ -49,15 +49,24 @@
         %td
           =item.url
         %td
-          - if item.template
-            =link_to edit_template_path(item.template) do
-              =item.template.title
-            %br
-            =item.template.basepath
-          - elsif !item.is_folder
-            N/A
-          - else
+          - if item.is_folder
             &nbsp;
+          - else
+            - u_template_edit = edit_template_content_page_path(id: item.id)
+
+
+            - if item.template
+              =link_to u_template_edit do
+                =item.template.basepath
+              %br
+              -#=item.template.title
+              -#=item.template.basepath
+            - else
+              =link_to u_template_edit do
+                =item.template_path
+              %br
+              %span.small.col-gray (remote)
+
 
         %td
           =link_to 'Edit', (item.is_folder? ? editfolder_page_path(item) : edit_page_path(item))

@@ -35,7 +35,7 @@ module Optimacms
 
     def path
       return nil if basename.nil?
-      basedirpath + filename_base + Template.filename_lang_postfix(lang) + Template.filename_ext_with_dot(self.tpl_format)
+      basedirpath + filename_base + Optimacms::PageServices::TemplateService.filename_lang_postfix(lang) + Optimacms::PageServices::TemplateService.filename_ext_with_dot(self.tpl_format)
     end
 
     def fullpath

@@ -24,11 +24,14 @@ module Optimacms
             w_page
           }
       }
+
     end
 
     with_options if: :is_folder? do |m|
       m.validates :name, uniqueness: { scope: :parent_id}
     end
+
+    validate :validate_template
 
 
     # callbacks
@@ -83,12 +86,55 @@ module Optimacms
 
     ### validate
 
+    def validate_template
+      return true if is_folder?
+      return true if template_id and template_id>0
+
+      #
+      if template_source && template_source!=''
+        if template_path.nil? || template_path.blank?
+          errors.add(:template_path, "cannot be blank")
+        end
+      end
+
+    end
+
+
+    ### template
+    def template_source_name
+      self.template_source || Optimacms.config.default_templates_source_name || 'local'
+    end
+
 
     ### callbacks
 
 
     def _before_validate
       self.parent_id = nil if self.parent_id && self.parent_id==0
+
+      # calc template_id
+      calc_template_id_by_source
+
+      true
+    end
+
+
+    def calc_template_id_by_source
+      return if template_id && template_id>0
+
+      #
+      self.template_id = nil
+
+      if template_source=='local'
+        row_tpl = Optimacms::PageServices::TemplateService.get_by_name template_path
+
+        if row_tpl
+          self.template_id = row_tpl.id
+        end
+      end
+
+
+
     end
 
 
@@ -170,8 +216,35 @@ module Optimacms
         self.url_vars_count = PageServices::PageRouteService::count_url_vars(self.url)
         self.parsed_url = PageServices::PageRouteService::parse_url(self.url)
       end
+
+      # remote content
+=begin
+      if self.template_source_changed? || self.template_path_changed?
+        if (self.template_source || '')!=''
+          update_template_path_local
+        end
+      end
+=end
     end
 
+
+
+
+
+
+    ### templates from remote source
+=begin
+    def update_template_path_local
+      source_name = self.template_source
+      options = {}
+
+      content_block = Optimacms::ContentBlock::Factory.for_in_views source_name,  self.template_path, options
+
+      file_data = content_block.download_file_info
+
+      self.template_path_local = file_data['path']
+    end
+=end
 
 
     ##### translations

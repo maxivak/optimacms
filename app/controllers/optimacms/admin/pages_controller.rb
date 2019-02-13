@@ -221,6 +221,38 @@ module Optimacms
 
 
 
+
+    ### for remote content
+
+    def edit_template_content
+      # input
+      page_id = params[:id]
+
+      source_file_url = params[:source_file_url]
+
+      #
+      if source_file_url
+        redirect_to source_file_url and return
+      end
+
+
+      page = Page.find(page_id)
+      content_block = Optimacms::ContentBlock::Factory.for_page(page)
+
+      content_block.get_file_info
+
+      if content_block.is_local?
+        redirect_to edit_template_path(page.template_id) and return
+      else
+        source_file_url = content_block.remote_file_url
+        if source_file_url
+          redirect_to source_file_url and return
+        end
+      end
+
+      raise 'not found'
+    end
+
     ####
 
     def table_columns

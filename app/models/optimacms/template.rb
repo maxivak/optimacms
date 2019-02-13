@@ -111,6 +111,7 @@ module Optimacms
     end
 
 
+
     ##### search
 
     def self.where_parent(parent_id)
@@ -141,7 +142,8 @@ module Optimacms
 
     def path(lang='')
       return nil if self.basename.nil?
-      self.basedirpath + filename_base + Template.filename_lang_postfix(lang) + Template.filename_ext_with_dot(self.tpl_format)
+      return Optimacms::PageServices::TemplateService.get_file_for_template(self, lang)
+
     end
 
     def fullpath(lang='')
@@ -218,21 +220,7 @@ module Optimacms
     end
 
 
-    def self.filename_lang_postfix(lang)
-      lang = lang.to_s
-      return '' if lang==''
-      return '.'+lang
-    end
 
-    def self.filename_ext(format)
-      EXTENSIONS[format]
-    end
-
-    def self.filename_ext_with_dot(format)
-      ext = filename_ext(format)
-      ext = '.'+ext unless ext.blank?
-      ext
-    end
 
 
     ### operations with path

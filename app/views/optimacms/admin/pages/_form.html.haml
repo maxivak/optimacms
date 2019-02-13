@@ -23,11 +23,13 @@
         %label(for="inputTemplate" class="col-sm-2 col-md-1 control-label")
           Template
 
-        .col-sm-4.col-md-4.control
-          -#= f.input_field :client, :as => :autocomplete, :source_query => autocomplete_client_name_orders_path, :minLength => 1, :items => 10, :class=>'form-control', :afterSelect=>'client_autocomplete_after_select'
-          =f.input_field :template, :as => :autocomplete, :source_query => autocomplete_templates_url, :class=>'form-control'
+        .col-sm-10.col-md-10.control
+          = render 'optimacms/admin/pages/form_field_template', f: f
 
-        .col-sm-2.col-md-2
+
+
+
+        -#.col-sm-2.col-md-2
           =link_to '#', :class=>"btn btn-sm btn-default", :id=>'linkAddTemplate' do
             %i.fa.fa-plus
 
