@@ -14,12 +14,14 @@ module Optimacms::Concerns::AdminMenu::AdminMenu
               {title: 'Resources', url: Optimacms::Engine.routes.url_helpers.resources_path},
               {title: 'Languages', url: Optimacms::Engine.routes.url_helpers.languages_path},
               {title: 'CSS Files', url: Optimacms::Engine.routes.url_helpers.css_files_path},
-              {title: 'Media', url: Optimacms::Engine.routes.url_helpers.mediafiles_path}
+              {title: 'Media', url: Optimacms::Engine.routes.url_helpers.mediafiles_path},
+
           ]
           }
 
       ]
     end
+
 
     def get_menu
       get_menu_basic + get_menu_custom + get_menu_users + get_menu_system
@@ -46,6 +48,7 @@ module Optimacms::Concerns::AdminMenu::AdminMenu
               {title: 'Info', url: Optimacms::Engine.routes.url_helpers.maintenance_info_path},
               {title: 'Logs', url: Optimacms::Engine.routes.url_helpers.rails_logs_path},
               {title: 'Maintenance', url: Optimacms::Engine.routes.url_helpers.maintenance_path},
+              {title: 'Remote Content', url: Optimacms::Engine.routes.url_helpers.content_sources_path},
               {title: 'App data', url: Optimacms::Engine.routes.url_helpers.appdata_path},
               #{title: 'Backups', url: false},
               {title: 'Metadata', url: Optimacms::Engine.routes.url_helpers.backup_metadata_path},

@@ -1,0 +1,28 @@
+.page-header
+  .row
+    .col-md-7
+      %h1
+        Content Sources
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          view sources
+    .col-md-5
+
+
+%table.table.table-striped.table-bordered.table-hover
+  %thead
+    %tr
+      %th Name
+      %th Settings
+      %th Commands
+
+  %tbody
+
+    - @items.each do |name, si|
+      %tr
+        %td
+          =link_to name, content_source_path(id: name)
+        %td
+          url: #{si['api_url']}
+        %td
+          =link_to "View", content_source_path(id: name)
