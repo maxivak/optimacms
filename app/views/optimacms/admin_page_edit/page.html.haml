@@ -1,13 +1,18 @@
 = stylesheet_pack_tag "optimacms/site_edit_styles"
 
-- if @pagedata && @pagedata.template
+- if @pagedata && @pagedata.page_template
   .admin_edit_page_box
     .commands
-      =link_to Optimacms::Engine.routes.url_helpers.edit_template_path(@pagedata.template.id), target: "_blank", class: "link" do
-        %span.cont
-          Template
+      %ul
+        %li
+          =link_to Optimacms::Engine.routes.url_helpers.edit_page_path(@pagedata.page.id), target: "_blank", class: "link" do
+            %span.cont Page
 
-    = render template: @pagedata.template_path
+        %li
+          =link_to Optimacms::Engine.routes.url_helpers.edit_template_content_page_path(id: @pagedata.page.id), target: "_blank", class: "link" do
+            %span.cont Template
+
+  = render template: @pagedata.page_template.local_file.basepath
 
 - else
   ERROR
