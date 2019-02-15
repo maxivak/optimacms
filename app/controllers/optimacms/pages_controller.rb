@@ -75,11 +75,6 @@ module Optimacms
         #c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.page_template.local_file.basepath, @pagedata.layout)
         c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.page_template, @pagedata.layout)
 
-        # debug
-        #tpl = Template.find(127)
-        #c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, tpl.path('en'), @pagedata.layout.basename)
-
-
         #puts "#{c}"
         render_base inline: c
 
@@ -159,7 +154,7 @@ module Optimacms
     end
 =end
 
-    def renderActionInOtherController(controller,action,params, content_block, tpl_layuot=nil)
+    def renderActionInOtherController(controller,action,params, content_block, tpl_layout=nil)
 
       # include render into controller class
       if current_cms_admin_user
@@ -210,8 +205,10 @@ module Optimacms
 
       c.send 'my_set_render'
       c.send 'optimacms_set_pagedata', @pagedata
+
       #c.send 'my_set_render_template', tpl_view
       #c.send 'my_set_render_layout', tpl_layout
+
       #c.send 'my_set_meta', @pagedata.meta
 
 
@@ -223,13 +220,12 @@ module Optimacms
 
       #app = "NewsController".constantize.action(action)
       #app.process params
+      #app.response.body
 
       # result
       #c
 
       c.response.body
-
-      #app.response.body
     end
 
 

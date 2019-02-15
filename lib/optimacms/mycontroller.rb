@@ -21,8 +21,11 @@
     end
 
     def default_render(*args)
-      if self.controller_name!='pages' && !@optimacms_tpl.nil? && @is_optimacms
-        render @optimacms_tpl, :layout=>@optimacms_layout and return
+      if self.controller_name!='pages' && !@pagedata.nil? && @is_optimacms
+        # OK. 2019-jan
+        #render @optimacms_tpl, :layout=>@optimacms_layout and return
+        render @pagedata.template, :layout=>@pagedata.layout and return
+
         #(render :text => "hello", :layout => @optimacms_layout) and return
 
         # http://stackoverflow.com/questions/21129587/ruby-on-rails-how-to-render-file-as-plain-text-without-any-html
