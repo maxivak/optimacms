@@ -242,7 +242,12 @@ module Optimacms
       content_block.get_file_info
 
       if content_block.is_local?
-        redirect_to edit_template_path(page.template_id) and return
+        if page.template_id
+          redirect_to edit_template_path(page.template_id) and return
+        else
+          raise 'not supported'
+        end
+
       else
         source_file_url = content_block.remote_file_url
         if source_file_url
