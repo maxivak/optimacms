@@ -200,13 +200,29 @@ module Optimacms
       def build_options(block_options={})
         options = block_options.clone
 
-        options[:lang] ||= pagedata.lang
+        if pagedata
+          options[:lang] ||= pagedata.lang
+        end
+
 
         options
       end
 
 
 
+
+      ### assets
+
+      def get_file_url(source_name, path, block_options={})
+        options = build_options block_options
+        #block_path = build_block_path path, block_options
+        block_path = path
+
+        content_block = Optimacms::ContentBlock::Factory.for_remote source_name, block_path, options
+
+        content_block.get_remote_url({format: "raw"})
+
+      end
 
     end
 

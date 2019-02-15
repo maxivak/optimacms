@@ -20,6 +20,13 @@ module Optimacms
 
       ##
 
+      def get_remote_url(opts={})
+        source.source_info[:api_url]+ path+"?"+opts.to_query
+      end
+
+
+      ##
+
       def get_file
         # download if needed
         if local_file.nil? || !local_file.exists?

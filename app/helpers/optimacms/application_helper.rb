@@ -84,6 +84,12 @@
       return Optimacms::Renderer::ContentRenderer.new(self, @pagedata).render_rblock( source_name, path, options)
     end
 
+    def remote_asset_path(path, options={})
+      source_name = options[:source] || Optimacms.config.default_content_source_name
+
+      return Optimacms::Renderer::ContentRenderer.new(self, @pagedata).get_file_url( source_name, path, options)
+    end
+
 
     def msg
       Optimacms::Resource
