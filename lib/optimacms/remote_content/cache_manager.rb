@@ -3,7 +3,7 @@ module Optimacms
     class CacheManager
 
       def self.remove_templates(source_name)
-        a_paths = Page.where(template_source: source_name).where("template_path_local IS NOT NULL AND template_path_local <> ''").pluck(:template_path_local).to_a
+        a_paths = Page.where(template_source: source_name).where("template_path IS NOT NULL AND template_path <> ''").pluck(:template_path).to_a
 
 
         a_paths.each do |s|
@@ -13,7 +13,7 @@ module Optimacms
 
         end
 
-        Page.where(template_source: source_name).where("template_path_local IS NOT NULL").update_all("template_path_local=''")
+        #Page.where(template_source: source_name).where("template_path_local IS NOT NULL").update_all("template_path_local=''")
 
 
         true
