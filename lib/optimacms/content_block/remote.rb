@@ -42,6 +42,21 @@ module Optimacms
 
       end
 
+      def get_metadata
+
+        data = get_metadata_from_cache
+
+        if data.nil?
+          download_file_info
+
+          save_metadata_cache
+
+          data = get_metadata_from_cache
+        end
+
+        data
+      end
+
       ### source
 
       def source
@@ -155,7 +170,32 @@ module Optimacms
 
         FileUtils.mkdir_p(File.dirname(fpath))
 
-        data = {
+        data = build_metadata
+
+        File.open(fpath,"w+") do |f|
+          f.write data.to_yaml
+        end
+
+        true
+      end
+
+
+      def get_metadata_from_cache
+        file_meta = metadata_cache_file_path
+        if !File.exists? file_meta
+          return nil
+        end
+
+        #
+        data = YAML.load_file file_meta
+
+
+        data
+      end
+
+
+      def build_metadata
+        {
             source: source_name,
             path: path,
             options: options.to_json,
@@ -166,12 +206,6 @@ module Optimacms
             local_basepath: local_file.basepath
 
         }
-
-        File.open(fpath,"w+") do |f|
-          f.write data.to_yaml
-        end
-
-        true
       end
 
 
