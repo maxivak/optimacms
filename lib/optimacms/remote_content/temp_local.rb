@@ -2,53 +2,6 @@ module Optimacms
   module ContentBlock
     class Local < Base
 
-      def initialize( _source_name, _path, _options={})
-        super   _source_name, _path, _options
-
-        #init
-      end
-
-
-      def is_local?
-        true
-      end
-
-      def get_file
-        # init if needed
-        if local_file.nil? || !local_file.exists?
-          init_local_file
-
-        end
-
-        if !local_file.exists?
-          raise 'file not found'
-        end
-
-
-        #get_contents
-      end
-
-      def get_file_info
-        # do nothing
-      end
-
-
-      def get_contents
-        if local_file.exists?
-          return local_file.get_contents
-        end
-
-        #raise 'not found'
-        nil
-      end
-
-
-      ###
-
-      def dir_base
-        'app/views'
-      end
-
 
       def init_local_file
         local_file_basepath = nil
