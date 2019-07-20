@@ -65,8 +65,9 @@
               =link_to u_template_edit do
                 =item.template_path
 
-              %br
-              %span.small.col-gray (remote)
+              - if item.template_source!='local'
+                %br
+                %span.small.col-gray (remote)
 
 
         %td

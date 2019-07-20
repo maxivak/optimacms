@@ -53,7 +53,8 @@
         - if item.is_folder
           = item.folder_path
         - else
-          =item.path rescue 'error'
+          =item.basepath rescue 'error'
+          -#=item.path rescue 'error'
 
       %td
         =link_to 'Edit', (!item.is_folder ? edit_template_path(item) : editfolder_template_path(item))
