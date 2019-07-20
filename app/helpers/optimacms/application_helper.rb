@@ -1,9 +1,8 @@
 ﻿module Optimacms
   module ApplicationHelper
-
+    include ::Friendlycontent::Rails::ApplicationHelper
     #include ActionView::Helpers::ApplicationHelper
     #include SimpleFilter::FormsHelper
-
 
     def method_missing(method, *args, &block)
       main_app.send(method, *args, &block)
@@ -40,7 +39,7 @@
       end
 
       #
-      return super(options)
+      super(options)
     end
 
 
@@ -55,7 +54,7 @@
       #desc ||= eval_meta_string(@optimacms_meta_description)
 
 
-    return %(<title>#{title}</title>
+      return %(<title>#{title}</title>
 <meta name="keywords" content="#{keywords}"/>
 <meta name="description" content="#{desc}"/>
       ).html_safe
@@ -70,26 +69,24 @@
       @optimacms_tpl
     end
 
-
+=begin
     def block(name, options={})
       source_name = options[:source] || @pagedata.page_template.source_name || Optimacms.config.default_content_source_name
-
       return Optimacms::Renderer::ContentRenderer.new(self, @pagedata).render_block( source_name, name, options)
     end
 
-
     def rblock(path, options={})
       source_name = options[:source] || Optimacms.config.default_content_source_name || @pagedata.page_template.source_name
-
       return Optimacms::Renderer::ContentRenderer.new(self, @pagedata).render_rblock( source_name, path, options)
     end
+
+=end
 
     def remote_asset_path(path, options={})
       source_name = options[:source] || Optimacms.config.default_content_source_name
 
       return Optimacms::Renderer::ContentRenderer.new(self, @pagedata).get_file_url( source_name, path, options)
     end
-
 
     def msg
       Optimacms::Resource
