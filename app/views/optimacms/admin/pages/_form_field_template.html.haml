@@ -1,12 +1,11 @@
 
-- if Optimacms.config.template_content_sources.empty?
+- if Friendlycontent::Rails.config.content_sources.empty?
   -#= f.input_field :client, :as => :autocomplete, :source_query => autocomplete_client_name_orders_path, :minLength => 1, :items => 10, :class=>'form-control', :afterSelect=>'client_autocomplete_after_select'
   =f.input_field :template, :as => :autocomplete, :source_query => autocomplete_templates_url, :class=>'form-control'
-
 - else
   =f.input_field :template_id, :as => :hidden, :value => ""
 
-  - list_sources = Optimacms.config.template_content_sources.map{|s| [s, s]}
+  - list_sources = Friendlycontent::Rails.config.content_sources.map{|name, info| [name, name]}
 
   .row
     .col-4
