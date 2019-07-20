@@ -235,11 +235,9 @@ module Optimacms
         redirect_to source_file_url and return
       end
 
-
       page = Page.find(page_id)
-      content_block = Optimacms::ContentBlock::Factory.for_page(page)
-
-      content_block.get_file_info
+      source_info = ::Friendlycontent::Rails.config.get_source_info(page.template_source_name)
+      content_block = ::Friendlycontent::ContentBlock::Factory.create source_info, page.template_path, {}
 
       if content_block.is_local?
         if page.template_id
@@ -247,7 +245,6 @@ module Optimacms
         else
           raise 'not supported'
         end
-
       else
         source_file_url = content_block.remote_file_url
         if source_file_url
