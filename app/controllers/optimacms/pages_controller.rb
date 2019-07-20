@@ -1,23 +1,6 @@
-﻿#require_dependency "../../lib/optimacms/page_services/page_route_service.rb"
-#require_dependency "../../lib/optimacms/page_services/page_process_service.rb"
-
-require_dependency "../../lib/optimacms/renderer/admin_page_renderer.rb"
-
-module Optimacms
-
+﻿module Optimacms
   class PagesController < Optimacms::ApplicationController
     include ::Optimacms::Mycontroller
-
-    # render
-    unless respond_to?(:render_base)
-      alias_method :render_base, :render
-    end
-
-
-    include ::Optimacms::Renderer::AdminPageRenderer
-
-    renderer_admin_edit
-
 
     def show
       @path = params[:url]
@@ -27,18 +10,15 @@ module Optimacms
         not_found and return
       end
 
-
       # page mapped to controller
       @pagedata.url_vars.each do |k,v|
         params[k] = v
       end
 
-
       # callback
       if respond_to?(:after_init_pagedata)
         send(:after_init_pagedata)
       end
-
 
       optimacms_set_pagedata @pagedata
 
@@ -46,13 +26,10 @@ module Optimacms
       # download file from remote source
       @pagedata.page_template.get_file
 
-
-      # for remote tempalte
-      unless @pagedata.page_template.is_local?
-        prepend_view_path Optimacms.config.templates_remote_dir
-      end
-
-
+      # for remote template
+      #unless @pagedata.page_template.is_local?
+      #  prepend_view_path Optimacms.config.templates_remote_dir
+      #end
 
       # render
       if @pagedata.page.content_page?
@@ -61,9 +38,12 @@ module Optimacms
           send(:before_page_render)
         end
 
+        render_options = {
+            is_admin_edit: current_cms_admin_user
+        }
+        renderer = Optimacms::Renderer::Renderer.new(self, render_options)
 
-        return Optimacms::Renderer::ContentRenderer.new(self, @pagedata).render_page_content
-
+        return renderer.render_page(@pagedata)
       else
         # process page with controller
         #@pagedata.generate_content
@@ -75,122 +55,49 @@ module Optimacms
         #c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.page_template.local_file.basepath, @pagedata.layout)
         c = renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params, @pagedata.page_template, @pagedata.layout)
 
-        #puts "#{c}"
-        render_base inline: c
-
+        render inline: c
         return
-=begin
-
-
-        #
-        template = ERB.new(s, 0, "%<>")
-
-        #vv = OpenStruct.new(pg: 75, last: 'Maragall')
-        #vv = OpenStruct.new(c.instance_values)
-        #ss = template.result(vv.instance_eval { binding })
-        #ss = template.result(c.instance_values.instance_eval { binding })
-        #ss = template.result(c.get_binding)
-        #ss = template.result(c.instance_values.binding())
-
-        #render :text=>ss
-        #render :text=>c
-
-        vars = {}
-        c.instance_values.each do |k,v|
-          vars[k.to_sym] = v
-        end
-
-        #render template: 'pages/1.html.erb', locals: vars
-
-        #render template: 'pages/news2.html.erb', locals: {pg: 4}
-        #render text: s, locals: {pg: 4}
-
-        #render :text => (render_to_string :template=>'pages/news2.html', :locals=> {pg: 4})
-        #render :text => (render_to_string 'pages/news2.html', locals: c.instance_values)
-        #render :text => renderActionInOtherController(@pagedata.controller_class, @pagedata.action, params)
-=end
-
-
       end
-
-
     end
-
-
-
-    def render(options = nil, extra_options = {}, &block)
-      options ||= {} # initialise to empty hash if no options specified
-
-      if !current_cms_admin_user
-        return render_base(options, extra_options, &block)
-      end
-
-      # special cases
-      if options.is_a?(Hash) && options[:text]
-        return render_base(options, extra_options, &block)
-      end
-
-
-
-      # editor for admin
-      #render_base(options, extra_options, &block)
-
-      render_with_edit(options, extra_options, &block)
-    end
-
-
-
-=begin
-    def my_set_render_template(tpl_view, tpl_layout)
-      @optimacms_tpl = tpl_view
-      @optimacms_layout = tpl_layout
-    end
-
-    def my_set_meta(meta)
-      #@optimacms_meta = meta
-      @optimacms_meta_title = meta[:title]
-      @optimacms_meta_keywords = meta[:keywords]
-      @optimacms_meta_description = meta[:description]
-    end
-=end
 
     def renderActionInOtherController(controller,action,params, content_block, tpl_layout=nil)
-
       # include render into controller class
-      if current_cms_admin_user
-        controller.send 'include', Optimacms::Renderer::AdminPageRenderer
-        controller.send 'renderer_admin_edit'
-      end
+      #if current_cms_admin_user
+      #  controller.send 'include', Optimacms::Renderer::AdminPageRenderer
+      #  controller.send 'renderer_admin_edit'
+      #end
 
-
-
-      #
       c = controller.new
       c.params = params
 
-      if current_cms_admin_user
-        #if !controller.respond_to?(:render_base, true)
-        if !c.respond_to?(:render_base, true)
-          controller.send :alias_method, :render_base, :render
+      # extend controller with cms stuff
+      if !c.respond_to?(:is_optimacms, true)
+        controller.send 'include', ::Optimacms::Mycontroller
+      end
 
-          controller.send :define_method, "render" do |options = nil, extra_options = {}, &block|
-            if current_cms_admin_user && @pagedata
-              render_with_edit(options, extra_options, &block)
-            else
-              render_base(options, extra_options, &block)
-            end
+      if !c.respond_to?(:render_base, true)
+        controller.send :alias_method, :render_base, :render
 
-          end
+        controller.send :define_method, "render" do |options = nil, extra_options = {}, &block|
+          render_options = {
+              is_admin_edit: current_cms_admin_user,
+              function_default_render: :render_base
+          }
+          renderer = ::Optimacms::Renderer::Renderer.new(self, render_options)
+          return renderer.render_page(@pagedata, options, extra_options, &block)
+
+          #if current_cms_admin_user && @pagedata
+          #  render_with_edit(options, extra_options, &block)
+          #else
+          #  render_base(options, extra_options, &block)
+          #end
         end
       end
 
-
       # views
-      unless content_block.is_local?
-        c.prepend_view_path Optimacms.config.templates_remote_dir
-      end
-
-
+      #unless content_block.is_local?
+      #  c.prepend_view_path Optimacms.config.templates_remote_dir
+      #end
 
       #c.process_action(action, request)
       #c.dispatch(action, request)
@@ -206,14 +113,6 @@ module Optimacms
       c.send 'my_set_render'
       c.send 'optimacms_set_pagedata', @pagedata
 
-      #c.send 'my_set_render_template', tpl_view
-      #c.send 'my_set_render_layout', tpl_layout
-
-      #c.send 'my_set_meta', @pagedata.meta
-
-
-      #renderer_admin_edit
-
       #c.process_action(action)
       c.dispatch(action, request, c.response)
       #c.process_action(action, tpl_filename)
@@ -227,9 +126,5 @@ module Optimacms
 
       c.response.body
     end
-
-
-
-
   end
 end

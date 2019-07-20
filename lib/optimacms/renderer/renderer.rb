@@ -1,67 +1,34 @@
 module Optimacms
   module Renderer
-    class ContentRenderer
-      attr_accessor :context, :pagedata
+    class Renderer
+      attr_accessor :context, :render_options
 
-      def initialize(_ctx, _pagedata)
+      def initialize(_ctx, opts={})
         @context = _ctx
-        @pagedata = _pagedata
+        @render_options = opts
       end
-
-
-      ### interface methods
-
-      def do_render_page(options = nil, extra_options = {}, &block)
-        options ||= {} # initialise to empty hash if no options specified
-
-        if !context.current_cms_admin_user
-          return context.render_base(options, extra_options, &block)
-        end
-
-        # special cases
-
-        # render text
-        if options.is_a?(Hash) && options[:text]
-          return context.render_base(options, extra_options, &block)
-        end
-
-
-        # base version
-        #render_base(options, extra_options, &block)
-
-        # editor for admin
-        context.render_with_edit(options, extra_options, &block)
-      end
-
 
       # content page without custom controller
-      def render_page_content
-
-        #@content = @pagedata.get_content(@page)
-        #@content = @page.content
-
-
-        #controller.optimacms_set_pagedata pagedata
-
-        #my_set_render_template @pagedata.template_path, @pagedata.layout.basename
-        #context.my_set_render_layout pagedata.layout.basename
-        #context.my_set_meta pagedata.meta
-
-
-
-        #optimacms_tpl = pagedata.page_template.basepath
-        #context.my_set_render_template optimacms_tpl
-
+      def render_page(pagedata, options = nil, extra_options = {}, &block)
         #context.render "/"+@optimacms_tpl, :layout=>@optimacms_layout
-        do_render_page "/"+pagedata.template, :layout=>pagedata.layout
+        virtual_path = "/"+pagedata.template
+        options = {layout: pagedata.layout}
 
+        context.instance_variable_set('@virtual_path', pagedata.template_virtual_path)
 
-        # v1
-        #render @optimacms_tpl, :layout=>@optimacms_layout
+        # editor for admin
+        is_admin_edit = render_options[:is_admin_edit] || false
+        if is_admin_edit
+          return render_with_edit(pagedata, options, extra_options, &block)
+        end
 
+        # render text
+        #if options.is_a?(Hash) && options[:text]
+        #  return context.render(virtual_path, options, &block)
+        #end
 
-        # v2
-        #render :text => @content, :layout => @page.layout.name
+        # base version
+        render_base(virtual_path, options, &block)
 
         # v3
         #cont = ApplicationController.render(
@@ -69,52 +36,41 @@ module Optimacms
         #    assigns: { user: @user }
         #)
 
-        #render_base inline: cont
+      end
 
-=begin
-        # v4
-        respond_to do |format|
-          format.html { render :text => @content }
+      def render_base(options = nil, extra_options = {}, &block)
+        function_default_render = render_options[:function_default_render]
+
+        if function_default_render.nil?
+          return context.render(options, extra_options, &block)
+        else
+          return context.send(function_default_render, options, extra_options, &block)
         end
-        return
-=end
-
-        return
-
       end
 
+      def render_with_edit(pagedata, options = nil, extra_options = {}, &block)
+        #return render_base(options, extra_options, &block)
+        #s = render_to_string(options, extra_options, &block)
 
+        # TODO: why we need this???
+        #@pagedata.render_options = options
+        #@pagedata.render_extra_options = extra_options
 
-      def render_block(source_name, path, block_options={})
-        options = build_options block_options
-        block_path = build_block_path path, block_options
+        # template
+        #@__page_tpl = Optimacms::PageServices::TemplateService.get_by_name(@__page_tpl_name)
 
-        content_block = Optimacms::ContentBlock::Factory.for_source_in_views source_name, block_path, options
+        # data relations
+        #@__page_tpl_data_relations = (pagedata.template.data_relations.all.index_by { |t| t.var_name } rescue [])
+        page_tpl_data_relations = (pagedata.template.data_relations.all.index_by { |t| t.var_name } rescue [])
+        context.instance_variable_set("@__page_tpl_data_relations", page_tpl_data_relations)
 
-        return render_content_block content_block
+        render_base 'optimacms/admin_page_edit/page', options, &block
       end
-
-
-      def render_rblock(source_name, path, block_options={})
-        options = build_options block_options
-        block_path = build_block_path path, block_options
-
-        content_block = Optimacms::ContentBlock::Factory.for_remote source_name, block_path, options
-
-        return render_content_block content_block
-      end
-
-
 
       ### main method to render block
       def render_content_block(content_block)
-
-        # init file
+        # init file, download if needed
         content_block.get_file
-
-        #@context.render file: content_block.local_file_basepath, locals: options
-
-
         f = content_block.local_file.path
 
         # render from file
@@ -122,25 +78,18 @@ module Optimacms
           #opts[:file] = f
           #return render opts
 
-          if @context.current_cms_admin_user
+          if context.current_cms_admin_user
             #return block_with_edit file: f, locals: options
             #return @context.block_with_edit content_block.path, f, content_block.options
             return render_block_with_edit content_block
           else
-            return @context.render file: f, locals: content_block.options
+            return context.render file: f, locals: content_block.options
           end
-
         end
 
-
         # default render
-        @context.render f, content_block.options
-
+        render_base f, content_block.options
       end
-
-
-
-      ###
 
       def render_block_with_edit(content_block, _opts={})
         #tpl_filename = content_block.path

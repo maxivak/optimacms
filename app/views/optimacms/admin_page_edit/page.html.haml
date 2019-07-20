@@ -12,7 +12,8 @@
           =link_to Optimacms::Engine.routes.url_helpers.edit_template_content_page_path(id: @pagedata.page.id), target: "_blank", class: "link" do
             %span.cont Template
 
-  = render template: @pagedata.page_template.local_file.basepath
+  =::Friendlycontent::Rails::Renderer::render_content_block( self, @pagedata.page_template)
+  -#= render template: @pagedata.page_template.local_file.basepath
 
 - else
   ERROR

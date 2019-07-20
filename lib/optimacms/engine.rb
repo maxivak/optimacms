@@ -1,8 +1,6 @@
-
 module Optimacms
   class Engine < ::Rails::Engine
     isolate_namespace Optimacms
-
 
     #config.to_prepare do
     #  Dir.glob(Rails.root + "app/decorators/**/*_decorator*.rb").each do |c|
@@ -14,7 +12,6 @@ module Optimacms
     config.enable_dependency_loading = false
     #config.eager_load_paths += %W( #{Optimacms::Engine.root}/lib/optimacms.rb #{Optimacms::Engine.root}/lib/version.rb #{Optimacms::Engine.root}/lib/mycontroller.rb)
     config.eager_load_paths += %W( #{Optimacms::Engine.root}/lib )
-
 
     config.watchable_dirs['lib'] = [:rb] if Rails.env.development?
     config.watchable_dirs['app/helpers'] = [:rb] if Rails.env.development?
@@ -42,27 +39,22 @@ module Optimacms
     #config.autoload_paths += Dir["#{config.root}/lib/"]
     #config.autoload_paths += Dir["#{config.root}/lib/**/*.rb"]
 
-
-
     config.generators do |g|
       g.test_framework :rspec
       g.fixture_replacement :factory_girl, :dir => 'spec/factories'
     end
 
-
     config.before_initialize do
       ActiveSupport.on_load :action_controller do
-        include ::Optimacms::Mycontroller
+        # TODO: check if this line can be safely removed
+        #include ::Optimacms::Mycontroller
 
         ::ActionController::Base.helper Optimacms::Engine.helpers
       end
     end
 
     initializer "optimacms assets precompile" do |app|
-
       app.config.assets.precompile += %w(admin.css admin.js optimacms/admin.css optimacms/admin.js optimacms/tinymce.css optimacms/tinymce.js  optimacms/ace.js optimacms/elfinder.css optimacms/elfinder.js)
-
-
     end
 
   end

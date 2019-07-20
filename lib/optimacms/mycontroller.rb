@@ -2,7 +2,6 @@
   module Mycontroller
     extend ActiveSupport::Concern
 
-
     ### rendering
 
     included do
@@ -20,11 +19,14 @@
       @is_optimacms
     end
 
+=begin
     def default_render(*args)
       if self.controller_name!='pages' && !@pagedata.nil? && @is_optimacms
         # OK. 2019-jan
-        #render @optimacms_tpl, :layout=>@optimacms_layout and return
         render @pagedata.template, :layout=>@pagedata.layout and return
+
+        # 2019-july
+
 
         #(render :text => "hello", :layout => @optimacms_layout) and return
 
@@ -37,6 +39,7 @@
 
       super
     end
+=end
 
 
     ### pagedata
@@ -64,9 +67,6 @@
     def my_set_render_layout(tpl_layout)
       @optimacms_layout = tpl_layout
     end
-
-
-
 =end
 
 =begin
@@ -109,4 +109,3 @@
 
   end
 end
-

@@ -15,7 +15,7 @@
 
         # result
         pagedata = PageData.new
-        pagedata.url = url
+        pagedata.url = (url || '')
 
         # try 1
         rows = Page.where(where).order(order).all
@@ -28,9 +28,7 @@
 
           pagedata.page = rows[0] if rows.count>0
         end
-
         return pagedata if pagedata.page.nil?
-
 
         # params from url
         pagedata.url_vars = get_url_vars(pagedata.url, pagedata.page)
@@ -39,7 +37,6 @@
         if pagedata.page.controller_action.present?
           pagedata.controller, pagedata.action = parse_controller_action(pagedata.page.controller_action)
         end
-
 
         pagedata
       end
@@ -71,7 +68,6 @@
           i_part+=1
           is_last_optional = false
 
-
           # check for brackets inside brackets
           return nil if part =~ /\{[^{}]*[{}][^{}]*\}/
 
@@ -80,10 +76,9 @@
 
           p = part
 
-
           # variables inside (...) - optional
 
-          # last optional varible
+          # last optional variable
           if i_part==n_parts
             # /^(:name)..$
             # include last / as optional
@@ -106,7 +101,6 @@
           #p.gsub! /\{\$[^}]+\}/, '([^/]+)'
           p.gsub! /(\:#{REGEX_VARIABLE})([-\.]|$)/, '([^/]+)\2'
 
-
           # escape system symbols
           # replace '.'
           p.sub! '.', '[.]'
@@ -115,8 +109,6 @@
           if i_part>1 && !is_last_optional
             p = '/'+p
           end
-
-
 
           a << p
         end
@@ -205,11 +197,9 @@
           res = res + '?'+a_extra.join('&')
         end
 
-        #
         #res.gsub! /\?$/, ''
         res
       end
     end
-
   end
 end

@@ -5,19 +5,14 @@ module Optimacms
       attr_accessor :page # page object
       #, :params
       attr_accessor :url, :url_vars
-
       attr_accessor :lang
-
       attr_accessor :controller, :action
-
       #attr_accessor :layout
       #attr_accessor :template
       #attr_accessor :template_source
-
       attr_accessor :render_options
       attr_accessor :render_extra_options
 
-      #
       attr_reader :compiled_view_path
 
       include PageProcessService
@@ -40,28 +35,28 @@ module Optimacms
 
         return lang_url unless lang_url.blank?
 
-
         I18n.locale
       end
 
-
       ### rendering data
-
       def page_template
         #page.template
-
         return @page_template unless @page_template.nil?
 
-        #@page_template = Optimacms::PageTemplate::Factory.for(page, {lang: lang})
-        #@page_template = Optimacms::ContentBlock::Factory.for_page(page, page.template_source_name, page.template_path, {lang: lang})
-        @page_template = Optimacms::ContentBlock::Factory.for_page(page, {lang: lang})
+        source_name = page.template_source_name
+        path = page.template_path
+        source_info = ::Friendlycontent::Rails.config.get_source_info(source_name)
+        @page_template = ::Friendlycontent::ContentBlock::Factory.create(source_info, path, {lang: lang})
 
         @page_template
       end
 
-
       def template
         page_template.local_file.basepath
+      end
+
+      def template_virtual_path
+        page_template.path
       end
 
       def layout
@@ -72,10 +67,7 @@ module Optimacms
         page_template.source_name
       end
 
-
-
       ### meta
-
       def meta
         page_lang = page.is_translated ? lang : ''
         row = page.translations.where(:lang=>page_lang).first
