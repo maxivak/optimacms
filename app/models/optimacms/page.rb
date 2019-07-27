@@ -108,35 +108,11 @@ module Optimacms
 
     ### callbacks
 
-
     def _before_validate
       self.parent_id = nil if self.parent_id && self.parent_id==0
 
-      # calc template_id
-      calc_template_id_by_source
-
       true
     end
-
-
-    def calc_template_id_by_source
-      return if template_id && template_id>0
-
-      #
-      self.template_id = nil
-
-      if template_source=='local'
-        row_tpl = Optimacms::PageServices::TemplateService.get_by_name template_path
-
-        if row_tpl
-          self.template_id = row_tpl.id
-        end
-      end
-
-
-
-    end
-
 
     ### content
 
@@ -156,7 +132,6 @@ module Optimacms
     def content_page?
       self.controller_action.nil? || self.controller_action.blank?
     end
-
 
     def content_filename(lang='')
       return nil if self.name.nil?
@@ -212,9 +187,7 @@ module Optimacms
     def _before_save
 
       if self.url_changed?
-        self.url_parts_count = PageServices::PageRouteService.count_url_parts(self.url)
-        self.url_vars_count = PageServices::PageRouteService::count_url_vars(self.url)
-        self.parsed_url = PageServices::PageRouteService::parse_url(self.url)
+        parse_url
       end
 
       # remote content
@@ -227,9 +200,11 @@ module Optimacms
 =end
     end
 
-
-
-
+    def parse_url
+      self.url_parts_count = PageServices::PageRouteService.count_url_parts(self.url)
+      self.url_vars_count = PageServices::PageRouteService::count_url_vars(self.url)
+      self.parsed_url = PageServices::PageRouteService::parse_url(self.url)
+    end
 
 
     ### templates from remote source
@@ -267,9 +242,7 @@ module Optimacms
       langs_missing.each do |lang|
         self.translations.new(:lang=>lang)
       end
-
     end
-
 
 
     ##### meta
@@ -284,7 +257,6 @@ module Optimacms
     def content_filename_ext
       return 'html'
     end
-
 
   end
 end
