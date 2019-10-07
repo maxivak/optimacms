@@ -53,13 +53,9 @@ module Optimacms
 
 
     ### settings
-
     def self.base_dir
       Rails.root.to_s + '/app/views/'
     end
-
-
-
 
 
     ### properties
@@ -67,7 +63,6 @@ module Optimacms
     def parent_title
       self.parent.title
     end
-
 
     def has_code?
       ['haml', 'erb', 'blank'].include?(self.tpl_format)
@@ -90,7 +85,6 @@ module Optimacms
     end
 
 
-
     ### translations
 
     def build_translations
@@ -107,9 +101,7 @@ module Optimacms
       langs_missing.each do |lang|
         self.translations.new(:lang=>lang)
       end
-
     end
-
 
 
     ##### search
@@ -121,7 +113,6 @@ module Optimacms
         children_of(parent_id.to_s)
       end
     end
-
 
 
     #### operations
@@ -218,8 +209,6 @@ module Optimacms
 
       self.basename
     end
-
-
 
 
 
@@ -356,9 +345,7 @@ module Optimacms
       else
         # file
 
-
       end
-
 
       true
     end
