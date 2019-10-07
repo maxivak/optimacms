@@ -17,6 +17,10 @@
         :source_query => autocomplete_path_templates_url,
         :data => { func_params: "autocomplete_template_path_get_params"},
         :class=>'form-control'
+      %br
+      options:
+      = f.input_field :template_options, :class=>'form-control'
+
 
 
 :javascript

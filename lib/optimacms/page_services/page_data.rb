@@ -46,9 +46,22 @@ module Optimacms
         source_name = page.template_source_name
         path = page.template_path
         source_info = ::Friendlycontent::Rails.config.get_source_info(source_name)
-        @page_template = ::Friendlycontent::ContentBlock::Factory.create(source_info, path, {lang: lang})
 
-        @page_template
+        # build options for template
+        s_template_options = page.template_options || "{}"
+        s_template_options = "{}" if s_template_options==''
+        template_options = eval(s_template_options, template_options_binding)
+
+        ::Friendlycontent::ContentBlock::Factory.create(source_info, path, template_options)
+      end
+
+      def template_options_binding
+        self.url_vars.each_pair do |k,v|
+          key = k.to_s
+          eval('key = v')
+        end
+
+        binding
       end
 
       def template

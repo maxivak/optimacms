@@ -20,3 +20,8 @@ CREATE TABLE IF NOT EXISTS `cms_template_data_relations` (
   PRIMARY KEY (`id`),
   KEY `template_id` (`template_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+
+# 2019-10-06, mmx
+
+ALTER TABLE `cms_pages` ADD `template_options` VARCHAR(255) NULL AFTER `template_path`;
