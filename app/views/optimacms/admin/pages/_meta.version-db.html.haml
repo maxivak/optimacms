@@ -17,27 +17,12 @@
       =fmeta.input :meta_keywords, label: 'Keywords'
       =fmeta.input :meta_description, as: :text, label: 'Description'
 
-  -#= f.simple_fields_for :metas, @item.metas do |fmeta|
-  -#= f.fields_for 'metas[]', @item.metas do |fmeta|
-    -# tran = fmeta.object
-    -# lang = tran.lang
-
-      = tran
-      %div{:class=>['cont', "meta_cont_"+lang]}
-        =fmeta.input :lang, :readonly=>true
-        -#=fmeta.input :title, label: 'Title'
-        -#=fmeta.input :keywords, label: 'Keywords'
-        -#=fmeta.input :description, as: :text, label: 'Description'
-
-
-  - @languages.each do |vlang|
-    - lang = vlang.blank? ? 'default' : vlang
-    %div{:class=>['cont', "meta_cont_"+vlang]}
-      =fields_for "page[metas][#{lang}]", @item.metas[lang] do |fmeta|
-        =fmeta.text_field :lang
-        =fmeta.text_field :title
-        =fmeta.text_field :keywords
-        =fmeta.text_field :description
+  -# @languages.all.each do |r|
+    - lang = r.lang
+    - name = "meta_keywords_#{lang}"
+    .form-group
+      %label(for="#{name}") Keywords
+      =f.input_field :"meta_keywords[#{lang}]", :class=>"form-control", :placeholder=>"Keywords"
 
 
 :javascript
@@ -48,6 +33,8 @@
       e.preventDefault();
       meta_show_cont($(this).data('lang'));
     });
+
+
   });
 
   function meta_show_cont(lang){

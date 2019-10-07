@@ -8,10 +8,35 @@ module MetaContent
 
     #class_attribute :tag_limit
 
+    ### meta
 
+    # list of meta by lang
+    def metas
+      return @metas unless @metas.nil?
+
+      @metas = {}
+      @metas['default'] = meta('')
+      Language.all.each do |r|
+        lang = r.lang
+        @metas[lang] = meta(lang)
+      end
+
+      @metas
+    end
+
+    def metas=(v_metas)
+      v_metas.each do |lang, d|
+        pagemeta = PageMeta.new(self.name, lang)
+        pagemeta.data=d
+        @metas[lang] = pagemeta
+      end
+      @metas
+    end
+
+    def meta(lang='')
+      PageMeta.new(self.name, lang)
+    end
   end
-
-
 
 
   def meta_keywords_content(lang='')

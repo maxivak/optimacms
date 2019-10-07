@@ -2,15 +2,15 @@ module Optimacms
   class Page < ApplicationRecord
     self.table_name = 'cms_pages'
 
-
     # relations
-
     belongs_to :layout, :foreign_key => 'layout_id', :class_name => 'Template', optional: true
     belongs_to :template, :foreign_key => 'template_id', :class_name => 'Template', optional: true
     belongs_to :folder, :foreign_key => 'parent_id', :class_name => 'Page', optional: true
     has_many :translations, :foreign_key => 'item_id', :class_name => 'PageTranslation', :dependent => :destroy, :inverse_of => :page
     accepts_nested_attributes_for :translations
     accepts_nested_attributes_for :template
+
+    attr_accessor :meta
 
     #has_many :page_translations
     #accepts_nested_attributes_for :page_translations
@@ -139,7 +139,7 @@ module Optimacms
     end
 
     def self.content_filename_dir
-      Rails.root.to_s + '/app/views/pages/'
+      Rails.root.to_s + '/app/pages/'
     end
 
     def content_filename_full(lang)
@@ -147,6 +147,7 @@ module Optimacms
       return nil if f.nil?
       Page.content_filename_dir + f
     end
+
 
 
     #### search
@@ -190,6 +191,11 @@ module Optimacms
         parse_url
       end
 
+      # save meta
+      self.metas.each do |lang, pagemeta|
+        pagemeta.save!
+      end
+
       # remote content
 =begin
       if self.template_source_changed? || self.template_path_changed?
@@ -198,6 +204,7 @@ module Optimacms
         end
       end
 =end
+      true
     end
 
     def parse_url
@@ -244,8 +251,6 @@ module Optimacms
       end
     end
 
-
-    ##### meta
 
     private
 

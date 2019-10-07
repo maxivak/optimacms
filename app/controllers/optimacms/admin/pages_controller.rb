@@ -279,6 +279,7 @@ module Optimacms
       def set_item
         @item = model.find(params[:id])
 
+        @metas = @item.metas
         @url_back = url_list
       end
 
@@ -287,9 +288,5 @@ module Optimacms
         params.require(model_name).except(:template).permit!
         #item_params[:page].delete(:template)
       end
-
-
   end
-
-
 end
