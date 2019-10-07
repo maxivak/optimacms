@@ -1,30 +1,24 @@
 class  Optimacms::Admin::ContentSourcesController < Optimacms::Admin::AdminBaseController
 
-
-
   def index
-    @data_obj = Optimacms::RemoteContent::SourcesList.new
-
-    @items = @data_obj.items
+    @items = content_sources
   end
 
   def show
     # input
     @name = params[:id]
 
-    #
-    @item = Optimacms::RemoteContent::Sources.get_source_info @name
+    @item = Friendlycontent::Rails.config.get_source_info @name
 
-
+    # TODO: redirect to list if not found
   end
 
   def clean_cache
-    @name = params[:id]
+    @source_name = params[:id]
 
-    #
-
-    Optimacms::RemoteContent::CacheManager.remove_content @name
-    Optimacms::RemoteContent::CacheManager.remove_templates @name
+    Friendlycontent::Rails::ContentManager.expire_all_for_source @source_name
+    #Optimacms::RemoteContent::CacheManager.remove_content @source_name
+    #Optimacms::RemoteContent::CacheManager.remove_templates @source_name
 
 
     @res = true
@@ -39,5 +33,11 @@ class  Optimacms::Admin::ContentSourcesController < Optimacms::Admin::AdminBaseC
     redirect_to url_index
   end
 
+
+  private
+
+  def content_sources
+    ::Friendlycontent::Rails.config.content_sources
+  end
 end
 

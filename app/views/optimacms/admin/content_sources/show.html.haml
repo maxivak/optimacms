@@ -3,30 +3,14 @@ Name: #{@name}
 
 %p
   settings:
-  %br
+  .row
+    .col-3
+      type
+    .col-9
+      =@item.type
 
-    .row
-      .col-3
-        type
-      .col-9
-        =@item[:type]
-
-    .row
-      .col-3
-        api_url
-      .col-9
-        =@item[:api_url]
-
-    .row
-      .col-3
-        has templates
-      .col-9
-        =@item[:use_templates]
-
-
-Full info
 %pre
-  =JSON.pretty_generate @item
+  =JSON.pretty_generate @item.data
 
 %h3 Maintenance
 
