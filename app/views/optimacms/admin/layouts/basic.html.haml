@@ -3,14 +3,13 @@
 
   .container-fluid.p-0.m-0
     .row.no-gutters
-      .col-sm-2
+      .col-sm-2.col-xl-1
         = render 'optimacms/admin/shared/leftmenu'
-      .col
+      .col.pl-4
         = render 'optimacms/admin/shared/breadcrumbs'
         = render 'optimacms/admin/shared/flash'
 
-        .container.pl-4
-          = yield
+        = yield
 
 
   = render 'optimacms/admin/shared/footer'
