@@ -80,7 +80,5 @@ module Optimacms
     def meta_filename_ext
       return 'json'
     end
-
-
   end
 end

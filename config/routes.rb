@@ -18,7 +18,7 @@ Optimacms::Engine.routes.draw do
 
     resources :pages do
       collection do
-        post 'search' 
+        post 'search'
 
         get 'newfolder'
         post 'createfolder'
