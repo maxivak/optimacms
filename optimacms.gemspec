@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "friendlycontent-source"
 
   s.add_dependency "devise", '>=4.0'
-  s.add_dependency 'webpacker', '~> 3.5'
+  s.add_dependency 'webpacker' , '~> 4.0'
   s.add_dependency "haml-rails", ">= 0.9.0"
   #s.add_dependency "sass-rails", '>= 5.0.4'
   #s.add_dependency "jquery-rails" #, "~> 4.0.3"

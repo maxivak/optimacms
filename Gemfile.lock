@@ -22,7 +22,7 @@ PATH
       simple_form
       simple_search_filter
       tinymce-rails
-      webpacker (>= 3.5)
+      webpacker (~> 4.0)
       zeitwerk
 
 GEM

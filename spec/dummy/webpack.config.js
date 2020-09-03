@@ -40,14 +40,28 @@ const config = {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: "style-loader" // creates style nodes from JS strings
+                        // creates style nodes from JS strings
+                        loader: "style-loader" // translates CSS into CommonJS
+                        // fallback to style-loader in development
+                        // loader: process.env.NODE_ENV !== 'production'
+                        //     ? 'style-loader'
+                        //     : MiniCssExtractPlugin.loader,
                     },
                     {
                         loader: "css-loader" // translates CSS into CommonJS
                     },
                     {
-                        loader: "sass-loader" // compiles Sass to CSS
-                    }
+                        loader: 'sass-loader',
+                        options: {
+                            // Prefer `dart-sass`
+                            implementation: require('sass'),
+                            sassOptions: {
+                                outputStyle: 'compressed',
+                                indentWidth: 2,
+                                // includePaths: ['absolute/path/a', 'absolute/path/b'],
+                            },
+                        },
+                    },
                 ]
             },
 
