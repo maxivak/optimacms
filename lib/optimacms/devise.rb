@@ -1,4 +1,3 @@
-
 require 'devise'
 
 module Optimacms
