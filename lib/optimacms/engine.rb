@@ -9,31 +9,31 @@ module Optimacms
     #end
 
     # for Rails 5
-    config.enable_dependency_loading = false
-    #config.eager_load_paths += %W( #{Optimacms::Engine.root}/lib/optimacms.rb #{Optimacms::Engine.root}/lib/version.rb #{Optimacms::Engine.root}/lib/mycontroller.rb)
-    config.eager_load_paths += %W( #{Optimacms::Engine.root}/lib )
-
-    config.watchable_dirs['lib'] = [:rb] if Rails.env.development?
-    config.watchable_dirs['app/helpers'] = [:rb] if Rails.env.development?
-
-    #config.autoload_paths << File.expand_path("../lib/some/path", __FILE__)
-    #config.autoload_paths << File.expand_path("../lib/optimacms/path", __FILE__)
-
-    config.autoload_paths += Dir["#{Optimacms::Engine.root}/app/helpers/"]
-    config.autoload_paths += Dir["#{Optimacms::Engine.root}/app/helpers/optimacms/"]
-    config.autoload_paths += Dir["#{Optimacms::Engine.root}/app/helpers/simple_filter/"]
-    config.autoload_paths += Dir["#{Optimacms::Engine.root}/app/helpers/**/"]
-
-    config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/"]
-    config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/**/"]
-
-    #config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/concerns/"]
-    #config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/concerns/**/"]
-
-    config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/"]
-    config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/**/"]
-    config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/common/*.rb"]
-    config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/page_services/*.rb"]
+    # config.enable_dependency_loading = false
+    # #config.eager_load_paths += %W( #{Optimacms::Engine.root}/lib/optimacms.rb #{Optimacms::Engine.root}/lib/version.rb #{Optimacms::Engine.root}/lib/mycontroller.rb)
+    # config.eager_load_paths += %W( #{Optimacms::Engine.root}/lib )
+    #
+    # config.watchable_dirs['lib'] = [:rb] if Rails.env.development?
+    # config.watchable_dirs['app/helpers'] = [:rb] if Rails.env.development?
+    #
+    # #config.autoload_paths << File.expand_path("../lib/some/path", __FILE__)
+    # #config.autoload_paths << File.expand_path("../lib/optimacms/path", __FILE__)
+    #
+    # config.autoload_paths += Dir["#{Optimacms::Engine.root}/app/helpers/"]
+    # config.autoload_paths += Dir["#{Optimacms::Engine.root}/app/helpers/optimacms/"]
+    # config.autoload_paths += Dir["#{Optimacms::Engine.root}/app/helpers/simple_filter/"]
+    # config.autoload_paths += Dir["#{Optimacms::Engine.root}/app/helpers/**/"]
+    #
+    # config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/"]
+    # config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/**/"]
+    #
+    # #config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/concerns/"]
+    # #config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/concerns/**/"]
+    #
+    # config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/"]
+    # config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/**/"]
+    # config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/common/*.rb"]
+    # config.autoload_paths += Dir["#{Optimacms::Engine.root}/lib/optimacms/page_services/*.rb"]
 
     #config.autoload_paths += Dir["#{config.root}/lib/**/"]
     #config.autoload_paths += Dir["#{config.root}/lib/"]

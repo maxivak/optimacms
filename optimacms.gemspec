@@ -1,7 +1,7 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "optimacms/version"
+require_relative "lib/optimacms/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
 
   s.add_dependency "rails", ">= 5.0.5"
+  s.add_dependency 'zeitwerk'
 
   s.add_dependency "friendlycontent-rails"
   s.add_dependency "friendlycontent-source"
