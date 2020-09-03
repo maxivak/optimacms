@@ -3,7 +3,11 @@ module Optimacms
     attr_accessor :yaml_config
     attr_accessor :files_dir_path,
                   :main_namespace, :admin_namespace,
-                  :metadata
+                  :metadata,
+                  :admin_menu_builder,
+
+                  # TODO: remove it - move to FriendlyContent
+                  :default_templates_source_name
 
     def initialize
       load_config
@@ -11,6 +15,8 @@ module Optimacms
       @files_dir_path = @yaml_config['files_dir_path'] || 'uploads'
       @main_namespace = @yaml_config['main_namespace'] || ''
       @admin_namespace = @yaml_config['admin_namespace'] || 'admin'
+
+      @admin_menu_builder = Optimacms::AdminMenu::AdminMenu
 
       # metadata
       @metadata = @yaml_config['metadata']
