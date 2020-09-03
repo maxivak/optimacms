@@ -1,7 +1,7 @@
 - if object.errors.any?
   .alert.alert-danger#error_explanation
-    -#%h3= "#{pluralize(object.errors.count, "ошибки")} при заполнении формы:"
-    %h3 Ошибки при заполнении формы:
+    -#%h3= "#{pluralize(object.errors.count, "error")}:"
+    %h3 Errors:
     %ul
       - object.errors.messages.each do |amsg|
         - amsg[1].each do |msg|
