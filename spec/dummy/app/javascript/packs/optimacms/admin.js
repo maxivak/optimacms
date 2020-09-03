@@ -36,8 +36,9 @@ import 'bootstrap/dist/js/bootstrap';
 
 
 // autocomplete
-require('bootstrap-autocomplete-input-assets/src/js/bootstrap3-typeahead.min.js');
-require('bootstrap-autocomplete-input-assets/src/js/bootstrap-autocomplete-input.min.js');
+require('script-loader!bootstrap-autocomplete-input-assets/src/js/bootstrap3-typeahead.js');
+require('script-loader!bootstrap-autocomplete-input-assets/src/js/bootstrap-autocomplete-input.js');
+
 
 
 

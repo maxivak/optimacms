@@ -1,14 +1,1 @@
-// font-awesome
-$fa-font-path: "~font-awesome/fonts";
-@import '~font-awesome/scss/font-awesome';
-
-
-//
-@import '../../src/optimacms/stylesheets/application_variables';
-
-// Bootstrap and its default variables
-@import '~bootstrap/scss/bootstrap';
-
-
-//
 @import '../../src/optimacms/stylesheets/application_styles';
