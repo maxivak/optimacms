@@ -4,7 +4,7 @@
     =link_to '/'+Optimacms.config.admin_namespace+'/dashboard', class: "nav-link active" do
       Dashboard
 
-  - Optimacms::AdminMenu::AdminMenu.get_menu.each_with_index do |m, ind|
+  - Optimacms.config.admin_menu_builder.get_menu.each_with_index do |m, ind|
     %li.nav-item
       =link_to "#submenu#{ind}", :"data-toggle"=>"collapse", :"aria-expanded"=>"true", :"aria-controls"=>"submenu#{ind}", :class=> "nav-link" do
         %span
