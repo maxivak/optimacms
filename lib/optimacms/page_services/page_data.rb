@@ -1,5 +1,4 @@
-module Optimacms
-  module PageServices
+module Optimacms::PageServices
     # data used for processing page
     class PageData
       attr_accessor :page # page object
@@ -15,7 +14,7 @@ module Optimacms
 
       attr_reader :compiled_view_path
 
-      include PageProcessService
+      #include Optimacms::PageServices::PageProcessService
 
       def controller_class
         Object.const_get controller.to_s.camelize+'Controller'
@@ -137,5 +136,4 @@ module Optimacms
 =end
 
     end
-  end
 end

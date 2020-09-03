@@ -2,6 +2,12 @@ module Optimacms
   class Page < ApplicationRecord
     self.table_name = 'cms_pages'
 
+    # TBD: remove ??. it is redefined in MetaContentConcern
+    attr_accessor :meta
+
+    # concerns
+    include Optimacms::MetaContentConcern
+
     # relations
     belongs_to :layout, :foreign_key => 'layout_id', :class_name => 'Template', optional: true
     belongs_to :template, :foreign_key => 'template_id', :class_name => 'Template', optional: true
@@ -10,7 +16,6 @@ module Optimacms
     accepts_nested_attributes_for :translations
     accepts_nested_attributes_for :template
 
-    attr_accessor :meta
 
     #has_many :page_translations
     #accepts_nested_attributes_for :page_translations
@@ -38,8 +43,7 @@ module Optimacms
     before_save :_before_validate
     before_save :_before_save
 
-    # modules
-    include Optimacms::MetaContent
+    # meta
     make_meta(Language.all.map(&:lang))
 
 

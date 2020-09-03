@@ -14,17 +14,17 @@
         end
 
         # result
-        pagedata = PageData.new
+        pagedata = Optimacms::PageServices::PageData.new
         pagedata.url = (url || '')
 
         # try 1
-        rows = Page.where(where).order(order).all
+        rows = Optimacms::Page.where(where).order(order).all
         pagedata.page = rows[0] if rows.count>0
 
         # try 2
         if pagedata.page.nil? && url.blank?
           where = where_base + "url = '#{lang}'"
-          rows = Page.where(where).order(order).all
+          rows = Optimacms::Page.where(where).order(order).all
 
           pagedata.page = rows[0] if rows.count>0
         end

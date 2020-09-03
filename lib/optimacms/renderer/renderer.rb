@@ -11,7 +11,7 @@ module Optimacms
       # content page without custom controller
       def render_page(pagedata, options = nil, extra_options = {}, &block)
         #context.render "/"+@optimacms_tpl, :layout=>@optimacms_layout
-        virtual_path = "/"+pagedata.template
+        virtual_path = "/"+pagedata.template_virtual_path
         options = {layout: pagedata.layout}
 
         context.instance_variable_set('@virtual_path', pagedata.template_virtual_path)
@@ -19,7 +19,9 @@ module Optimacms
         # editor for admin
         is_admin_edit = render_options[:is_admin_edit] || false
         if is_admin_edit
-          return render_with_edit(pagedata, options, extra_options, &block)
+          # changed 2020-mar.
+          #raise "Not supported while admin is logged in. Log out from admin area."
+          #return render_with_edit(pagedata, options, extra_options, &block)
         end
 
         # render text
@@ -174,6 +176,5 @@ module Optimacms
       end
 
     end
-
   end
 end

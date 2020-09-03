@@ -1,5 +1,5 @@
 ﻿module Optimacms
-  module Mycontroller
+  module MycontrollerControllerConcern
     extend ActiveSupport::Concern
 
     ### rendering

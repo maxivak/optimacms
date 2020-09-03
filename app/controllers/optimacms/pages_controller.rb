@@ -1,10 +1,14 @@
 ﻿module Optimacms
-  class PagesController < Optimacms::ApplicationController
-    include ::Optimacms::Mycontroller
+  class PagesController < ApplicationController
+    include Optimacms::MycontrollerControllerConcern
+
+    def current_lang
+      return I18n.locale
+    end
 
     def show
       @path = params[:url]
-      @pagedata = PageServices::PageRouteService.find_page_by_url(@path, current_lang)
+      @pagedata = Optimacms::PageServices::PageRouteService.find_page_by_url(@path, current_lang)
 
       if @pagedata.page.nil?
         not_found and return
@@ -72,7 +76,11 @@
 
       # extend controller with cms stuff
       if !c.respond_to?(:is_optimacms, true)
-        controller.send 'include', ::Optimacms::Mycontroller
+        # controller is not known by OptimaCMS
+        # TODO: raise exception
+        # changed 2020-mar. commented
+        #controller.send 'include', ::Optimacms::Mycontroller
+        raise "Controller is not supported by OptimaCMS"
       end
 
       if !c.respond_to?(:render_base, true)

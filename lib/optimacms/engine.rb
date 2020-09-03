@@ -49,8 +49,19 @@ module Optimacms
         # TODO: check if this line can be safely removed
         #include ::Optimacms::Mycontroller
 
-        ::ActionController::Base.helper Optimacms::Engine.helpers
+        # TODO: 2020-mar. temporarily commented.
+        # ::ActionController::Base.helper Optimacms::Engine.helpers
       end
+    end
+
+    config.after_initialize do
+      # views
+      my_engine_root = Optimacms::Engine.root.to_s
+      paths = ActionController::Base.view_paths.collect{|p| p.to_s}
+      #paths = paths.insert(paths.index(my_engine_root + '/app/views'), my_engine_root + '/app/views/themes/my_theme')
+      paths << my_engine_root + '/app/views'
+      ActionController::Base.view_paths = paths
+
     end
 
     initializer "optimacms assets precompile" do |app|
