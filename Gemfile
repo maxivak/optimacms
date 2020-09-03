@@ -19,77 +19,92 @@ end
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem 'rails', '5.2.2'
+ruby '2.6.6'
 
-gem 'mysql2', '0.4.10'
+gem 'rails', '6.0.2.1'
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data'
+gem 'zeitwerk', '2.3.0'
 
+gem 'mysql2', '0.5.2'
 
-gem 'puma', '~> 3.0'
+# Use Puma as the app server
+group :development, :test do
+  gem 'puma', '~> 3.11'
+end
+
+gem 'nokogiri', '1.10.10'
+
+#
+gem 'devise', '4.7.1'
+
+if Bundler::WINDOWS
+  #gem 'bcrypt-ruby', '~> 3.0.0', require: false
+  gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
+else
+  gem 'bcrypt', '~> 3.1.10', require: false
+end
+
+gem 'net-ssh', '5.2.0'
 
 gem 'globalize', github: 'globalize/globalize'
 gem 'activemodel-serializers-xml'
 gem 'globalize-accessors'
 
 
-#
-#gem 'devise', '4.5.0'
-
-if Bundler::WINDOWS
-  gem 'bcrypt-ruby', '3.1.1.rc1', :require => 'bcrypt'
-else
-  gem 'bcrypt', '~> 3.1.10', require: false
-end
-gem 'net-ssh', '3.1.1', :git => 'https://github.com/maxivak/net-ssh', :branch => '3-1-release'
-
-
-
-
-gem 'webpacker', '3.5.3'
-
 gem 'haml-rails', '1.0.0'
-
-#gem 'sass-rails' #, '~>5.0.6'
+gem 'sass-rails', '>=6'
 #gem 'uglifier', '3.2.0'
 #gem 'coffee-rails'
 #gem 'jquery-rails'
 #gem 'font-awesome-rails'
 
+gem 'rails-i18n', '6.0.0'
 
 
-# Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
-#source 'https://rails-assets.org' do
-#  gem 'rails-assets-tether', '>= 1.3.3'
-#end
 
-#
+gem 'webpacker', '~> 4.0'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.7'
+
+
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 
-
 gem 'simple_form', '4.1.0'
 #gem 'simple_form', '3.5.0' #, '~>3.3.1'
-gem 'simple_search_filter', '0.1.1'
-gem 'bootstrap_autocomplete_input', '~>0.2.0'
+gem 'simple_search_filter', '0.2.1'
+gem 'bootstrap_autocomplete_input', '0.2.4'
 
-
-gem 'paperclip'
+gem 'paperclip', '6.1.0'
 gem 'ancestry'
-
-
-
 
 # tinymce
 gem 'tinymce-rails', '4.7.13' #, '4.1.6'
 
-
 # editor
 gem 'el_finder', '1.1.13'
 
+
+gem 'tzinfo', '1.2.7'
+gem 'tzinfo-data', '1.2020.1'
+
 #
-group :development, :test do
+group :development do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+
+end
+
+
+group :test do
   gem 'rspec-rails' #, '3.1.0'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
@@ -97,13 +112,5 @@ group :development, :test do
   gem 'capybara'
 #gem "capybara-webkit"
 #gem 'selenium-webdriver'
-end
-
-
-group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
 
 end
-
