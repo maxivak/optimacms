@@ -1,3 +1,12 @@
+module Optimacms
+  module Filters
+    class FormFilter
+
+    end
+  end
+end
+
+
 =begin
 module Optimacms
   module Filters
