@@ -1,6 +1,5 @@
 ﻿module Optimacms
   module ApplicationHelper
-    include ::Friendlycontent::Rails::ApplicationHelper
     #include ActionView::Helpers::ApplicationHelper
     #include SimpleFilter::FormsHelper
 
